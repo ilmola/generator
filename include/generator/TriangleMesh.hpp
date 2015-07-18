@@ -1,0 +1,94 @@
+// Copyright 2015 Markus Ilmola
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+
+#ifndef GENERATOR_TRIANGLEMESH_HPP
+#define GENERATOR_TRIANGLEMESH_HPP
+
+#include <gml/gml.hpp>
+
+
+#include "MeshVertex.hpp"
+#include "Triangle.hpp"
+
+
+namespace generator {
+
+
+/// A triangular mesh on the xy -plane.
+/// @image html TriangleMesh.svg
+class TriangleMesh
+{
+public:
+
+	class Triangles {
+	public:
+
+		bool done() const noexcept;
+		Triangle generate() const;
+		void next();
+		void reset() noexcept;
+
+	private:
+
+		const TriangleMesh* mesh_;
+		unsigned row_;
+		unsigned col_;
+		unsigned i_;
+
+		Triangles(const TriangleMesh& mesh);
+
+	friend class TriangleMesh;
+	};
+
+	class Vertices {
+	public:
+
+		bool done() const noexcept;
+		MeshVertex generate() const;
+		void next();
+		void reset() noexcept;
+
+	private:
+
+		const TriangleMesh* mesh_;
+		unsigned row_;
+		unsigned col_;
+
+		Vertices(const TriangleMesh& mesh);
+
+	friend class TriangleMesh;
+	};
+
+	/// Makes a regular triangle.
+	/// @param radius Radius of the containing sphere
+	/// @param segments Number of subdivisions along each edge.
+	explicit TriangleMesh(double radius = 1.0, unsigned segments = 4u);
+
+	/// @param segments Number of subdivisions along each edge.
+	TriangleMesh(
+		const gml::dvec3& v0, const gml::dvec3& v1, const gml::dvec3& v2,
+		unsigned segments = 4u
+	);
+
+	Triangles triangles() const noexcept;
+
+	Vertices vertices() const noexcept;
+
+private:
+
+	gml::dvec3 v0_, v1_, v2_;
+
+	gml::dvec3 normal_;
+
+	unsigned segments_;
+
+};
+
+
+}
+
+
+#endif

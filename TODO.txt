@@ -1,0 +1,21 @@
+- Spline shapes
+- Spline paths
+- Nurbs
+- Triangulate shapes to meshes.
+- Fonts (freetype).
+- Tetrahedron
+- Octahedron
+- Dodecahedron
+- Teapot
+- Lathe cache shape vertex.
+- Uv transform
+- UV projection (sphere, cylinder, plane, box)
+- Belt shape
+- Subdivide shared cache. (shared_ptr?)
+- Tagging parts of mesh to support multiple materials.
+- Isosurfaces (marching cubes)
+- Gear mesh, gear shape
+
+
+
+

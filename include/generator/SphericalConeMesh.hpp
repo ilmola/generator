@@ -1,0 +1,55 @@
+// Copyright 2015 Markus Ilmola
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+
+#ifndef GENERATOR_SPHERICALCONEMESH_HPP
+#define GENERATOR_SPHERICALCONEMESH_HPP
+
+
+#include "AxisFlipMesh.hpp"
+#include "ConeMesh.hpp"
+#include "MergeMesh.hpp"
+#include "SphereMesh.hpp"
+#include "TranslateMesh.hpp"
+
+
+namespace generator {
+
+
+/// A cone with a spherical cap centered at origin tip pointing towards z-axis.
+/// Each point on the cap has equal distance from the tip.
+/// @image html SphericalConeMesh.svg
+class SphericalConeMesh :
+	private TranslateMesh<MergeMesh<ConeMesh, AxisFlipMesh<TranslateMesh<SphereMesh>>>>
+{
+public:
+
+	/// @param radius Radius of the negative z end on the xy-plane.
+	/// @param size Half of the distance between cap and tip along the z-axis.
+	/// @param slices Number of subdivisions around the z-axis.
+	/// @param segments Number subdivisions along the z-axis.
+	/// @param rings Number subdivisions in the cap.
+	/// @param start Counterclockwise angle around the z-axis relative to the positive x-axis.
+	/// @param sweep Counterclockwise angle around the z-axis.
+	SphericalConeMesh(
+		double radius = 1.0,
+		double size = 1.0,
+		unsigned slices = 32u,
+		unsigned segments = 8u,
+		unsigned rings = 4u,
+		double start = 0.0,
+		double sweep = gml::radians(360.0)
+	);
+
+	using TranslateMesh::triangles;
+
+	using TranslateMesh::vertices;
+
+};
+
+
+}
+
+#endif

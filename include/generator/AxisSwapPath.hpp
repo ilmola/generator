@@ -1,0 +1,68 @@
+// Copyright 2015 Markus Ilmola
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+
+#ifndef GENERATOR_AXISSWAPPATH_HPP
+#define GENERATOR_AXISSWAPPATH_HPP
+
+#include "Axis.hpp"
+#include "TransformPath.hpp"
+
+namespace generator {
+
+
+
+/// Swaps axis in path.
+template <typename Path>
+class AxisSwapPath :
+	private TransformPath<Path>
+{
+public:
+
+	/// @param path Source data path
+	/// @param x Axis to use as the X-axis
+	/// @param y Axis to use as the Y-axis
+	/// @param z Axis to use as the Z-axis
+	AxisSwapPath(Path path, Axis x, Axis y, Axis z) :
+		TransformPath<Path>{
+			std::move(path),
+			[x, y, z] (PathVertex& vertex) {
+				vertex.position	= gml::dvec3{
+					vertex.position[static_cast<unsigned>(x)],
+					vertex.position[static_cast<unsigned>(y)],
+					vertex.position[static_cast<unsigned>(z)]
+				};
+				vertex.tangent = gml::dvec3{
+					vertex.tangent[static_cast<unsigned>(x)],
+					vertex.tangent[static_cast<unsigned>(y)],
+					vertex.tangent[static_cast<unsigned>(z)]
+				};
+				vertex.normal = gml::dvec3{
+					vertex.normal[static_cast<unsigned>(x)],
+					vertex.normal[static_cast<unsigned>(y)],
+					vertex.normal[static_cast<unsigned>(z)]
+				};
+			}
+		}
+	{ }
+
+	using TransformPath<Path>::edges;
+
+	using TransformPath<Path>::vertices;
+
+};
+
+
+template <typename Path>
+AxisSwapPath<Path> axisSwapPath(Path path, Axis x, Axis y, Axis z) {
+	return AxisSwapPath<Path>{std::move(path), x, y, z};
+}
+
+
+}
+
+
+#endif
+

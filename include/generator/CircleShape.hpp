@@ -1,0 +1,40 @@
+// Copyright 2015 Markus Ilmola
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+
+#ifndef GENERATOR_CIRCLESHAPE_HPP
+#define GENERATOR_CIRCLESHAPE_HPP
+
+#include "ParametricShape.hpp"
+
+namespace generator {
+
+
+/// A circle centered at origin.
+/// @image html CircleShape.svg
+class CircleShape : private ParametricShape
+{
+public:
+
+	/// @param radius Radius of the circle
+	/// @param segments Number of subdivisions around the circle.
+	/// @param start Counterclockwise angle relative to x-axis.
+	/// @param sweep Counterclockwise angle.
+	CircleShape(
+		double radius = 1.0,
+		unsigned segments = 32u,
+		double start = 0.0,
+		double sweep = gml::radians(360.0)
+	);
+
+	using ParametricShape::edges;
+
+	using ParametricShape::vertices;
+
+};
+
+}
+
+#endif
