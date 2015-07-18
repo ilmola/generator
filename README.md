@@ -1,6 +1,6 @@
 # Generator - A procedural geometry generation library.
 
-![Examples](doc/GroupPicture.svg)
+![Examples](doc/GroupPicture.png)
 
 The purpose of this library is to easily generate procedural meshes of geometric
 primitives such as spheres, boxes, cones, cylinders etc.
