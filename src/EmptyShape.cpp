@@ -7,7 +7,7 @@
 
 #include "generator/EmptyShape.hpp"
 
-
+#include <stdexcept>
 
 using namespace generator;
 

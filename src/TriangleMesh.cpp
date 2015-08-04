@@ -7,6 +7,7 @@
 
 #include "generator/TriangleMesh.hpp"
 
+#include <stdexcept>
 
 using namespace generator;
 

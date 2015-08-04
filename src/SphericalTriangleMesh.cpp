@@ -5,9 +5,9 @@
 // version 2.1 of the License, or (at your option) any later version.
 
 
-#include <gml/gml.hpp>
-
 #include "generator/SphericalTriangleMesh.hpp"
+
+#include <stdexcept>
 
 
 using namespace generator;
