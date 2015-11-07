@@ -19,11 +19,11 @@ public:
 	/// Zero based indices of the triangle vertices in counterclockwise order.
 	gml::uvec3 vertices;
 
-	Triangle() :
+	Triangle() noexcept :
 		vertices{}
 	{ }
 
-	Triangle(const gml::uvec3& vertices) :
+	Triangle(const gml::uvec3& vertices) noexcept :
 		vertices{vertices}
 	{ }
 

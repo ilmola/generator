@@ -16,19 +16,14 @@ public:
 
 	gml::uvec2 vertices;
 
-	Edge() :
+	Edge() noexcept :
 		vertices{}
 	{ }
 
-	Edge(const gml::uvec2& vertices) :
+	Edge(const gml::uvec2& vertices) noexcept :
 		vertices{vertices}
 	{ }
 
-	Edge(const Edge&) = default;
-	Edge(Edge&&) = default;
-
-	Edge& operator=(const Edge&) = default;
-	Edge& operator=(Edge&&) = default;
 };
 
 }

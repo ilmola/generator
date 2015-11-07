@@ -23,7 +23,7 @@ public:
 	/// UV texture coordinates
 	gml::dvec2 texCoord;
 
-	MeshVertex() :
+	MeshVertex() noexcept :
 		position{},
 		normal{},
 		texCoord{}
