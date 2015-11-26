@@ -66,9 +66,6 @@ public:
 		unsigned segments = 16u
 	);
 
-	ParametricShape(const ParametricShape&) = default;
-	ParametricShape(ParametricShape&&) = default;
-
 	Edges edges() const noexcept;
 
 	Vertices vertices() const noexcept;

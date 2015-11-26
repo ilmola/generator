@@ -30,9 +30,6 @@ public:
 	class Triangles {
 	public:
 
-		Triangles(const Triangles&) = default;
-		Triangles(Triangles&&) = default;
-
 		Triangle generate() const {
 			Triangle triangle;
 
@@ -90,9 +87,6 @@ public:
 
 	class Vertices {
 	public:
-
-		Vertices(const Vertices&) = default;
-		Vertices(Vertices&&) = default;
 
 		MeshVertex generate() const {
 			MeshVertex vertex;
@@ -169,12 +163,6 @@ public:
 		start_{start},
 		sweep_{sweep}
 	{ }
-
-	LatheMesh(const LatheMesh&) = default;
-	LatheMesh(LatheMesh&&) = default;
-
-	LatheMesh& operator=(const LatheMesh&) = default;
-	LatheMesh& operator=(LatheMesh&&) = default;
 
 	Triangles triangles() const noexcept { return *this; }
 

@@ -69,12 +69,6 @@ public:
 		const gml::uvec2& segments = {16u, 16u}
 	);
 
-	ParametricMesh(const ParametricMesh&) = default;
-	ParametricMesh(ParametricMesh&&) = default;
-
-	ParametricMesh& operator=(const ParametricMesh&) = default;
-	ParametricMesh& operator=(ParametricMesh&&) = default;
-
 	Triangles triangles() const noexcept;
 
 	Vertices vertices() const noexcept;
@@ -84,7 +78,7 @@ private:
 	std::function<MeshVertex(const gml::dvec2& t)> eval_;
 
 	gml::uvec2 segments_;
-	
+
 	gml::dvec2 delta_;
 
 };

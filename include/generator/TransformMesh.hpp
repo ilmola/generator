@@ -25,9 +25,6 @@ public:
 	class Vertices {
 	public:
 
-		Vertices(const Vertices&) = default;
-		Vertices(Vertices&&) = default;
-
 		MeshVertex generate() const {
 			auto vertex = vertices_.generate();
 			this->mesh_->mutate_(vertex);
@@ -60,9 +57,6 @@ public:
 		Mesh{std::move(mesh)},
 		mutate_{mutate}
 	{ }
-
-	TransformMesh(const TransformMesh&) = default;
-	TransformMesh(TransformMesh&&) = default;
 
 	using Mesh::triangles;
 
