@@ -7,10 +7,12 @@
 #ifndef GENERATOR_SVG_HPP
 #define GENERATOR_SVG_HPP
 
+#include <array>
 #include <algorithm>
 #include <sstream>
 #include <memory>
 #include <map>
+#include <vector>
 
 #include <gml/gml.hpp>
 
