@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 2.6)
 project(generator)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+include(GNUInstallDirs)
+
 add_definitions(-std=c++11 -pedantic -Wall -Wextra)
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/lib)
