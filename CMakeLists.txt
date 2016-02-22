@@ -18,3 +18,7 @@ endif()
 
 add_subdirectory(src)
 add_subdirectory(images)
+
+
+install(DIRECTORY include/generator DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(FILES lib/libgenerator.a DESTINATION ${CMAKE_INSTALL_LIBDIR})
