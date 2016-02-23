@@ -1,3 +1,5 @@
+file(GLOB_RECURSE HEADERS "${CMAKE_SOURCE_DIR}/include/generator/*.hpp")
+
 add_library(generator STATIC
 	AnyMesh.cpp
 	AnyPath.cpp
@@ -40,3 +42,4 @@ add_library(generator STATIC
 )
 
 target_include_directories (generator PUBLIC ${CMAKE_SOURCE_DIR}/include)
+add_custom_target(headers SOURCES)
