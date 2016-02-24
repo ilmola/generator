@@ -46,7 +46,7 @@ KnotPath::KnotPath(
 			const gml::dvec3 prev = knot(p, q, t - 0.01);
 			const gml::dvec3 next = knot(p, q, t + 0.01);
 
-			vertex.tangent = normalize(gml::dvec3{prev, next});
+			vertex.tangent = normalize(next - prev);
 
 			vertex.normal = normalize(cross(next - prev, next + prev));
 

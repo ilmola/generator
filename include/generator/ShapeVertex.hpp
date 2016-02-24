@@ -7,7 +7,7 @@
 #ifndef GENERATOR_SHAPEGENERATOR_HPP
 #define GENERATOR_SHAPEGENERATOR_HPP
 
-#include <gml/gml.hpp>
+#include "math.hpp"
 
 
 namespace generator {
@@ -35,7 +35,7 @@ public:
 	/// Returns the tangent rotated 90 dec clockwise.
 	/// Also the x-axis of the shape's local coordinate system.
 	gml::dvec2 normal() const noexcept {
-		return -cross(this->tangent);
+		return -gml::cross(this->tangent);
 	}
 
 };

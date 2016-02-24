@@ -31,13 +31,13 @@ public:
 	{ }
 
 	RotatePath(Path path, double angle, const gml::dvec3& axis) :
-		RotatePath{std::move(path), qrotate(angle, axis)}
+		RotatePath{std::move(path), gml::qrotate(angle, axis)}
 	{ }
 
 	RotatePath(Path path, double angle, Axis axis) :
 		RotatePath{
 			std::move(path),
-			qrotate(
+			gml::qrotate(
 				angle,
 				axis == Axis::X ?
 					gml::dvec3{1.0, 0.0, 0.0} :

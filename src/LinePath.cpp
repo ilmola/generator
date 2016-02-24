@@ -20,8 +20,8 @@ LinePath::LinePath(
 		[start, end, normal] (double t) {
 			PathVertex vertex;
 
-			vertex.position = start + t * gml::dvec3(start, end);
-			vertex.tangent = normalize(gml::dvec3(start, end));
+			vertex.position = start + t * (end - start);
+			vertex.tangent = normalize(end - start);
 			vertex.normal = normal;
 			vertex.texCoord = t;
 

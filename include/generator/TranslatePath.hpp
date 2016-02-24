@@ -7,7 +7,7 @@
 #ifndef GENERATOR_TRANSLATEPATH_HPP
 #define GENERATOR_TRANSLATEPATH_HPP
 
-#include <gml/gml.hpp>
+#include "math.hpp"
 
 #include "TransformPath.hpp"
 

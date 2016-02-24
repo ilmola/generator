@@ -14,7 +14,7 @@
 #include <map>
 #include <vector>
 
-#include <gml/gml.hpp>
+#include "math.hpp"
 
 #include "Iterator.hpp"
 #include "MeshVertex.hpp"
