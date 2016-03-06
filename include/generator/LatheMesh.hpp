@@ -99,9 +99,9 @@ public:
 
 			const gml::dquat q = gml::qrotate(angle, mesh_->axis_);
 
-			vertex.position = gml::transform(q, gml::dvec3{shapeVertex.position});
+			vertex.position = gml::transform(q, gml::dvec3{shapeVertex.position[0], shapeVertex.position[1], 0.0});
 
-			vertex.normal = gml::transform(q, gml::dvec3{normal});
+			vertex.normal = gml::transform(q, gml::dvec3{normal[0], normal[1], 0.0});
 
 
 			vertex.texCoord[0] = shapeVertex.texCoord;

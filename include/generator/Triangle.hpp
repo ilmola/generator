@@ -7,7 +7,7 @@
 #ifndef GENERATOR_TRIANGLE_HPP
 #define GENERATOR_TRIANGLE_HPP
 
-#include <gml/gml.hpp>
+#include "math.hpp"
 
 namespace generator {
 

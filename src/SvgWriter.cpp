@@ -190,7 +190,7 @@ void SvgWriter::writeTriangle(
 	auto pp2 = project(p2);
 	auto pp3 = project(p3);
 
-	if (cullface_ && normal(pp1, pp2, pp3)[2] > 0.0) return;
+	if (cullface_ && gml::normal(pp1, pp2, pp3)[2] > 0.0) return;
 
 	elems_.push_back(std::unique_ptr<BaseElem>{new TriangleElem(
 		pp1, pp2, pp3, color
@@ -201,7 +201,7 @@ void SvgWriter::writeTriangle(
 void SvgWriter::writeTriangle(
 	const gml::dvec3& p1, const gml::dvec3& p2, const gml::dvec3& p3
 ) {
-	writeTriangle(p1, p2, p3, normalToColor(normal(p1, p2, p3)));
+	writeTriangle(p1, p2, p3, normalToColor(gml::normal(p1, p2, p3)));
 }
 
 

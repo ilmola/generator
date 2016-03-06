@@ -7,7 +7,7 @@
 #ifndef GENERATOR_MESHVERTEX_HPP
 #define GENERATOR_MESHVERTEX_HPP
 
-#include <gml/gml.hpp>
+#include "math.hpp"
 
 namespace generator {
 

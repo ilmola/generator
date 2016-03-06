@@ -20,8 +20,8 @@ LineShape::LineShape(
 		[start, end] (double t) {
 			ShapeVertex vertex;
 
-			vertex.position = start + t * gml::dvec2(start, end);
-			vertex.tangent = normalize(gml::dvec2(start, end));
+			vertex.position = start + t * (end - start);
+			vertex.tangent = normalize(end - start);
 			vertex.texCoord = t;
 
 			return vertex;

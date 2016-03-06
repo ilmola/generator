@@ -36,13 +36,13 @@ public:
 	/// @param angle Counterclockwise angle around the given axis.
 	/// @param axis Unit length axis to rotate around.
 	RotateMesh(Mesh mesh, double angle, const gml::dvec3& axis) :
-		RotateMesh{std::move(mesh), qrotate(angle, axis)}
+		RotateMesh{std::move(mesh), gml::qrotate(angle, axis)}
 	{ }
 
 	RotateMesh(Mesh mesh, double angle, Axis axis) :
 		RotateMesh{
 			std::move(mesh),
-			qrotate(
+			gml::qrotate(
 				angle,
 				axis == Axis::X ?
 					gml::dvec3{1.0, 0.0, 0.0} :

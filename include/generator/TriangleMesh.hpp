@@ -7,7 +7,7 @@
 #ifndef GENERATOR_TRIANGLEMESH_HPP
 #define GENERATOR_TRIANGLEMESH_HPP
 
-#include <gml/gml.hpp>
+#include "math.hpp"
 
 
 #include "MeshVertex.hpp"
