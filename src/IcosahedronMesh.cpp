@@ -100,14 +100,16 @@ void IcosahedronMesh::Triangles::next() {
 	if (triangles_.done()) {
 		++i_;
 
-		triangle_ = TriangleMesh{
-			::vertices[::triangles[i_][0]],
-			::vertices[::triangles[i_][1]],
-			::vertices[::triangles[i_][2]],
-			mesh_->segments_
-		};
+		if (!done()) {
+			triangle_ = TriangleMesh{
+				::vertices[::triangles[i_][0]],
+				::vertices[::triangles[i_][1]],
+				::vertices[::triangles[i_][2]],
+				mesh_->segments_
+			};
 
-		triangles_ =  triangle_.triangles();
+			triangles_ =  triangle_.triangles();
+		}
 	}
 }
 
@@ -155,14 +157,16 @@ void IcosahedronMesh::Vertices::next() {
 	if (vertices_.done()) {
 		++i_;
 
-		triangle_ = TriangleMesh{
-			::vertices[::triangles[i_][0]],
-			::vertices[::triangles[i_][1]],
-			::vertices[::triangles[i_][2]],
-			mesh_->segments_
-		};
+		if (!done()) {
+			triangle_ = TriangleMesh{
+				::vertices[::triangles[i_][0]],
+				::vertices[::triangles[i_][1]],
+				::vertices[::triangles[i_][2]],
+				mesh_->segments_
+			};
 
-		vertices_ = triangle_.vertices();
+			vertices_ = triangle_.vertices();
+		}
 	}
 }
 
