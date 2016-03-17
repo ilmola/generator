@@ -35,7 +35,7 @@ public:
 	/// Returns the tangent rotated 90 dec clockwise.
 	/// Also the x-axis of the shape's local coordinate system.
 	gml::dvec2 normal() const noexcept {
-		return -gml::cross(this->tangent);
+		return -gml::cross(tangent);
 	}
 
 };

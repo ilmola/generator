@@ -27,7 +27,7 @@ public:
 
 		MeshVertex generate() const {
 			auto vertex = vertices_.generate();
-			this->mesh_->mutate_(vertex);
+			mesh_->mutate_(vertex);
 			return vertex;
 		}
 
