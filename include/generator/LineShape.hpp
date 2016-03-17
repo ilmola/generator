@@ -23,8 +23,8 @@ public:
 	/// @param end End position
 	/// @param segments Number of subdivisions
 	LineShape(
-		const gml::dvec2& start = {-1.0, 0.0},
-		const gml::dvec2& end = {1.0, 0.0},
+		const gml::dvec2& start = {0.0, -1.0},
+		const gml::dvec2& end = {0.0, 1.0},
 		unsigned segments = 8u
 	);
 
