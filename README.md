@@ -305,6 +305,13 @@ for (const MeshVertex& vertex : sphere.vertices()) {
 **NOTE:** The function `begin()` will first call `reset()` on the generator
 before returning the iterator.
 
+**NOTE:** Be aware of a lifetime issue with a temporary primitive and the for loop.
+~~~c++
+for (const MeshVertex& vertex : SphereMesh{}.vertices()) {
+	// Error! Undefined behaviour!
+}
+~~~
+
 
 ## Modifiers ##
 
