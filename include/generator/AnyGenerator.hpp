@@ -40,9 +40,9 @@ public:
 
 	bool done() const noexcept { return base_->done(); }
 
-	void next() { return base_->next(); }
+	void next() { base_->next(); }
 
-	void reset() noexcept { return base_->reset(); }
+	void reset() noexcept { base_->reset(); }
 
 private:
 
@@ -75,11 +75,11 @@ private:
 		}
 
 		virtual void next() override { 
-			return generator_.next();
+			generator_.next();
 		}
 
 		virtual void reset() noexcept override {
-			return generator_.reset();
+			generator_.reset();
 		}
 
 	private:
