@@ -24,7 +24,6 @@ public:
 		Triangle generate() const;
 		bool done() const noexcept;
 		void next();
-		void reset() noexcept;
 	private:
 
 		Triangles();
@@ -38,7 +37,6 @@ public:
 		MeshVertex generate() const;
 		bool done() const noexcept;
 		void next();
-		void reset() noexcept;
 
 	private:
 

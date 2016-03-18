@@ -26,7 +26,6 @@ public:
 		Edge generate() const;
 		bool done() const noexcept;
 		void next();
-		void reset() noexcept;
 
 	private:
 
@@ -46,7 +45,6 @@ public:
 		PathVertex generate() const;
 		bool done() const noexcept;
 		void next();
-		void reset() noexcept;
 
 	private:
 

@@ -63,11 +63,6 @@ public:
 			}
 		}
 
-		void reset() noexcept {
-			i_ = 0;
-			shape_Edges.reset();
-		}
-
 	private:
 
 		const LatheMesh* mesh_;
@@ -120,11 +115,6 @@ public:
 				shapeVertices_.next();
 			}
 
-		}
-
-		void reset() noexcept {
-			i_ = 0;
-			shapeVertices_.reset();
 		}
 
 	private:

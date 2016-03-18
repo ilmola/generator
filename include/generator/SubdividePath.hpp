@@ -44,8 +44,6 @@ public:
 			if (i_ % 2 == 0) edges_.next();
 		}
 
-		void reset() noexcept { i_ = 0; edges_.reset(); }
-
 	private:
 
 		const SubdividePath* path_;
@@ -67,18 +65,18 @@ public:
 	class Vertices {
 	public:
 
-		bool done() const noexcept { 
+		bool done() const noexcept {
 			return vertexIndex_ == path_->vertexCache_.size() && edges_.done();
 		}
 
 		PathVertex generate() const {
 			if (vertexIndex_ < path_->vertexCache_.size())
 				return path_->vertexCache_[vertexIndex_];
-			
+
 			const Edge edge = edges_.generate();
 			const PathVertex& v1 = path_->vertexCache_[edge.vertices[0]];
 			const PathVertex& v2 = path_->vertexCache_[edge.vertices[1]];
-	
+
 			PathVertex vertex;
 			vertex.position = gml::mix(v1.position, v2.position, 0.5);
 			vertex.tangent = gml::normalize(gml::mix(v1.tangent, v2.tangent, 0.5));
@@ -91,8 +89,6 @@ public:
 			if (vertexIndex_ < path_->vertexCache_.size()) ++vertexIndex_;
 			else edges_.next();
 		}
-
-		void reset() noexcept { vertexIndex_ = 0; edges_.reset(); }
 
 	private:
 

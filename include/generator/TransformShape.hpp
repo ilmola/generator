@@ -34,8 +34,6 @@ public:
 
 		void next() { vertices_.next(); }
 
-		void reset() noexcept { vertices_.reset(); }
-
 	private:
 
 		const TransformShape* shape_;

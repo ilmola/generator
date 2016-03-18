@@ -36,8 +36,6 @@ public:
 
 		void next() { triangles_.next(); }
 
-		void reset() noexcept { triangles_.reset(); }
-
 	private:
 
 		const AxisFlipMesh* mesh_;

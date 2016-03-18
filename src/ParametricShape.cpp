@@ -32,10 +32,6 @@ void ParametricShape::Edges::next() {
 	++i_;
 }
 
-void ParametricShape::Edges::reset() noexcept {
-	i_ = 0;
-}
-
 
 
 
@@ -58,10 +54,6 @@ bool ParametricShape::Vertices::done() const noexcept {
 void ParametricShape::Vertices::next() {
 	if (done()) throw std::out_of_range("Done!");
 	++i_;
-}
-
-void ParametricShape::Vertices::reset() noexcept {
-	i_ = 0;
 }
 
 

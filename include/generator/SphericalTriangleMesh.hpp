@@ -31,8 +31,6 @@ public:
 
 		void next();
 
-		void reset() noexcept;
-
 	private:
 
 		const SphericalTriangleMesh* mesh_;
@@ -53,9 +51,6 @@ public:
 		MeshVertex generate() const;
 
 		void next();
-
-		void reset() noexcept;
-
 
 	private:
 

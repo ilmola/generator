@@ -48,13 +48,11 @@ public:
 
 		void next() { vertices_.next(); }
 
-		void reset() noexcept { vertices_.reset(); }
-
 	private:
 
 		typename VertexGeneratorType<Shape>::Type vertices_;
 
-		Vertices(const Shape& shape) : 
+		Vertices(const Shape& shape) :
 			vertices_{shape.vertices()}
 		{ }
 

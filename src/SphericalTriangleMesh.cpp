@@ -57,12 +57,6 @@ void SphericalTriangleMesh::Triangles::next() {
 	}
 }
 
-void SphericalTriangleMesh::Triangles::reset() noexcept {
-	row_ = 0;
-	col_ = 0;
-	i_ = 0;
-}
-
 
 
 SphericalTriangleMesh::Vertices::Vertices(const SphericalTriangleMesh& mesh) :
@@ -109,11 +103,6 @@ void SphericalTriangleMesh::Vertices::next() {
 		col_ = 0;
 		++row_;
 	}
-}
-
-void SphericalTriangleMesh::Vertices::reset() noexcept {
-	row_ = 0;
-	col_ = 0;
 }
 
 

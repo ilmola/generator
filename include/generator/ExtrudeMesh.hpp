@@ -64,15 +64,9 @@ public:
 				shapeEdges_.next();
 				if (shapeEdges_.done()) {
 					pathEdges_.next();
-					shapeEdges_.reset();
+					shapeEdges_ = mesh_->shape_.edges();
 				}
 			}
-		}
-
-		void reset() noexcept {
-			odd_ = true;
-			shapeEdges_.reset();
-			pathEdges_.reset();
 		}
 
 	private:
@@ -128,13 +122,8 @@ public:
 			shapeVertices_.next();
 			if (shapeVertices_.done()) {
 				pathVertices_.next();
-				shapeVertices_.reset();
+				shapeVertices_ = mesh_->shape_.vertices();
 			}
-		}
-
-		void reset() noexcept {
-			pathVertices_.reset();
-			shapeVertices_.reset();
 		}
 
 	private:

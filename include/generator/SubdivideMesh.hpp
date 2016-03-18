@@ -63,7 +63,7 @@ public:
 	public:
 
 		bool done() const noexcept { return triangles_.done(); }
-	
+
 		Triangle generate() const {
 			if (i_ == 0) triangle_ = triangles_.generate();
 
@@ -74,7 +74,7 @@ public:
 					vertexFromEdge(triangle_.vertices[2], triangle_.vertices[0])
 				}};
 			}
-			
+
 			unsigned j = (i_ + 1) % 3;
 			unsigned k = (i_ + 2) % 3;
 			return Triangle{{
@@ -91,8 +91,6 @@ public:
 				triangles_.next();
 			}
 		}
-
-		void reset() noexcept { i_ = 0; triangles_.reset(); }
 
 	private:
 
@@ -123,8 +121,8 @@ public:
 	class Vertices {
 	public:
 
-		bool done() const noexcept { 
-			return 
+		bool done() const noexcept {
+			return
 				vertexIndex_ == mesh_->vertexCache_.size() &&
 				edgeIndex_ == mesh_->edgeCache_.size();
 		}
@@ -147,8 +145,6 @@ public:
 			if (vertexIndex_ < mesh_->vertexCache_.size()) ++vertexIndex_;
 			else ++edgeIndex_;
 		}
-
-		void reset() noexcept { vertexIndex_ = 0; edgeIndex_ = 0; }
 
 	private:
 

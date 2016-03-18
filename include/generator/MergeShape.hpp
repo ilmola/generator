@@ -46,11 +46,6 @@ public:
 			else tail_.next();
 		}
 
-		void reset() noexcept {
-			head_.reset();
-			tail_.reset();
-		}
-
 	private:
 
 		typename EdgeGeneratorType<Head>::Type  head_;
@@ -81,11 +76,6 @@ public:
 		void next() {
 			if (!head_.done()) head_.next();
 			else tail_.next();
-		}
-
-		void reset() {
-			head_.reset();
-			tail_.reset();
 		}
 
 	private:

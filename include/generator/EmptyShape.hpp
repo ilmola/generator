@@ -23,7 +23,6 @@ public:
 		Edge generate() const;
 		bool done() const noexcept;
 		void next();
-		void reset() noexcept;
 	private:
 		Edges();
 	friend class EmptyShape;
@@ -34,7 +33,6 @@ public:
 		ShapeVertex generate() const;
 		bool done() const noexcept;
 		void next();
-		void reset() noexcept;
 	private:
 		Vertices();
 	friend class EmptyShape;
@@ -45,7 +43,7 @@ public:
 	Vertices vertices() const noexcept;
 
 };
-	
+
 
 }
 

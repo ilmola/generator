@@ -25,7 +25,6 @@ void EmptyMesh::Triangles::next() {
 	throw std::out_of_range("Called next on an EmptyMesh!");
 }
 
-void EmptyMesh::Triangles::reset() noexcept { }
 
 
 
@@ -43,7 +42,6 @@ void EmptyMesh::Vertices::next() {
 	throw std::out_of_range("Called next on an EmptyMesh!");
 }
 
-void EmptyMesh::Vertices::reset() noexcept { }
 
 
 EmptyMesh::EmptyMesh() {}

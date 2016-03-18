@@ -44,8 +44,6 @@ public:
 			if (i_ % 2 == 0) edges_.next();
 		}
 
-		void reset() noexcept { i_ = 0; edges_.reset(); }
-
 	private:
 
 		const SubdivideShape* shape_;
@@ -67,18 +65,18 @@ public:
 	class Vertices {
 	public:
 
-		bool done() const noexcept { 
+		bool done() const noexcept {
 			return vertexIndex_ == shape_->vertexCache_.size() && edges_.done();
 		}
 
 		ShapeVertex generate() const {
 			if (vertexIndex_ < shape_->vertexCache_.size())
 				return shape_->vertexCache_[vertexIndex_];
-			
+
 			const Edge edge = edges_.generate();
 			const ShapeVertex& v1 = shape_->vertexCache_[edge.vertices[0]];
 			const ShapeVertex& v2 = shape_->vertexCache_[edge.vertices[1]];
-	
+
 			ShapeVertex vertex;
 			vertex.position = gml::mix(v1.position, v2.position, 0.5);
 			vertex.tangent = gml::normalize(gml::mix(v1.tangent, v2.tangent, 0.5));
@@ -90,8 +88,6 @@ public:
 			if (vertexIndex_ < shape_->vertexCache_.size()) ++vertexIndex_;
 			else edges_.next();
 		}
-
-		void reset() noexcept { vertexIndex_ = 0; edges_.reset(); }
 
 	private:
 

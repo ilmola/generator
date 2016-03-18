@@ -36,10 +36,6 @@ void ParametricPath::Edges::next() {
 }
 
 
-void ParametricPath::Edges::reset() noexcept {
-	i_ = 0;
-}
-
 
 
 ParametricPath::Vertices::Vertices(const ParametricPath& path) :
@@ -64,9 +60,6 @@ void ParametricPath::Vertices::next() {
 	++i_;
 }
 
-void ParametricPath::Vertices::reset() noexcept {
-	i_ = 0;
-}
 
 
 

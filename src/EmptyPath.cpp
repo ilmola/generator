@@ -24,7 +24,6 @@ void EmptyPath::Edges::next() {
 	throw std::out_of_range("Called next on an EmptyPath!");
 }
 
-void EmptyPath::Edges::reset() noexcept { }
 
 
 EmptyPath::Edges::Edges() {}
@@ -43,8 +42,6 @@ bool EmptyPath::Vertices::done() const noexcept {
 void EmptyPath::Vertices::next() {
 	throw std::out_of_range("Called next on an EmptyPath!");
 }
-
-void EmptyPath::Vertices::reset() noexcept { }
 
 
 EmptyPath::Vertices::Vertices() { }

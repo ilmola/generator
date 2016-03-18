@@ -36,8 +36,6 @@ public:
 
 		void next() { vertices_.next(); }
 
-		void reset() noexcept { vertices_.reset(); }
-
 	private:
 
 		Vertices(const TransformPath& path) :

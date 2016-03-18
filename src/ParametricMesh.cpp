@@ -61,11 +61,6 @@ void ParametricMesh::Triangles::next() {
 	}
 }
 
-void ParametricMesh::Triangles::reset() noexcept {
-	i_ = gml::uvec2{0u};
-	even_ = false;
-}
-
 
 
 
@@ -95,10 +90,6 @@ void ParametricMesh::Vertices::next() {
 	}
 }
 
-void ParametricMesh::Vertices::reset() noexcept {
-	i_[0] = 0u;
-	i_[1] = 0u;
-}
 
 
 

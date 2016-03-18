@@ -27,7 +27,6 @@ void EmptyShape::Edges::next() {
 	throw std::out_of_range("Called next on an EmptyShape!");
 }
 
-void EmptyShape::Edges::reset() noexcept {}
 
 
 
@@ -46,7 +45,6 @@ void EmptyShape::Vertices::next() {
 	throw std::out_of_range("Called next on an EmptyShape!");
 }
 
-void EmptyShape::Vertices::reset() noexcept {}
 
 
 EmptyShape::Edges EmptyShape::edges() const noexcept {

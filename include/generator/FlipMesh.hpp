@@ -35,8 +35,6 @@ public:
 
 		void next() { triangles_.next(); }
 
-		void reset() noexcept { triangles_.reset(); }
-
 	private:
 
 		typename TriangleGeneratorType<TransformMesh<Mesh>>::Type triangles_;

@@ -56,13 +56,6 @@ void TriangleMesh::Triangles::next() {
 	}
 }
 
-void TriangleMesh::Triangles::reset() noexcept {
-	row_ = 0;
-	col_ = 0;
-	i_ = 0;
-}
-
-
 
 
 
@@ -111,13 +104,6 @@ void TriangleMesh::Vertices::next() {
 		++row_;
 	}
 }
-
-void TriangleMesh::Vertices::reset() noexcept {
-	row_ = 0;
-	col_ = 0;
-}
-
-
 
 
 

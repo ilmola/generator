@@ -39,7 +39,6 @@ public:
 	{ }
 
 	/// Iterator to the given generator.
-	/// Will not call reset on the generator like begin does.
 	Iterator(Generator& generator) noexcept :
 		generator_{&generator}
 	{
@@ -85,10 +84,9 @@ public:
 };
 
 
-/// Will call reset on the generator and then return an iterator to it.
+/// Will return an iterator to the generator.
 template <typename Generator>
 Iterator<Generator> begin(Generator& generator) noexcept {
-	generator.reset();
 	return Iterator<Generator>{generator};
 }
 

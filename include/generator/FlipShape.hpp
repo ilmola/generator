@@ -35,8 +35,6 @@ public:
 
 		void next() { edges_.next(); }
 
-		void reset() noexcept { edges_.reset(); }
-
 	private:
 
 		typename EdgeGeneratorType<TransformShape<Shape>>::Type edges_;

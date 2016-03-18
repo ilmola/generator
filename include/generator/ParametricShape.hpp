@@ -26,7 +26,6 @@ public:
 		Edge generate() const;
 		bool done() const noexcept;
 		void next();
-		void reset() noexcept;
 
 	private:
 
@@ -45,7 +44,6 @@ public:
 		ShapeVertex generate() const;
 		bool done() const noexcept;
 		void next();
-		void reset() noexcept;
 
 	private:
 

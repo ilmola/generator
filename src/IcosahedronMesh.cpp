@@ -114,17 +114,6 @@ void IcosahedronMesh::Triangles::next() {
 }
 
 
-void IcosahedronMesh::Triangles::reset() noexcept {
-	i_ = 0;
-	triangle_ = TriangleMesh{
-		::vertices[::triangles[0][0]],
-		::vertices[::triangles[0][1]],
-		::vertices[::triangles[0][2]],
-		mesh_->segments_
-	},
-	triangles_ = triangle_.triangles();
-}
-
 
 
 IcosahedronMesh::Vertices::Vertices(const IcosahedronMesh& mesh) :
@@ -175,17 +164,6 @@ void IcosahedronMesh::Vertices::next() {
 			vertices_ = triangle_.vertices();
 		}
 	}
-}
-
-void IcosahedronMesh::Vertices::reset() noexcept {
-	i_ = 0;
-	triangle_ = TriangleMesh{
-		::vertices[::triangles[0][0]],
-		::vertices[::triangles[0][1]],
-		::vertices[::triangles[0][2]],
-		mesh_->segments_
-	},
-	vertices_ = triangle_.vertices();
 }
 
 

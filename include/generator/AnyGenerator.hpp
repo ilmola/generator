@@ -16,7 +16,7 @@ namespace generator {
 /// A type erasing container that can store any generator that generates type T.
 /// @tparam T Type returned by the generate() -function.
 template <typename T>
-class AnyGenerator 
+class AnyGenerator
 {
 public:
 
@@ -42,8 +42,6 @@ public:
 
 	void next() { base_->next(); }
 
-	void reset() noexcept { base_->reset(); }
-
 private:
 
 	class Base {
@@ -53,7 +51,6 @@ private:
 		virtual T generate() const = 0;
 		virtual bool done() const noexcept = 0;
 		virtual void next() = 0;
-		virtual void reset() noexcept = 0;
 	};
 
 	template <typename Generator>
@@ -66,7 +63,7 @@ private:
 			return std::unique_ptr<Base>(new Derived{generator_});
 		}
 
-		virtual T generate() const override { 
+		virtual T generate() const override {
 			return generator_.generate();
 		}
 
@@ -74,12 +71,8 @@ private:
 			return generator_.done();
 		}
 
-		virtual void next() override { 
+		virtual void next() override {
 			generator_.next();
-		}
-
-		virtual void reset() noexcept override {
-			generator_.reset();
 		}
 
 	private:
