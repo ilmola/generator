@@ -258,7 +258,6 @@ All generators have the following methods:
 bool done() const noexcept;
 Value generate() const;
 void next();
-void reset() noexcept;
 ~~~
 
 Where `Value` can be `Edge`, `Triangle`, `ShapeVertex`, `PathVertex` or
@@ -277,7 +276,7 @@ while (!vertices.done()) {
 ~~~
 
 Once `done()` returns `true`, calling `next()` or `generate()` will throw
-`std::out_of_bounds`. The generator can be rewound by calling `reset()`.
+`std::out_of_bounds`. There is no way to rewind the generator.
 
 
 ## Iterators ##
@@ -301,9 +300,6 @@ for (const MeshVertex& vertex : sphere.vertices()) {
 	// do something with vertex
 }
 ~~~
-
-**NOTE:** The function `begin()` will first call `reset()` on the generator
-before returning the iterator.
 
 **NOTE:** Be aware of a lifetime issue with a temporary primitive and the for loop.
 ~~~c++
