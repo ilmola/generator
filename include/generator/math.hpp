@@ -13,12 +13,12 @@
 #include <limits>
 
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/matrix_major_storage.hpp>
 #include <glm/gtx/normal.hpp>
 #include <glm/gtx/rotate_vector.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/matrix_major_storage.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 namespace gml {
   // Vectors
@@ -72,17 +72,17 @@ namespace gml {
   using glm::dquat;
 
   // Functions
-  using glm::cross;
-  using glm::radians;
-  using glm::degrees;
-  using glm::normalize;
-  using glm::mix;
   using glm::clamp;
+  using glm::cross;
+  using glm::degrees;
   using glm::dot;
-  using glm::perspective;
-  using glm::translate;
-  using glm::rotate;
+  using glm::mix;
+  using glm::normalize;
   using glm::ortho;
+  using glm::perspective;
+  using glm::radians;
+  using glm::rotate;
+  using glm::translate;
 
   // Function substitutes
   template <typename T>
