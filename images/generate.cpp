@@ -7,8 +7,6 @@
 #include <fstream>
 #include <string>
 
-#include "generator/math.hpp"
-
 #include "generator/generator.hpp"
 
 using namespace generator;

@@ -41,6 +41,7 @@
 #include "LatheMesh.hpp"
 #include "LinePath.hpp"
 #include "LineShape.hpp"
+#include "math.hpp"
 #include "MergeMesh.hpp"
 #include "MergePath.hpp"
 #include "MergeShape.hpp"
