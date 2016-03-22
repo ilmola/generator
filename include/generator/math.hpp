@@ -10,14 +10,15 @@
 #ifdef GENERATOR_USE_GLM
 
 #include <stdexcept>
+#include <limits>
 
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/matrix_major_storage.hpp>
 #include <glm/gtx/normal.hpp>
 #include <glm/gtx/rotate_vector.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/matrix_major_storage.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 namespace gml {
   // Vectors
@@ -71,20 +72,41 @@ namespace gml {
   using glm::dquat;
 
   // Functions
-  using glm::cross;
-  using glm::radians;
-  using glm::degrees;
-  using glm::normalize;
-  using glm::mix;
-  using glm::slerp;
   using glm::clamp;
+  using glm::cross;
+  using glm::degrees;
   using glm::dot;
-  using glm::perspective;
-  using glm::translate;
-  using glm::rotate;
+  using glm::mix;
+  using glm::normalize;
   using glm::ortho;
+  using glm::perspective;
+  using glm::radians;
+  using glm::rotate;
+  using glm::translate;
 
   // Function substitutes
+  template <typename T>
+  T angle(const glm::tvec2<T>& v1, const glm::tvec2<T>& v2) {
+    using std::sqrt;
+    using std::acos;
+    using std::numeric_limits;
+
+    const T len = sqrt(dot(v1, v1) * dot(v2, v2));
+    if (len <= std::numeric_limits<T>::epsilon()) return T{0};
+    return acos(clamp(dot(v1, v2) / len, T{-1}, T{1}));
+  }
+
+  template <typename T>
+  T angle(const glm::tvec3<T>& v1, const glm::tvec3<T>& v2) {
+    using std::sqrt;
+    using std::acos;
+    using std::numeric_limits;
+
+    const T len = sqrt(dot(v1, v1) * dot(v2, v2));
+    if (len <= std::numeric_limits<T>::epsilon()) return T{0};
+    return acos(clamp(dot(v1, v2) / len, T{-1}, T{1}));
+  }
+
   template <typename T>
   glm::tvec2<T> cross(const glm::tvec2<T>& v) {
     return glm::tvec2<T>(-v.y, v.x);
@@ -136,6 +158,14 @@ namespace gml {
     const T& left, const T& right, const T& bottom, const T& top
   ) {
     return ortho(left, right, bottom, top, T{-1}, T{1});
+  }
+
+  template <typename T>
+  glm::tvec3<T> slerp(const glm::tvec3<T>& v1, const glm::tvec3<T>& v2, const T& a) {
+    using std::sin;
+    const T theta = angle(v1, v2);
+    const T sine = sin(theta);
+    return sin((T{1} - a) * theta) / sine * v1 + sin(a * theta) / sine * v2;
   }
 
   template <typename T>
