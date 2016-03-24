@@ -11,5 +11,6 @@ using namespace generator;
 
 
 ObjWriter::ObjWriter() :
-	base_{1}
+	base_{1},
+	ss_{}
 { }

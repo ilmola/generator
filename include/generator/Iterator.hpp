@@ -35,12 +35,14 @@ public:
 
 	/// Creates a dummy end iterator.
 	Iterator() noexcept :
-		generator_{nullptr}
+		generator_{nullptr},
+		value_{}
 	{ }
 
 	/// Iterator to the given generator.
 	Iterator(Generator& generator) noexcept :
-		generator_{&generator}
+		generator_{&generator},
+		value_{}
 	{
 		if (generator_->done()) generator_ = nullptr;
 		else value_ = generator_->generate();

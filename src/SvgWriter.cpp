@@ -129,7 +129,8 @@ SvgWriter::SvgWriter(unsigned width, unsigned height) :
 	viewProjMatrix_{1.0},
 	viewport_{0, 0, static_cast<int>(width), static_cast<int>(height)},
 	lightDir_{1.0, 2.0, 3.0},
-	cullface_{true}
+	cullface_{true},
+	elems_{}
 {
 	lightDir_ = normalize(lightDir_);
 }
