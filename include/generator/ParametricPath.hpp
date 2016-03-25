@@ -58,8 +58,8 @@ public:
 	};
 
 
-	/// @param eval Callback that should return a vertex for given value.
-	/// @param segments Number of subdivisions.
+	/// @param eval A callback that should return a PathVertex for a given value.
+	/// @param segments The number of segments along the path. Must be >= 1.
 	ParametricPath(
 		std::function<PathVertex(double)> eval,
 		unsigned segments = 16u

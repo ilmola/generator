@@ -76,9 +76,9 @@ private:
 
 public:
 
-	/// @param radius The radius of the enclosing sphere
-	/// @param segments Number subdivisions per edge.
-	IcosahedronMesh(double radius = 1.0, unsigned segments = 1);
+	/// @param radius The radius of the enclosing sphere.
+	/// @param segments The number segments along each edge. Must be >= 1.
+	IcosahedronMesh(double radius = 1.0, unsigned segments = 1u);
 
 	Triangles triangles() const noexcept;
 

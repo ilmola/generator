@@ -14,15 +14,15 @@
 
 namespace generator {
 
-/// Icosphere aka subdivided icosahedron
+/// Icosphere aka spherical subdivided icosahedron
 /// @image html IcoSphereMesh.svg
-class IcoSphereMesh : 
+class IcoSphereMesh :
 	private SpherifyMesh<IcosahedronMesh>
 {
 public:
 
-	/// @param radius Radius of the containing sphere.
-	/// @param segments Number of segments per icosahedron edge.
+	/// @param radius The radius of the containing sphere.
+	/// @param segments The number of segments per icosahedron edge. Must be >= 1.
 	IcoSphereMesh(double radius = 1.0, unsigned segments = 4u);
 
 	using SpherifyMesh::triangles;

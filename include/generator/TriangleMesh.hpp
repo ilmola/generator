@@ -60,12 +60,13 @@ public:
 	friend class TriangleMesh;
 	};
 
-	/// Makes a regular triangle.
-	/// @param radius Radius of the containing sphere
-	/// @param segments Number of subdivisions along each edge.
+	/// Makes a regular triangle centered at origin.
+	/// @param radius The radius of the containing circle.
+	/// @param segments The number of segments along each edge. Must be >= 1.
 	explicit TriangleMesh(double radius = 1.0, unsigned segments = 4u);
 
-	/// @param segments Number of subdivisions along each edge.
+	/// @param v0,v1,v2 The vertex positions of the triangle.
+	/// @param segments The number of segments along each edge. Must be >= 1.
 	TriangleMesh(
 		const gml::dvec3& v0, const gml::dvec3& v1, const gml::dvec3& v2,
 		unsigned segments = 4u

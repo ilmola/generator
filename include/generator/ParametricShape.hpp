@@ -57,8 +57,8 @@ public:
 	};
 
 
-	/// @param eval Callback that returns a ShapeVertex for given value.
-	/// @param segments Number of subdivisions
+	/// @param eval A callback that returns a ShapeVertex for a given value.
+	/// @param segments The number of segments along the shape. Must be >= 1.
 	ParametricShape(
 		std::function<ShapeVertex(double)> eval,
 		unsigned segments = 16u
