@@ -61,11 +61,12 @@ public:
 
 
 	/// @param eval A callback that returns a MeshVertex for a given value.
-	/// @param segments The number of segments along the surface. Must be >= 1.
-	ParametricMesh(
+	/// @param segments The number of segments along the surface.
+	/// Both should be >= 1. If either is zero an empty mesh is generated.
+	explicit ParametricMesh(
 		std::function<MeshVertex(const gml::dvec2& t)> eval,
 		const gml::uvec2& segments = {16u, 16u}
-	);
+	) noexcept;
 
 	Triangles triangles() const noexcept;
 

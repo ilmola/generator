@@ -44,6 +44,7 @@ Triangle ParametricMesh::Triangles::generate() const {
 }
 
 bool ParametricMesh::Triangles::done() const noexcept {
+	if (mesh_->segments_[0] == 0 || mesh_->segments_[1] == 0) return true;
 	return i_[1] == mesh_->segments_[1];
 }
 
@@ -76,9 +77,12 @@ MeshVertex ParametricMesh::Vertices::generate() const {
 	return mesh_->eval_({i_[0] * mesh_->delta_[0], i_[1] * mesh_->delta_[1]});
 }
 
+
 bool ParametricMesh::Vertices::done() const noexcept {
+	if (mesh_->segments_[0] == 0 || mesh_->segments_[1] == 0) return true;
 	return i_[1] > mesh_->segments_[1];
 }
+
 
 void ParametricMesh::Vertices::next() {
 	if (done()) throw std::out_of_range("Done!");
@@ -96,7 +100,7 @@ void ParametricMesh::Vertices::next() {
 ParametricMesh::ParametricMesh(
 	std::function<MeshVertex(const gml::dvec2& t)> eval,
 	const gml::uvec2& segments
-) :
+) noexcept :
 	eval_{eval},
 	segments_{segments},
 	delta_{1.0 / segments[0], 1.0 / segments[1]}

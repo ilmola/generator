@@ -58,11 +58,12 @@ public:
 
 
 	/// @param eval A callback that returns a ShapeVertex for a given value.
-	/// @param segments The number of segments along the shape. Must be >= 1.
-	ParametricShape(
+	/// @param segments The number of segments along the shape.
+	/// Should be >= 1. Zero yields an empty shape.
+	explicit ParametricShape(
 		std::function<ShapeVertex(double)> eval,
 		unsigned segments = 16u
-	);
+	) noexcept;
 
 	Edges edges() const noexcept;
 

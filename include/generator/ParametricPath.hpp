@@ -59,11 +59,12 @@ public:
 
 
 	/// @param eval A callback that should return a PathVertex for a given value.
-	/// @param segments The number of segments along the path. Must be >= 1.
-	ParametricPath(
+	/// @param segments The number of segments along the path.
+	/// Should be >= 1. Zero yields an empry path.
+	explicit ParametricPath(
 		std::function<PathVertex(double)> eval,
 		unsigned segments = 16u
-	);
+	) noexcept;
 
 	Edges edges() const noexcept;
 

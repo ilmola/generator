@@ -52,6 +52,7 @@ PathVertex ParametricPath::Vertices::generate() const {
 }
 
 bool ParametricPath::Vertices::done() const noexcept {
+	if (path_->segments_ == 0) return true;
 	return i_ == path_->segments_ + 1;
 }
 
@@ -67,7 +68,7 @@ void ParametricPath::Vertices::next() {
 ParametricPath::ParametricPath(
 	std::function<PathVertex(double)> eval,
 	unsigned segments
-) :
+) noexcept :
 	eval_{eval},
 	segments_{segments},
 	delta_{1.0 / segments}

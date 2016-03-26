@@ -48,6 +48,7 @@ ParametricShape::Vertices::Vertices(const ParametricShape& shape) :
 { }
 
 bool ParametricShape::Vertices::done() const noexcept {
+	if (shape_->segments_ == 0) return true;
 	return i_ == shape_->segments_ + 1;
 }
 
@@ -61,7 +62,7 @@ void ParametricShape::Vertices::next() {
 ParametricShape::ParametricShape(
 	std::function<ShapeVertex(double)> eval,
 	unsigned segments
-) :
+) noexcept :
 	eval_{eval},
 	segments_{segments},
 	delta_{1.0 / segments}
