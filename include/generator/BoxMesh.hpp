@@ -61,11 +61,13 @@ class BoxMesh :
 public:
 
 	/// @param size Half of the side length in x (0), y (1) and z (2) direction.
-	/// @param segments Number of subdivisions in x (0), y (1) and z (2) direction.
-	BoxMesh(
+	/// @param segments The number of segments in x (0), y (1) and z (2)
+	/// directions. All should be >= 1. If any one is zero faces in that
+	/// direction are not genereted. If more than one is zero the mesh is empty.
+	explicit BoxMesh(
 		const gml::dvec3& size = {1.0, 1.0, 1.0},
 		const gml::uvec3& segments = {8u, 8u, 8u}
-	);
+	) noexcept;
 
 	using MergeMesh::triangles;
 

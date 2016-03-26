@@ -33,7 +33,7 @@ BoxFaces::BoxFaces(
 
 
 
-BoxMesh::BoxMesh(const gml::dvec3& size, const gml::uvec3& segments) :
+BoxMesh::BoxMesh(const gml::dvec3& size, const gml::uvec3& segments) noexcept :
 	MergeMesh{
 		{
 			{{size[1], size[2]}, {segments[1], segments[2]}, size[0]},
