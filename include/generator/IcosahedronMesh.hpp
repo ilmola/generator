@@ -8,6 +8,8 @@
 #define GENERATOR_ICOSAHEDRONMESH_HPP
 
 #include <array>
+#include <memory>
+
 
 #include "Triangle.hpp"
 #include "MeshVertex.hpp"
@@ -36,7 +38,9 @@ private:
 
 		unsigned i_;
 
-		TriangleMesh triangle_;
+		// Needs be a shared_ptr in order to make copy/move not to mess up the
+		// internal pointer in triangles_.
+		std::shared_ptr<const TriangleMesh> triangleMesh_;
 
 		typename TriangleGeneratorType<TriangleMesh>::Type triangles_;
 
@@ -59,7 +63,9 @@ private:
 
 		unsigned i_;
 
-		TriangleMesh triangle_;
+		// Needs be a shared_ptr in order to make copy/move not to mess up the
+		// internal pointer in triangles_.
+		std::shared_ptr<const TriangleMesh> triangleMesh_;
 
 		typename VertexGeneratorType<TriangleMesh>::Type vertices_;
 

@@ -61,13 +61,13 @@ static const std::array<gml::uvec3, 20> triangles{{
 IcosahedronMesh::Triangles::Triangles(const IcosahedronMesh& mesh) :
 	mesh_{&mesh},
 	i_{0},
-	triangle_{
+	triangleMesh_{std::make_shared<TriangleMesh>(
 		::vertices[::triangles[0][0]],
 		::vertices[::triangles[0][1]],
 		::vertices[::triangles[0][2]],
 		mesh.segments_
-	},
-	triangles_{triangle_.triangles()}
+	)},
+	triangles_{triangleMesh_->triangles()}
 { }
 
 
@@ -101,14 +101,14 @@ void IcosahedronMesh::Triangles::next() {
 		++i_;
 
 		if (!done()) {
-			triangle_ = TriangleMesh{
+			triangleMesh_ = std::make_shared<TriangleMesh>(
 				::vertices[::triangles[i_][0]],
 				::vertices[::triangles[i_][1]],
 				::vertices[::triangles[i_][2]],
 				mesh_->segments_
-			};
+			);
 
-			triangles_ =  triangle_.triangles();
+			triangles_ =  triangleMesh_->triangles();
 		}
 	}
 }
@@ -119,13 +119,13 @@ void IcosahedronMesh::Triangles::next() {
 IcosahedronMesh::Vertices::Vertices(const IcosahedronMesh& mesh) :
 	mesh_{&mesh},
 	i_{0},
-	triangle_{
+	triangleMesh_{std::make_shared<TriangleMesh>(
 		::vertices[::triangles[0][0]],
 		::vertices[::triangles[0][1]],
 		::vertices[::triangles[0][2]],
 		mesh_->segments_
-	},
-	vertices_{triangle_.vertices()}
+	)},
+	vertices_{triangleMesh_->vertices()}
 {
 
 }
@@ -154,14 +154,14 @@ void IcosahedronMesh::Vertices::next() {
 		++i_;
 
 		if (!done()) {
-			triangle_ = TriangleMesh{
+			triangleMesh_ = std::make_shared<TriangleMesh>(
 				::vertices[::triangles[i_][0]],
 				::vertices[::triangles[i_][1]],
 				::vertices[::triangles[i_][2]],
 				mesh_->segments_
-			};
+			);
 
-			vertices_ = triangle_.vertices();
+			vertices_ = triangleMesh_->vertices();
 		}
 	}
 }
