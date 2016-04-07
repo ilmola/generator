@@ -200,8 +200,10 @@ Available meshes are:
 - `CappedTubeMesh`
 - `CapsuleMesh`
 - `ConeMesh`
+- `ConvexPolygonMesh`
 - `CylinderMesh`
 - `DiskMesh`
+- `DodecahedronMesh`
 - `PlaneMesh`
 - `IcosahedronMesh`
 - `IcoSphereMesh`

@@ -19,8 +19,10 @@ set(GENERATOR_HEADERS
 	${GENERATOR_INCLUDE_DIR}/CapsuleMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/CircleShape.hpp
 	${GENERATOR_INCLUDE_DIR}/ConeMesh.hpp
+	${GENERATOR_INCLUDE_DIR}/ConvexPolygonMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/CylinderMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/DiskMesh.hpp
+	${GENERATOR_INCLUDE_DIR}/DodecahedronMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/Edge.hpp
 	${GENERATOR_INCLUDE_DIR}/EmptyMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/EmptyPath.hpp
@@ -97,8 +99,10 @@ set(GENERATOR_SOURCES
 	CapsuleMesh.cpp
 	CircleShape.cpp
 	ConeMesh.cpp
+	ConvexPolygonMesh.cpp
 	CylinderMesh.cpp
 	DiskMesh.cpp
+	DodecahedronMesh.cpp
 	EmptyMesh.cpp
 	EmptyPath.cpp
 	EmptyShape.cpp

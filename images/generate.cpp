@@ -94,7 +94,7 @@ void generateMesh(const std::string& filename) {
 	SvgWriter svg{800, 400};
 
 	T mesh{};
-	
+
 	svg.perspective(1.0, 1.0, 0.1, 10.0);
 
 	svg.viewport(0, 0, 400, 400);
@@ -150,7 +150,9 @@ int main() {
 	generateMesh<CappedTubeMesh>("CappedTubeMesh");
 	generateMesh<ConeMesh>("ConeMesh");
 	generateMesh<CapsuleMesh>("CapsuleMesh");
+	generateMesh<ConvexPolygonMesh>("ConvexPolygonMesh");
 	generateMesh<CylinderMesh>("CylinderMesh");
+	generateMesh<DodecahedronMesh>("DodecahedronMesh");
 	generateMesh<DiskMesh>("DiskMesh");
 	generateMesh<EmptyMesh>("EmptyMesh");
 	generateMesh<IcosahedronMesh>("IcosahedronMesh");

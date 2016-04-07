@@ -76,6 +76,8 @@ namespace gml {
   using glm::cross;
   using glm::degrees;
   using glm::dot;
+  using glm::max;
+  using glm::min;
   using glm::mix;
   using glm::normalize;
   using glm::ortho;
