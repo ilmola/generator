@@ -23,7 +23,7 @@ public:
 		vertices{}
 	{ }
 
-	Triangle(const gml::uvec3& vertices) noexcept :
+	explicit Triangle(const gml::uvec3& vertices) noexcept :
 		vertices{vertices}
 	{ }
 

@@ -20,7 +20,7 @@ public:
 		vertices{}
 	{ }
 
-	Edge(const gml::uvec2& vertices) noexcept :
+	explicit Edge(const gml::uvec2& vertices) noexcept :
 		vertices{vertices}
 	{ }
 
