@@ -121,7 +121,8 @@ VertexGenerator vertices() const noexcept;
 
 Where `EdgeGenerator` and `VertexGenerator` can be a arbitrary types. The shape
 **must** outlive the generators it produces. If the shape is mutated the generators
-are invalidated.
+are invalidated. Shapes can be mutated only via assignment. The are no setter
+methods.
 
 Available shapes are:
 
@@ -279,6 +280,13 @@ while (!vertices.done()) {
 
 Once `done()` returns `true`, calling `next()` or `generate()` will throw
 `std::out_of_bounds`. There is no way to rewind the generator.
+
+If the vertex/edge/triangle count needs to be known before iteration use the
+helper function `count` from `util.hpp`.
+
+~~~c++
+count(sphere.vertices());
+~~~
 
 
 ## Iterators ##

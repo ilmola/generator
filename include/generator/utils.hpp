@@ -54,6 +54,19 @@ public:
 };
 
 
+/// Counts the number of steps left in the generator.
+template <typename Generator>
+unsigned count(const Generator& generator) noexcept {
+	Generator temp{generator};
+	unsigned c = 0;
+	while (!temp.done()) {
+		++c;
+		temp.next();
+	}
+	return c;
+}
+
+
 }
 
 #endif
