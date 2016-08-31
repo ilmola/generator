@@ -6,7 +6,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(GNUInstallDirs)
 
 if(MSVC)
-	add_definitions(/Wall)
+	add_definitions(/W3)
 else()
 	add_definitions(-std=c++11 -pedantic -Wall -Wextra)
 endif()
