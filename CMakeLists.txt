@@ -5,7 +5,11 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 include(GNUInstallDirs)
 
-add_definitions(-std=c++11 -pedantic -Wall -Wextra)
+if(MSVC)
+  add_definitions(/Wall)
+else()
+  add_definitions(-std=c++11 -pedantic -Wall -Wextra)
+endif()
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/lib)
 
