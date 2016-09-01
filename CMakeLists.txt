@@ -38,10 +38,10 @@ elseif(GLM_INCLUDE_DIR AND GENERATOR_USE_GLM)
 	include_directories(SYSTEM ${GLM_INCLUDE_DIR})
 endif()
 
-message(STATUS "Target name is 'generator${SUFFIX}'")
+message(STATUS "Target name is 'generator${SUFFIX}${CMAKE_STATIC_LIBRARY_SUFFIX}'")
 
 add_subdirectory(src)
 add_subdirectory(images)
 
 install(DIRECTORY include/generator DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-install(FILES lib/libgenerator${SUFFIX}.a DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(FILES lib/libgenerator${SUFFIX}${CMAKE_STATIC_LIBRARY_SUFFIX} DESTINATION ${CMAKE_INSTALL_LIBDIR})
