@@ -16,9 +16,13 @@ namespace generator {
 
 /// A spring aligned along the z-axis winding counterclockwise
 /// @image html SpringMesh.svg
-class SpringMesh :
-	private ExtrudeMesh<CircleShape, HelixPath>
+class SpringMesh
 {
+private:
+
+	using Impl = ExtrudeMesh<CircleShape, HelixPath>;
+	Impl extrudeMesh_;
+
 public:
 
 	/// @param minor Radius of the spring it self.
@@ -40,9 +44,13 @@ public:
 		double majorSweep = gml::radians(720.0)
 	);
 
-	using ExtrudeMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using ExtrudeMesh::vertices;
+	Triangles triangles() const noexcept { return extrudeMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return extrudeMesh_.vertices(); }
 
 };
 

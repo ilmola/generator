@@ -16,7 +16,7 @@ LineShape::LineShape(
 	const gml::dvec2& end,
 	unsigned segments
 ) :
-	ParametricShape{
+	parametricShape_{
 		[start, end] (double t) {
 			ShapeVertex vertex;
 

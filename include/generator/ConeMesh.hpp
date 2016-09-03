@@ -19,9 +19,13 @@ namespace generator {
 
 /// A cone centered at origin tip pointing towards z-axis.
 /// @image html ConeMesh.svg
-class ConeMesh :
-	private AxisSwapMesh<LatheMesh<LineShape>>
+class ConeMesh
 {
+private:
+
+	using Impl = AxisSwapMesh<LatheMesh<LineShape>>;
+	Impl axisSwapMesh_;
+
 public:
 
 	///@param radius Radius of the negative z end on the xy-plane.
@@ -39,9 +43,13 @@ public:
 		double sweep = gml::radians(360.0)
 	);
 
-	using AxisSwapMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using AxisSwapMesh::vertices;
+	Triangles triangles() const noexcept { return axisSwapMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return axisSwapMesh_.vertices(); }
 
 };
 

@@ -14,9 +14,13 @@ namespace generator {
 
 /// A helix cented at origin aligned along the z-axis.
 /// @image html HelixPath.svg
-class HelixPath :
-	private ParametricPath
+class HelixPath
 {
+private:
+
+	using Impl = ParametricPath;
+	Impl parametricPath_;
+
 public:
 
 	/// @param radius Radius from the z-axis
@@ -32,9 +36,13 @@ public:
 		double sweep = gml::radians(720.0)
 	);
 
-	using ParametricPath::edges;
+	using Edges = typename Impl::Edges;
 
-	using ParametricPath::vertices;
+	Edges edges() const noexcept { return parametricPath_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return parametricPath_.vertices(); }
 
 };
 

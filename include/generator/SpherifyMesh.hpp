@@ -15,13 +15,17 @@ namespace generator {
 
 /// Projects vertices on a sphere centered at origin.
 template <typename Mesh>
-class SpherifyMesh :
-	private TransformMesh<Mesh>
+class SpherifyMesh
 {
+private:
+
+	using Impl = TransformMesh<Mesh>;
+	Impl transformMesh_;
+
 public:
 
 	SpherifyMesh(Mesh mesh, double radius, double factor) :
-		TransformMesh<Mesh>{
+		transformMesh_{
 			std::move(mesh),
 			[radius, factor] (MeshVertex& value) {
 				 value.position = gml::mix(
@@ -38,9 +42,13 @@ public:
 		}
 	{ }
 
-	using TransformMesh<Mesh>::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using TransformMesh<Mesh>::vertices;
+	Triangles triangles() const noexcept { return transformMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformMesh_.vertices(); }
 
 };
 

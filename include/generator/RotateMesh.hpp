@@ -16,14 +16,19 @@ namespace generator {
 
 /// Rotates vertices and normals.
 template <typename Mesh>
-class RotateMesh : private TransformMesh<Mesh>
+class RotateMesh
 {
+private:
+
+	using Impl = TransformMesh<Mesh>;
+	Impl transformMesh_;
+
 public:
 
 	/// @param mesh Source mesh data.
 	/// @param rotation Quaternion presenting the rotation.
 	RotateMesh(Mesh mesh, const gml::dquat& rotation) :
-		TransformMesh<Mesh>{
+		transformMesh_{
 			std::move(mesh),
 			[rotation] (MeshVertex& value) {
 				value.position = gml::transform(rotation, value.position);
@@ -51,9 +56,13 @@ public:
 		}
 	{ }
 
-	using TransformMesh<Mesh>::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using TransformMesh<Mesh>::vertices;
+	Triangles triangles() const noexcept { return transformMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformMesh_.vertices(); }
 
 };
 

@@ -20,7 +20,7 @@ TubeMesh::TubeMesh(
 	double start,
 	double sweep
 ) :
-	MergeMesh{
+	mergeMesh_{
 		{radius, size, slices, segments, start, sweep},
 		{{{innerRadius, size, slices, segments, start, sweep}, true, false}}
 	}

@@ -19,7 +19,7 @@ ConeMesh::ConeMesh(
 	double start,
 	double sweep
 ) :
-	AxisSwapMesh{
+	axisSwapMesh_{
 		{
 			{{size, 0.0}, {-size, radius}, segments},
 			{1.0, 0.0}, slices, start, sweep

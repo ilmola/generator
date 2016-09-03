@@ -17,9 +17,13 @@ namespace generator {
 
 /// Flips shape direction. Reverses edges and tangents.
 template <typename Shape>
-class FlipShape :
-	private TransformShape<Shape>
+class FlipShape
 {
+private:
+
+	using Impl = TransformShape<Shape>;
+	Impl transformShape_;
+
 public:
 
 	class Edges {
@@ -48,7 +52,7 @@ public:
 
 	/// @param shape Source data shape.
 	FlipShape(Shape shape) :
-		TransformShape<Shape>{
+		transformShape_{
 			std::move(shape),
 			[] (ShapeVertex& vertex) {
 				vertex.tangent *= -1.0;
@@ -58,7 +62,9 @@ public:
 
 	Edges edges() const noexcept { return {*this}; }
 
-	using TransformShape<Shape>::vertices;
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformShape_.vertices(); }
 
 
 };

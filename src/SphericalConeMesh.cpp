@@ -29,7 +29,7 @@ SphericalConeMesh::SphericalConeMesh(
 	double start,
 	double sweep
 ) :
-	TranslateMesh{
+	translateMesh_{
 		{
 			{radius, calcSize(radius, size), slices, segments, start, sweep},
 			{

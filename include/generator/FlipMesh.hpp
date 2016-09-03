@@ -17,9 +17,13 @@ namespace generator {
 
 /// Flips mesh inside out. Reverses triangles and normals.
 template <typename Mesh>
-class FlipMesh :
-	private TransformMesh<Mesh>
+class FlipMesh
 {
+private:
+
+	using Impl = TransformMesh<Mesh>;
+	Impl transformMesh_;
+
 public:
 
 	class Triangles {
@@ -48,14 +52,16 @@ public:
 
 	/// @param mesh Source data mesh.
 	FlipMesh(Mesh mesh) :
-		TransformMesh<Mesh>{std::move(mesh), [] (MeshVertex& vertex) {
+		transformMesh_{std::move(mesh), [] (MeshVertex& vertex) {
 			vertex.normal *= -1.0;
 		}}
 	{ }
 
-	Triangles triangles() const noexcept { return {*this}; }
+	Triangles triangles() const noexcept { return this->transformMesh_; }
 
-	using TransformMesh<Mesh>::vertices;
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformMesh_.vertices(); }
 
 
 };

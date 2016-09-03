@@ -17,7 +17,7 @@ TorusKnotMesh::TorusKnotMesh(
 	unsigned slices,
 	unsigned segments
 ) :
-	ExtrudeMesh<CircleShape, KnotPath>{
+	extrudeMesh_{
 		{0.25, slices, 0.0, gml::radians(360.0)},
 		{p, q, segments}
 	}

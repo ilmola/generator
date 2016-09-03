@@ -18,7 +18,7 @@ RoundedRectangleShape::RoundedRectangleShape(
 	unsigned slices,
 	const gml::uvec2& segments
 ) :
-	MergeShape{
+	mergeShape_{
 		{{size[0]+radius, -size[1]}, {size[0]+radius, size[1]}, segments[1]},
 		{{radius, slices, 0.0, gml::radians(90.0)}, size},
 		{{size[0], size[1]+radius}, {-size[0], size[1]+radius}, segments[0]},

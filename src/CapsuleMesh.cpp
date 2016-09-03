@@ -20,7 +20,7 @@ CapsuleMesh::CapsuleMesh(
 	double start,
 	double sweep
 ) :
-	MergeMesh{
+	mergeMesh_{
 		{radius, size, slices, segments, start, sweep},
 		{
 			{radius, slices, rings, start, sweep, 0.0, gml::radians(90.0)},

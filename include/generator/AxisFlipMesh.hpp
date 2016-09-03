@@ -17,9 +17,13 @@ namespace generator {
 /// Texture coordinates are not flipped.
 /// Also reverses triangle vertex order if needed.
 template <typename Mesh>
-class AxisFlipMesh :
-	private TransformMesh<Mesh>
+class AxisFlipMesh
 {
+private:
+
+	using Impl = TransformMesh<Mesh>;
+	Impl transformMesh_;
+
 public:
 
 	class Triangles {
@@ -44,7 +48,7 @@ public:
 
 		Triangles(const AxisFlipMesh& mesh) :
 			mesh_{&mesh},
-			triangles_{static_cast<const TransformMesh<Mesh>&>(mesh).triangles()}
+			triangles_{mesh.transformMesh_.triangles()}
 		{ }
 
 	friend class AxisFlipMesh;
@@ -55,7 +59,7 @@ public:
 	///@param y Flip y
 	///@param z Flip z
 	AxisFlipMesh(Mesh mesh, bool x, bool y, bool z) :
-		TransformMesh<Mesh>{
+		transformMesh_{
 			std::move(mesh),
 			[x, y, z] (MeshVertex& vertex) {
 				if (x) {
@@ -83,7 +87,9 @@ public:
 
 	Triangles triangles() const noexcept { return {*this}; }
 
-	using TransformMesh<Mesh>::vertices;
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformMesh_.vertices(); }
 
 private:
 

@@ -16,9 +16,13 @@ namespace generator {
 
 /// Swaps axis in path.
 template <typename Path>
-class AxisSwapPath :
-	private TransformPath<Path>
+class AxisSwapPath
 {
+private:
+
+	using Impl = TransformPath<Path>;
+	Impl transformPath_;
+
 public:
 
 	/// @param path Source data path
@@ -26,7 +30,7 @@ public:
 	/// @param y Axis to use as the Y-axis
 	/// @param z Axis to use as the Z-axis
 	AxisSwapPath(Path path, Axis x, Axis y, Axis z) :
-		TransformPath<Path>{
+		transformPath_{
 			std::move(path),
 			[x, y, z] (PathVertex& vertex) {
 				vertex.position	= gml::dvec3{
@@ -48,9 +52,13 @@ public:
 		}
 	{ }
 
-	using TransformPath<Path>::edges;
+	using Edges = typename Impl::Edges;
 
-	using TransformPath<Path>::vertices;
+	Edges edges() const noexcept { return transformPath_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformPath_.vertices(); }
 
 };
 

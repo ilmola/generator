@@ -18,22 +18,30 @@ namespace generator {
 
 /// Duplicates the mesh by mirrorring it along an axis.
 template <typename Mesh>
-class MirrorMesh :
-	private MergeMesh<Mesh, AxisFlipMesh<Mesh>>
+class MirrorMesh
 {
+private:
+
+	using Impl = MergeMesh<Mesh, AxisFlipMesh<Mesh>>;
+	Impl mergeMesh_;
+
 public:
 
 	/// @param mesh Source data mesh.
 	/// @param axis The axis to mirror along.
 	MirrorMesh(Mesh mesh, Axis axis) :
-		MergeMesh<Mesh, AxisFlipMesh<Mesh>>{
+		mergeMesh_{
 			mesh, {mesh, axis == Axis::X, axis == Axis::Y, axis == Axis::Z}
 		}
 	{ }
 
-	using MergeMesh<Mesh, AxisFlipMesh<Mesh>>::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using MergeMesh<Mesh, AxisFlipMesh<Mesh>>::vertices;
+	Triangles triangles() const noexcept { return mergeMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return mergeMesh_.vertices(); }
 
 };
 

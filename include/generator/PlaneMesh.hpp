@@ -15,9 +15,13 @@ namespace generator {
 
 /// A plane (rectangular grid) on the xy -plane normal pointing towards z-axis.
 /// @image html PlaneMesh.svg
-class PlaneMesh :
-	private ParametricMesh
+class PlaneMesh
 {
+private:
+
+	using Impl = ParametricMesh;
+	Impl parametricMesh_;
+
 public:
 
 	/// @param size Half of the side length in x (0) and y (1) direction.
@@ -27,9 +31,13 @@ public:
 		const gml::uvec2& segments = {8u, 8u}
 	);
 
-	using ParametricMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using ParametricMesh::vertices;
+	Triangles triangles() const noexcept { return parametricMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return parametricMesh_.vertices(); }
 
 };
 

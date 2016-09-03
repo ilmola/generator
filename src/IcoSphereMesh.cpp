@@ -12,7 +12,7 @@ using namespace generator;
 
 
 IcoSphereMesh::IcoSphereMesh(double radius, unsigned segments) :
-	SpherifyMesh{{1.0, segments}, radius, 1.0}
+	spherifyMesh_{{1.0, segments}, radius, 1.0}
 { }
 
 

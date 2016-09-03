@@ -15,15 +15,19 @@ namespace generator {
 
 /// Scales a shape keeping tangents unit length.
 template <typename Shape>
-class ScaleShape :
-	private TransformShape<Shape>
+class ScaleShape
 {
+private:
+
+	using Impl = TransformShape<Shape>;
+	Impl transformShape_;
+
 public:
 
 	/// @param shape Source data shape.
 	/// @param scale Scale factor.
 	ScaleShape(Shape shape, const gml::dvec2& scale) :
-		TransformShape<Shape>{
+		transformShape_{
 			std::move(shape),
 			[scale] (ShapeVertex& value) { 
 				value.position *= scale; 
@@ -32,9 +36,13 @@ public:
 		}
 	{ }
 
-	using TransformShape<Shape>::edges;
+	using Edges = typename Impl::Edges;
 
-	using TransformShape<Shape>::vertices;
+	Edges edges() const noexcept { return transformShape_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformShape_.vertices(); }
 
 };
 

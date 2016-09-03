@@ -18,14 +18,14 @@ using namespace generator::detail;
 BoxFace::BoxFace(
 	const gml::dvec2& size, const gml::uvec2& segments, double delta
 ) :
-	TranslateMesh{{size, segments}, {0.0, 0.0, delta}}
+	translateMesh_{{size, segments}, {0.0, 0.0, delta}}
 { }
 
 
 BoxFaces::BoxFaces(
 	const gml::dvec2& size, const gml::uvec2& segments, double delta
 ) :
-	MergeMesh{
+	mergeMesh_{
 		{size, segments, delta},
 		{{{size, segments, -delta}}, true, false}
 	}
@@ -34,7 +34,7 @@ BoxFaces::BoxFaces(
 
 
 BoxMesh::BoxMesh(const gml::dvec3& size, const gml::uvec3& segments) noexcept :
-	MergeMesh{
+	mergeMesh_{
 		{
 			{{size[1], size[2]}, {segments[1], segments[2]}, size[0]},
 			Axis::Z, Axis::X, Axis::Y

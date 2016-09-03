@@ -16,9 +16,13 @@ namespace generator {
 
 /// Apply a mutator function to each vertex.
 template <typename Shape>
-class TransformShape :
-	private Shape
+class TransformShape
 {
+private:
+
+	using Impl = Shape;
+	Impl shape_;
+
 public:
 
 	class Vertices {
@@ -42,7 +46,7 @@ public:
 
 		Vertices(const TransformShape& shape) :
 			shape_{&shape},
-			vertices_{static_cast<const Shape&>(shape).vertices()}
+			vertices_{shape.shape_.vertices()}
 		{ }
 
 	friend class TransformShape;
@@ -51,13 +55,15 @@ public:
 	/// @param shape Source data shape.
 	/// @param mutate Callback function that gets called once per vertex.
 	TransformShape(Shape shape, std::function<void(ShapeVertex&)> mutate) :
-		Shape{std::move(shape)},
+		shape_{std::move(shape)},
 		mutate_{mutate}
 	{
 
 	}
 
-	using Shape::edges;
+	using Edges = typename Impl::Edges;
+
+	Edges edges() const noexcept { return shape_.edges(); }
 
 	Vertices vertices() const noexcept { return *this; }
 

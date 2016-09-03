@@ -16,9 +16,13 @@ namespace generator {
 
 /// Swaps any number of axis in the mesh.
 template <typename Mesh>
-class AxisSwapMesh :
-	private TransformMesh<Mesh>
+class AxisSwapMesh
 {
+private:
+
+	using Impl = TransformMesh<Mesh>;
+	Impl transformMesh_;
+
 public:
 
 	class Triangles {
@@ -43,7 +47,7 @@ public:
 
 		Triangles(const AxisSwapMesh& mesh) :
 			mesh_{&mesh},
-			triangles_{static_cast<const TransformMesh<Mesh>&>(mesh).triangles()}
+			triangles_{mesh.transformMesh_.triangles()}
 		{ }
 
 	friend class AxisSwapMesh;
@@ -54,7 +58,7 @@ public:
 	///@param y Axis to be used as the y-axis
 	///@param z Axis to be used as the z-axis
 	AxisSwapMesh(Mesh mesh, Axis x, Axis y, Axis z) :
-		TransformMesh<Mesh>{
+		transformMesh_{
 			std::move(mesh),
 			[x, y, z] (MeshVertex& vertex) {
 				vertex.position	= gml::dvec3{
@@ -78,7 +82,9 @@ public:
 
 	Triangles triangles() const noexcept { return {*this}; }
 
-	using TransformMesh<Mesh>::vertices;
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformMesh_.vertices(); }
 
 private:
 

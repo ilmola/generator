@@ -21,7 +21,7 @@ TubeCap::TubeCap(
 	double start,
 	double sweep
 ) :
-	TranslateMesh{
+	translateMesh_{
 		{radius, innerRadius, slices, rings, start, sweep},
 		{0.0, 0.0, distance}
 	}
@@ -38,7 +38,7 @@ CappedTubeMesh::CappedTubeMesh(
 	double start,
 	double sweep
 ) :
-	MergeMesh{
+	mergeMesh_{
 		{radius, innerRadius, size, slices, segments, start, sweep},
 		{radius, innerRadius, size, slices, rings, start, sweep},
 		{{radius, innerRadius, -size, slices, rings, start, sweep}},

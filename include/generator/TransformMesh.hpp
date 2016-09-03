@@ -18,8 +18,13 @@ namespace generator {
 
 /// Apply a mutator function to each vertex.
 template <typename Mesh>
-class TransformMesh : private Mesh
+class TransformMesh
 {
+private:
+
+	using Impl = Mesh;
+	Impl mesh_;
+
 public:
 
 	class Vertices {
@@ -43,7 +48,7 @@ public:
 
 		Vertices(const TransformMesh& mesh) :
 			mesh_{&mesh},
-			vertices_{static_cast<const Mesh&>(mesh).vertices()}
+			vertices_{mesh.mesh_.vertices()}
 		{ }
 
 	friend class TransformMesh;
@@ -52,11 +57,13 @@ public:
 	/// @param mesh Source data mesh.
 	/// @param mutate Callback function that gets called once per vertex.
 	TransformMesh(Mesh mesh, std::function<void (MeshVertex&)> mutate) :
-		Mesh{std::move(mesh)},
+		mesh_{std::move(mesh)},
 		mutate_{mutate}
 	{ }
 
-	using Mesh::triangles;
+	using Triangles = typename Impl::Triangles;
+
+	Triangles triangles() const noexcept { return mesh_.triangles(); }
 
 	Vertices vertices() const noexcept { return *this; }
 

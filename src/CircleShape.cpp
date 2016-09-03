@@ -16,7 +16,7 @@ CircleShape::CircleShape(
 	double start,
 	double sweep
 ) :
-	ParametricShape{
+	parametricShape_{
 		[radius, start, sweep] (double t) {
 			const double angle = t * sweep + start;
 			const double sine = std::sin(angle);

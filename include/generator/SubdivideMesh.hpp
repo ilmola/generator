@@ -20,36 +20,53 @@ namespace generator {
 
 
 template <typename Mesh, unsigned Iterations>
-class SubdivideMesh :
-	private SubdivideMesh<SubdivideMesh<Mesh, Iterations-1>, 1> {
+class SubdivideMesh
+{
+private:
+
+	using Impl = SubdivideMesh<SubdivideMesh<Mesh, Iterations-1>, 1>;
+	Impl subdivideMesh_;
+
 public:
 
 	SubdivideMesh(Mesh mesh) :
-		SubdivideMesh<SubdivideMesh<Mesh, Iterations-1>, 1>{
+		subdivideMesh_{
 			SubdivideMesh<Mesh, Iterations-1>{std::move(mesh)}
 		}
 	{ }
 
-	using SubdivideMesh<SubdivideMesh<Mesh, Iterations-1>, 1>::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using SubdivideMesh<SubdivideMesh<Mesh, Iterations-1>, 1>::vertices;
+	Triangles triangles() const noexcept { return subdivideMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return subdivideMesh_.vertices(); }
 
 };
 
 
 template <typename Mesh>
-class SubdivideMesh<Mesh, 0> :
-	private Mesh
+class SubdivideMesh<Mesh, 0>
 {
+private:
+
+	using Impl = Mesh;
+	Impl mesh_;
+
 public:
 
 	SubdivideMesh(Mesh mesh) :
-		Mesh{std::move(mesh)}
+		mesh_{std::move(mesh)}
 	{ }
 
-	using Mesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using Mesh::vertices;
+	Triangles triangles() const noexcept { return mesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return mesh_.vertices(); }
 };
 
 
