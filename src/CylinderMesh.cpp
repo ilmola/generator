@@ -17,7 +17,7 @@ CylinderMesh::CylinderMesh(
 	double start,
 	double sweep
 ) :
-	AxisSwapMesh{
+	axisSwapMesh_{
 		{
 			{{size, radius}, {-size, radius}, segments},
 			{1.0, 0.0}, slices, start, sweep

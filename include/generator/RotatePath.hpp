@@ -16,12 +16,17 @@ namespace generator {
 
 /// Rotates vertices, tangents and normals.
 template <typename Path>
-class RotatePath : private TransformPath<Path>
+class RotatePath
 {
+private:
+
+	using Impl = TransformPath<Path>;
+	Impl transformPath_;
+
 public:
 
 	RotatePath(Path path, const gml::dquat& rotation) :
-		TransformPath<Path>{
+		transformPath_{
 			std::move(path),
 			[rotation] (PathVertex& value) {
 				value.position = gml::transform(rotation, value.position);
@@ -46,9 +51,13 @@ public:
 		}
 	{ }
 
-	using TransformPath<Path>::edges;
+	using Edges = typename Impl::Edges;
 
-	using TransformPath<Path>::vertices;
+	Edges edges() const noexcept { return transformPath_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformPath_.vertices(); }
 
 };
 

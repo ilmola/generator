@@ -15,14 +15,19 @@ namespace generator {
 
 /// Rotates a shape around the origin on the xy-plane.
 template <typename Shape>
-class RotateShape : private TransformShape<Shape>
+class RotateShape
 {
+private:
+
+	using Impl = TransformShape<Shape>;
+	Impl transformShape_;
+
 public:
 
 	/// @param shape Source data shape.
 	/// @param angle Counterclockwise angle.
 	RotateShape(Shape shape, double angle) :
-		TransformShape<Shape>{
+		transformShape_{
 			std::move(shape),
 			[angle] (ShapeVertex& value) {
 				auto rotation = gml::rotate(angle);
@@ -32,9 +37,13 @@ public:
 		}
 	{ }
 
-	using TransformShape<Shape>::edges;
+	using Edges = typename Impl::Edges;
 
-	using TransformShape<Shape>::vertices;
+	Edges edges() const noexcept { return transformShape_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformShape_.vertices(); }
 
 };
 

@@ -15,8 +15,13 @@ namespace generator {
 
 /// A line from a point to a point.
 /// @image html LineShape.svg
-class LineShape :
-	private ParametricShape {
+class LineShape
+{
+private:
+
+	using Impl = ParametricShape;
+	Impl parametricShape_;
+
 public:
 
 	/// @param start Start position
@@ -28,9 +33,13 @@ public:
 		unsigned segments = 8u
 	);
 
-	using ParametricShape::edges;
+	using Edges = typename Impl::Edges;
 
-	using ParametricShape::vertices;
+	Edges edges() const noexcept { return parametricShape_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return parametricShape_.vertices(); }
 
 };
 

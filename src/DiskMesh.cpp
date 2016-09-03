@@ -18,7 +18,7 @@ DiskMesh::DiskMesh(
 	double start,
 	double sweep
 ) :
-	AxisSwapMesh{
+	axisSwapMesh_{
 		{
 			{{0.0, innerRadius}, {0.0, radius}, rings},
 			{1.0, 0.0}, slices, start, sweep

@@ -18,9 +18,13 @@ namespace generator {
 
 /// Apply a mutator function to each vertex.
 template <typename Path>
-class TransformPath :
-	private Path
+class TransformPath
 {
+private:
+
+	using Impl = Path;
+	Impl path_;
+
 public:
 
 	class Vertices {
@@ -40,7 +44,7 @@ public:
 
 		Vertices(const TransformPath& path) :
 			path_{&path},
-			vertices_{static_cast<const Path&>(path).vertices()}
+			vertices_{path.path_.vertices()}
 		{ }
 
 		const TransformPath* path_;
@@ -53,13 +57,15 @@ public:
 	/// @param path Source data path.
 	/// @param mutate Callback function that gets called once per vertex.
 	TransformPath(Path path, std::function<void(PathVertex&)> mutate) :
-		Path{std::move(path)},
+		path_{std::move(path)},
 		mutate_{mutate}
 	 { }
 
 	Vertices vertices() const noexcept { return*this; }
 
-	using Path::edges;
+	using Edges = typename Impl::Edges;
+
+	Edges edges() const noexcept { return path_.edges(); }
 
 private:
 

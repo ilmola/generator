@@ -23,7 +23,7 @@ namespace generator {
 /// Regular icosahedron centered at origin with given radius.
 /// @image html IcosahedronMesh.svg
 class IcosahedronMesh {
-private:
+public:
 
 	class Triangles {
 	public:
@@ -73,6 +73,8 @@ private:
 
 	friend class IcosahedronMesh;
 	};
+
+private:
 
 	double radius_;
 

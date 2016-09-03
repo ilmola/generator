@@ -22,7 +22,13 @@ namespace generator {
 /// Shape tangent becomes the path tangent and z-axis becomes normal vector and
 /// thus the shape normal becomes the path binormal.
 template <typename Shape>
-class ShapeToPath : private Shape {
+class ShapeToPath
+{
+private:
+
+	using Impl = Shape;
+	Impl shape_;
+
 public:
 
 	class Vertices {
@@ -60,10 +66,12 @@ public:
 	};
 
 	ShapeToPath(Shape shape) :
-		Shape{std::move(shape)}
+		shape_{std::move(shape)}
 	{ }
 
-	using Shape::edges;
+	using Edges = typename Impl::Edges;
+
+	Edges edges() const noexcept { return shape_.edges(); }
 
 	Vertices vertices() const { return *this; }
 

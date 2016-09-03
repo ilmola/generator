@@ -17,9 +17,13 @@ namespace generator {
 
 /// Flips mesh inside out. Reverses triangles and normals.
 template <typename Path>
-class FlipPath :
-	private TransformPath<Path>
+class FlipPath
 {
+private:
+
+	using Impl = TransformPath<Path>;
+	Impl transformPath_;
+
 public:
 
 	class Edges {
@@ -48,7 +52,7 @@ public:
 
 	/// @param path Source data path.
 	FlipPath(Path path) :
-		TransformPath<Path>{
+		transformPath_{
 			std::move(path),
 			[] (PathVertex& vertex) {
 				vertex.tangent *= -1.0;
@@ -59,7 +63,9 @@ public:
 
 	Edges edges() const noexcept { return {*this}; }
 
-	using TransformPath<Path>::vertices;
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformPath_.vertices(); }
 
 
 };

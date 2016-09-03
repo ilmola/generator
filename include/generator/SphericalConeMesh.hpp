@@ -21,9 +21,13 @@ namespace generator {
 /// A cone with a spherical cap centered at origin tip pointing towards z-axis.
 /// Each point on the cap has equal distance from the tip.
 /// @image html SphericalConeMesh.svg
-class SphericalConeMesh :
-	private TranslateMesh<MergeMesh<ConeMesh, AxisFlipMesh<TranslateMesh<SphereMesh>>>>
+class SphericalConeMesh
 {
+private:
+
+	using Impl = TranslateMesh<MergeMesh<ConeMesh, AxisFlipMesh<TranslateMesh<SphereMesh>>>>;
+	Impl translateMesh_;
+
 public:
 
 	/// @param radius Radius of the negative z end on the xy-plane.
@@ -43,9 +47,13 @@ public:
 		double sweep = gml::radians(360.0)
 	);
 
-	using TranslateMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using TranslateMesh::vertices;
+	Triangles triangles() const noexcept { return translateMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return translateMesh_.vertices(); }
 
 };
 

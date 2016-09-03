@@ -18,7 +18,7 @@ BoxEdge::BoxEdge(
 	const gml::dvec2& position, double radius, double size,
 	unsigned slices, unsigned segments
 ) :
-	TranslateMesh{
+	translateMesh_{
 		{radius, size, slices, segments, 0.0, gml::radians(90.0)},
 		gml::dvec3{position, 0.0}
 	}
@@ -29,7 +29,7 @@ BoxEdges::BoxEdges(
 	const gml::dvec3& size, double radius,
 	unsigned slices, unsigned segments
 ) :
-	MirrorMesh{
+	mirrorMesh_{
 		{
 			{gml::dvec2{size}, radius, size[2], slices, segments},
 			Axis::Y
@@ -42,7 +42,7 @@ BoxEdges::BoxEdges(
 BoxCorner::BoxCorner(
 	const gml::dvec3& position, double radius, unsigned slices
 ) :
-	TranslateMesh{
+	translateMesh_{
 		{
 			gml::dvec3{radius, 0.0, 0.0},
 			gml::dvec3{0.0, radius, 0.0},
@@ -55,7 +55,7 @@ BoxCorner::BoxCorner(
 
 
 BoxCorners::BoxCorners(const gml::dvec3& size, double radius, unsigned slices) :
-	MirrorMesh{{{{size, radius, slices}, Axis::X}, Axis::Y}, Axis::Z}
+	mirrorMesh_{{{{size, radius, slices}, Axis::X}, Axis::Y}, Axis::Z}
 { }
 
 
@@ -66,7 +66,7 @@ RoundedBoxMesh::RoundedBoxMesh(
 	unsigned slices,
 	const gml::uvec3& segments
 ) :
-	MergeMesh{
+	mergeMesh_{
 		{
 			{{size[1], size[2]}, {segments[1], segments[2]}, size[0] + radius},
 			Axis::Z, Axis::X, Axis::Y

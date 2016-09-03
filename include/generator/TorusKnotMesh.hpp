@@ -16,9 +16,13 @@ namespace generator {
 
 /// A Circle extruded along a knot path.
 /// @image html TorusKnotMesh.svg
-class TorusKnotMesh :
-	private ExtrudeMesh<CircleShape, KnotPath>
+class TorusKnotMesh
 {
+private:
+
+	using Impl = ExtrudeMesh<CircleShape, KnotPath>;
+	Impl extrudeMesh_;
+
 public:
 
 	/// @param slices Number subdivisions around the circle.
@@ -30,9 +34,13 @@ public:
 		unsigned segments = 96u
 	);
 
-	using ExtrudeMesh<CircleShape, KnotPath>::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using ExtrudeMesh<CircleShape, KnotPath>::vertices;
+	Triangles triangles() const noexcept { return extrudeMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return extrudeMesh_.vertices(); }
 
 };
 

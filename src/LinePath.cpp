@@ -16,7 +16,7 @@ LinePath::LinePath(
 	const gml::dvec3& normal,
 	unsigned segments
 ):
-	ParametricPath{
+	parametricPath_{
 		[start, end, normal] (double t) {
 			PathVertex vertex;
 

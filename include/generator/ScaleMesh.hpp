@@ -15,15 +15,19 @@ namespace generator {
 
 /// Scales a mesh (keeps normals unit length)
 template <typename Mesh>
-class ScaleMesh :
-	private TransformMesh<Mesh>
+class ScaleMesh
 {
+private:
+
+	using Impl = TransformMesh<Mesh>;
+	Impl transformMesh_;
+
 public:
 
 	/// @param mesh Source data mesh.
 	/// @param scale Scale factors. Must not be zero!
 	ScaleMesh(Mesh mesh, const gml::dvec3& scale) :
-		TransformMesh<Mesh>{
+		transformMesh_{
 			std::move(mesh),
 			[scale] (MeshVertex& value) { 
 				value.position *= scale;
@@ -32,9 +36,13 @@ public:
 		}
 	{ }
 
-	using TransformMesh<Mesh>::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using TransformMesh<Mesh>::vertices;
+	Triangles triangles() const noexcept { return transformMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformMesh_.vertices(); }
 
 };
 

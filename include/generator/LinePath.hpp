@@ -14,8 +14,13 @@ namespace generator {
 
 /// A path from point to point.
 /// @image html LinePath.svg
-class LinePath :
-	private ParametricPath {
+class LinePath
+{
+private:
+
+	using Impl = ParametricPath;
+	Impl parametricPath_;
+
 public:
 
 	/// @param start Start point of the line.
@@ -29,9 +34,13 @@ public:
 		unsigned segments = 8u
 	);
 
-	using ParametricPath::edges;
+	using Edges = typename Impl::Edges;
 
-	using ParametricPath::vertices;
+	Edges edges() const noexcept { return parametricPath_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return parametricPath_.vertices(); }
 
 };
 

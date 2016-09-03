@@ -19,13 +19,17 @@ namespace generator {
 
 /// Capsule (cylinder with spherical caps) centered at origin aligned along z-axis.
 /// @image html CapsuleMesh.svg
-class CapsuleMesh : 
-	private MergeMesh<
+class CapsuleMesh
+{
+private:
+
+	using Impl = MergeMesh<
 		CylinderMesh,
 		TranslateMesh<SphereMesh>,
 		TranslateMesh<SphereMesh>
-	>
-{
+	>;
+	Impl mergeMesh_;
+
 public:
 
 	/// @param radius Radius of the capsule on the xy-plane.
@@ -44,9 +48,13 @@ public:
 		double sweep = gml::radians(360.0)
 	);
 
-	using MergeMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using MergeMesh::vertices;
+	Triangles triangles() const noexcept { return mergeMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return mergeMesh_.vertices(); }
 
 
 };

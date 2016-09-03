@@ -18,7 +18,7 @@ SphereMesh::SphereMesh(
 	double segmentStart,
 	double segmentSweep
 ) :
-	AxisSwapMesh{
+	axisSwapMesh_{
 		{
 			{radius, segments, segmentStart, segmentSweep},
 			{1.0, 0.0}, slices, sliceStart, sliceSweep

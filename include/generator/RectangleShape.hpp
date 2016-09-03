@@ -18,9 +18,13 @@ namespace generator {
 
 /// Rectangle centered at origin aligned along the x and y axis.
 /// @image html RectangleShape.svg
-class RectangleShape : 
-	private MergeShape<LineShape, LineShape, LineShape, LineShape> 
+class RectangleShape
 {
+private:
+
+	using Impl = MergeShape<LineShape, LineShape, LineShape, LineShape>;
+	Impl mergeShape_;
+
 public:
 
 	/// @param size Half of the length of an edge.
@@ -30,9 +34,13 @@ public:
 		const gml::uvec2& segments = gml::uvec2{8u, 8u}
 	);
 
-	using MergeShape::edges;
+	using Edges = typename Impl::Edges;
 
-	using MergeShape::vertices;
+	Edges edges() const noexcept { return mergeShape_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return mergeShape_.vertices(); }
 
 };
 
