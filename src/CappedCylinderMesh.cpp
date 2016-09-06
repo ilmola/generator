@@ -20,7 +20,7 @@ Cap::Cap(
 	double start,
 	double sweep
 ) :
-	TranslateMesh{
+	translateMesh_{
 		{radius, 0.0, slices, rings, start, sweep},
 		{0.0, 0.0, distance}
 	}
@@ -36,7 +36,7 @@ CappedCylinderMesh::CappedCylinderMesh(
 	double start,
 	double sweep
 ) :
-	MergeMesh{
+	mergeMesh_{
 		{radius, size, slices, segments, start, sweep},
 		{radius, size, slices, rings, start, sweep},
 		{{{radius, -size, slices, rings, start, sweep}}, true, false}

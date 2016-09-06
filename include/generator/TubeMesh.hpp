@@ -18,9 +18,13 @@ namespace generator {
 
 /// Tube (thick cylinder) centered at origin aligned along the z-axis.
 /// @image html TubeMesh.svg
-class TubeMesh :
-	private MergeMesh<CylinderMesh, FlipMesh<UvFlipMesh<CylinderMesh>>>
+class TubeMesh
 {
+private:
+
+	using Impl = MergeMesh<CylinderMesh, FlipMesh<UvFlipMesh<CylinderMesh>>>;
+	Impl mergeMesh_;
+
 public:
 
 	/// @param radius The outer radius of the cylinder on the xy-plane.
@@ -40,9 +44,13 @@ public:
 		double sweep = gml::radians(360.0)
 	);
 
-	using MergeMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using MergeMesh::vertices;
+	Triangles triangles() const noexcept { return mergeMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return mergeMesh_.vertices(); }
 
 };
 

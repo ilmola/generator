@@ -14,8 +14,13 @@ namespace generator {
 
 /// A circle centered at origin.
 /// @image html CircleShape.svg
-class CircleShape : private ParametricShape
+class CircleShape
 {
+private:
+
+	using Impl = ParametricShape;
+	Impl parametricShape_;
+
 public:
 
 	/// @param radius Radius of the circle
@@ -29,9 +34,13 @@ public:
 		double sweep = gml::radians(360.0)
 	);
 
-	using ParametricShape::edges;
+	using Edges = typename Impl::Edges;
 
-	using ParametricShape::vertices;
+	Edges edges() const noexcept { return parametricShape_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return parametricShape_.vertices(); }
 
 };
 

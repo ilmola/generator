@@ -15,7 +15,7 @@ PlaneMesh::PlaneMesh(
 	const gml::dvec2& size,
 	const gml::uvec2& segments
 ) :
-	ParametricMesh{
+	parametricMesh_{
 		[size] (const gml::dvec2& t) {
 			MeshVertex vertex;
 			vertex.position = gml::dvec3{-size + 2.0 * t * size, 0.0};

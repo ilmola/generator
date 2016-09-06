@@ -16,23 +16,31 @@ namespace generator {
 
 /// Translates the position of each vertex by given amount.
 template <typename Shape>
-class TranslateShape :
-	private TransformShape<Shape>
+class TranslateShape
 {
+private:
+
+	using Impl = TransformShape<Shape>;
+	Impl transformShape_;
+
 public:
 
 	/// @param shape Source data shape.
 	/// @param delta Amount to increment vertex positions.
 	TranslateShape(Shape shape, const gml::dvec2& delta) :
-		TransformShape<Shape>{
+		transformShape_{
 			std::move(shape),
 			[delta] (ShapeVertex& value) { value.position += delta;	}
 		}
 	{ }
 
-	using TransformShape<Shape>::edges;
+	using Edges = typename Impl::Edges;
 
-	using TransformShape<Shape>::vertices;
+	Edges edges() const noexcept { return transformShape_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformShape_.vertices(); }
 
 };
 

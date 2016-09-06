@@ -18,9 +18,13 @@ namespace generator {
 
 /// A circular disk centered at origin on the xy-plane.
 /// @image html DiskMesh.svg
-class DiskMesh :
-	private AxisSwapMesh<LatheMesh<LineShape>>
+class DiskMesh
 {
+private:
+
+	using Impl = AxisSwapMesh<LatheMesh<LineShape>>;
+	Impl axisSwapMesh_;
+
 public:
 
 	/// @param radius Outer radius of the disk on the xy-plane.
@@ -38,9 +42,13 @@ public:
 		double sweep = gml::radians(360.0)
 	);
 
-	using AxisSwapMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using AxisSwapMesh::vertices;
+	Triangles triangles() const noexcept { return axisSwapMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return axisSwapMesh_.vertices(); }
 
 };
 

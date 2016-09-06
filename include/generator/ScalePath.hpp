@@ -15,15 +15,19 @@ namespace generator {
 
 /// Scales a path. Keeps tangents and normals unit length.
 template <typename Path>
-class ScalePath :
-	private TransformPath<Path>
+class ScalePath
 {
+private:
+
+	using Impl = TransformPath<Path>;
+	Impl transformPath_;
+
 public:
 
 	/// @param path Source data path.
 	/// @param scale Scale Factor. Must not have zero components!
 	ScalePath(Path path, const gml::dvec3& scale) :
-		TransformPath<Path>{
+		transformPath_{
 			std::move(path),
 			[scale] (PathVertex& value) { 
 				value.position *= scale;
@@ -33,9 +37,13 @@ public:
 		}
 	{ }
 
-	using TransformPath<Path>::edges;
+	using Edges = typename Impl::Edges;
 
-	using TransformPath<Path>::vertices;
+	Edges edges() const noexcept { return transformPath_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformPath_.vertices(); }
 
 };
 

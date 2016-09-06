@@ -21,26 +21,46 @@ namespace generator {
 namespace detail {
 
 
-class BoxFace : private TranslateMesh<PlaneMesh> {
+class BoxFace
+{
+private:
+
+	using Impl = TranslateMesh<PlaneMesh>;
+	Impl translateMesh_;
+
 public:
 
 	BoxFace(const gml::dvec2& size, const gml::uvec2& segments, double delta);
 
-	using TranslateMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using TranslateMesh::vertices;
+	Triangles triangles() const noexcept { return translateMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return translateMesh_.vertices(); }
 
 };
 
 
-class BoxFaces : private MergeMesh<BoxFace, UvFlipMesh<FlipMesh<BoxFace>>> {
+class BoxFaces
+{
+private:
+
+	using Impl = MergeMesh<BoxFace, UvFlipMesh<FlipMesh<BoxFace>>>;
+	Impl mergeMesh_;
+
 public:
 
 	BoxFaces(const gml::dvec2& size, const gml::uvec2& segments, double delta);
 
-	using MergeMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using MergeMesh::vertices;
+	Triangles triangles() const noexcept { return mergeMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return mergeMesh_.vertices(); }
 
 };
 
@@ -51,13 +71,17 @@ public:
 
 /// Rectangular box centered at origin aligned along the x, y and z axis.
 /// @image html BoxMesh.svg
-class BoxMesh :
-	private MergeMesh<
+class BoxMesh
+{
+private:
+
+	using Impl = MergeMesh<
 		AxisSwapMesh<detail::BoxFaces>,
 		UvFlipMesh<AxisSwapMesh<detail::BoxFaces>>,
 		detail::BoxFaces
-	>
-{
+	>;
+	Impl mergeMesh_;
+
 public:
 
 	/// @param size Half of the side length in x (0), y (1) and z (2) direction.
@@ -69,9 +93,13 @@ public:
 		const gml::uvec3& segments = {8u, 8u, 8u}
 	) noexcept;
 
-	using MergeMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using MergeMesh::vertices;
+	Triangles triangles() const noexcept { return mergeMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return mergeMesh_.vertices(); }
 
 };
 

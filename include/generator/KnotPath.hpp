@@ -17,9 +17,13 @@ namespace generator {
 
 /// A circle winding multiple times around.
 /// @image html KnotPath.svg
-class KnotPath :
-	private ParametricPath
+class KnotPath
 {
+private:
+
+	using Impl = ParametricPath;
+	Impl parametricPath_;
+
 public:
 
 	/// @param q Times around a circle
@@ -31,9 +35,13 @@ public:
 		unsigned segments = 96u
 	);
 
-	using ParametricPath::edges;
+	using Edges = typename Impl::Edges;
 
-	using ParametricPath::vertices;
+	Edges edges() const noexcept { return parametricPath_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return parametricPath_.vertices(); }
 
 };
 

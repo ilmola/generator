@@ -18,8 +18,13 @@ namespace generator {
 
 /// Torus centered at origin on the xy-plane.
 /// @image html TorusMesh.svg
-class TorusMesh :
-	private AxisSwapMesh<LatheMesh<TranslateShape<CircleShape>>> {
+class TorusMesh
+{
+private:
+
+	using Impl = AxisSwapMesh<LatheMesh<TranslateShape<CircleShape>>>;
+	Impl axisSwapMesh_;
+
 public:
 
 	/// @param minor Radius of the minor (inner) ring
@@ -41,9 +46,13 @@ public:
 		double majorSweep = gml::radians(360.0)
 	);
 
-	using AxisSwapMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using AxisSwapMesh::vertices;
+	Triangles triangles() const noexcept { return axisSwapMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return axisSwapMesh_.vertices(); }
 
 };
 

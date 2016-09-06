@@ -15,23 +15,31 @@ namespace generator {
 
 /// Translates the position of each vertex by given amount.
 template <typename Mesh>
-class TranslateMesh :
-	private TransformMesh<Mesh>
+class TranslateMesh
 {
+private:
+
+	using Impl = TransformMesh<Mesh>;
+	Impl transformMesh_;
+
 public:
 
 	/// @param mesh Source data mesh.
 	/// @param delta Amount to increment vertex positions.
 	TranslateMesh(Mesh mesh, const gml::dvec3& delta) :
-		TransformMesh<Mesh>{
+		transformMesh_{
 			std::move(mesh),
 			[delta] (MeshVertex& value) { value.position += delta; }
 		}
 	{ }
 
-	using TransformMesh<Mesh>::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using TransformMesh<Mesh>::vertices;
+	Triangles triangles() const noexcept { return transformMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformMesh_.vertices(); }
 
 };
 

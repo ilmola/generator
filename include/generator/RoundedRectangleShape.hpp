@@ -18,14 +18,18 @@ namespace generator {
 
 
 /// Rectangle with rounded corners centered at origin aligned along the x and y axis.
-class RoundedRectangleShape : 
-	private MergeShape<
+class RoundedRectangleShape
+{
+private:
+
+	using Impl = MergeShape<
 		LineShape, TranslateShape<CircleShape>,
 		LineShape, TranslateShape<CircleShape>,
 		LineShape, TranslateShape<CircleShape>,
 		LineShape, TranslateShape<CircleShape>
-	>
-{
+	>;
+	Impl mergeShape_;
+
 public:
 
 	/// @param radius Radius of the rounded corners.
@@ -39,9 +43,13 @@ public:
 		const gml::uvec2& segments = {8u, 8u}
 	);
 
-	using MergeShape::edges;
+	using Edges = typename Impl::Edges;
 
-	using MergeShape::vertices;
+	Edges edges() const noexcept { return mergeShape_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return mergeShape_.vertices(); }
 
 };
 

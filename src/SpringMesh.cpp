@@ -21,7 +21,7 @@ SpringMesh::SpringMesh(
 	double majorStart,
 	double majorSweep
 ) :
-	ExtrudeMesh{
+	extrudeMesh_{
 		{minor, slices, minorStart, minorSweep},
 		{major, size, segments, majorStart, majorSweep}
 	}

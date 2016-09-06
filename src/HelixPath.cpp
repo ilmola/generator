@@ -18,7 +18,7 @@ HelixPath::HelixPath(
 	double start,
 	double sweep
 ) :
-	ParametricPath{
+	parametricPath_{
 		[radius, size, start, sweep] (double t) {
 			PathVertex vertex;
 			const double angle = start + t * sweep;

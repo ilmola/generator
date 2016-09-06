@@ -20,7 +20,7 @@ CappedConeMesh::CappedConeMesh(
 	double start,
 	double sweep
 ) :
-	MergeMesh{
+	mergeMesh_{
 		{radius, size, slices, segments, start, sweep},
 		{{{
 			DiskMesh{radius, 0.0, slices, rings},

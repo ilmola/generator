@@ -15,7 +15,7 @@ RectangleShape::RectangleShape(
 	const gml::dvec2& size,
 	const gml::uvec2& segments
 ) :
-	MergeShape{
+	mergeShape_{
 		{{size[0], -size[1]}, size, segments[1]},
 		{size, {-size[0], size[1]}, segments[0]},
 		{{-size[0], size[1]}, -size, segments[1]},

@@ -20,8 +20,13 @@ namespace generator {
 /// A sphere of the given radius centered around the origin.
 /// Subdivided around the z-axis in slices and along the z-axis in segments.
 /// @image html SphereMesh.svg
-class SphereMesh :
-	private AxisSwapMesh<LatheMesh<CircleShape>> {
+class SphereMesh
+{
+private:
+
+	using Impl = AxisSwapMesh<LatheMesh<CircleShape>>;
+	Impl axisSwapMesh_;
+
 public:
 
 	/// @param radius The radius of the sphere
@@ -41,9 +46,13 @@ public:
 		double segmentSweep = gml::radians(180.0)
 	);
 
-	using AxisSwapMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using AxisSwapMesh::vertices;
+	Triangles triangles() const noexcept { return axisSwapMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return axisSwapMesh_.vertices(); }
 
 };
 

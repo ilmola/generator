@@ -15,14 +15,18 @@ namespace generator {
 
 /// Swaps the texture coordinates axis u and v.
 template <typename Mesh>
-class UvSwapMesh :
-	private TransformMesh<Mesh>
+class UvSwapMesh
 {
+private:
+
+	using Impl = TransformMesh<Mesh>;
+	Impl transformMesh_;
+
 public:
 
 	/// @param mesh Source data mesh
 	UvSwapMesh(Mesh mesh) :
-		TransformMesh<Mesh>{
+		transformMesh_{
 			std::move(mesh),
 			[] (MeshVertex& vertex) {
 				std::swap(vertex.texCoord[0], vertex.texCoord[1]);
@@ -30,9 +34,13 @@ public:
 		}
 	{ }
 
-	using TransformMesh<Mesh>::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using TransformMesh<Mesh>::vertices;
+	Triangles triangles() const noexcept { return transformMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformMesh_.vertices(); }
 
 };
 

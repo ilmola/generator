@@ -15,14 +15,18 @@ namespace generator {
 
 /// Swaps the x and y axis.
 template <typename Shape>
-class AxisSwapShape :
-	private TransformShape<Shape>
+class AxisSwapShape
 {
+private:
+
+	using Impl = TransformShape<Shape>;
+	Impl transformShape_;
+
 public:
 
 	/// @param shape Source data shape.
 	AxisSwapShape(Shape shape) :
-		TransformShape<Shape>{
+		transformShape_{
 			std::move(shape),
 			[] (ShapeVertex& vertex) {
 				std::swap(vertex.position[0u], vertex.position[1u]);
@@ -31,9 +35,13 @@ public:
 		}
 	{ }
 
-	using TransformShape<Shape>::edges;
+	using Edges = typename Impl::Edges;
 
-	using TransformShape<Shape>::vertices;
+	Edges edges() const noexcept { return transformShape_.edges(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return transformShape_.vertices(); }
 
 };
 

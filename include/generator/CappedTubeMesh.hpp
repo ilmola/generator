@@ -18,7 +18,13 @@ namespace generator {
 
 namespace detail {
 
-class TubeCap : private TranslateMesh<DiskMesh> {
+class TubeCap
+{
+private:
+
+	using Impl = TranslateMesh<DiskMesh>;
+	Impl translateMesh_;
+
 public:
 
 	TubeCap(
@@ -31,9 +37,13 @@ public:
 		double sweep
 	);
 
-	using TranslateMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using TranslateMesh::vertices;
+	Triangles triangles() const noexcept { return translateMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return translateMesh_.vertices(); }
 
 };
 
@@ -43,9 +53,13 @@ public:
 
 /// Like TubeMesh but with end caps.
 /// @image html CappedTubeMesh.svg
-class CappedTubeMesh :
-	private MergeMesh<TubeMesh, detail::TubeCap, FlipMesh<detail::TubeCap>>
+class CappedTubeMesh
 {
+private:
+
+	using Impl = MergeMesh<TubeMesh, detail::TubeCap, FlipMesh<detail::TubeCap>>;
+	Impl mergeMesh_;
+
 public:
 
 	/// @param radius The outer radius of the cylinder on the xy-plane.
@@ -67,9 +81,13 @@ public:
 		double sweep = gml::radians(360.0)
 	);
 
-	using MergeMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using MergeMesh::vertices;
+	Triangles triangles() const noexcept { return mergeMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return mergeMesh_.vertices(); }
 
 };
 

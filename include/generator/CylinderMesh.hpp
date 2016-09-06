@@ -18,9 +18,13 @@ namespace generator {
 
 /// Cylinder centered at origin aligned along the z-axis.
 /// @image html CylinderMesh.svg
-class CylinderMesh :
-	private AxisSwapMesh<LatheMesh<LineShape>>
+class CylinderMesh
 {
+private:
+
+	using Impl = AxisSwapMesh<LatheMesh<LineShape>>;
+	Impl axisSwapMesh_;
+
 public:
 
 	/// @param radius Radius of the cylinder along the xy-plane.
@@ -38,9 +42,13 @@ public:
 		double sweep = gml::radians(360.0)
 	); 
 
-	using AxisSwapMesh::triangles;
+	using Triangles = typename Impl::Triangles;
 
-	using AxisSwapMesh::vertices;
+	Triangles triangles() const noexcept { return axisSwapMesh_.triangles(); }
+
+	using Vertices = typename Impl::Vertices;
+
+	Vertices vertices() const noexcept { return axisSwapMesh_.vertices(); }
 
 };
 

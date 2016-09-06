@@ -37,7 +37,7 @@ KnotPath::KnotPath(
 	int q,
 	unsigned segments
 ) :
-	ParametricPath{
+	parametricPath_{
 		[p, q] (double t) {
 			PathVertex vertex;
 
