@@ -32,8 +32,8 @@ static void generateAxis(SvgWriter& svg, Axis axis) {
 	}
 }
 
-template <typename T>
-void generateShape(const std::string& filename) {
+template <typename Shape>
+void generateShape(const Shape& shape, const std::string& filename) {
 	SvgWriter svg{400, 400};
 
 	svg.ortho(-1.5, 1.5, -1.5, 1.5);
@@ -41,18 +41,16 @@ void generateShape(const std::string& filename) {
 	generateAxis(svg, Axis::X);
 	generateAxis(svg, Axis::Y);
 
-	svg.writeShape(T{}, true, true);
+	svg.writeShape(shape, true, true);
 
 	std::ofstream file(filename+".svg");
 	file << svg.str();
 }
 
 
-template <typename T>
-void generatePath(const std::string& filename) {
+template <typename Path>
+void generatePath(const Path& path, const std::string& filename) {
 	SvgWriter svg{800, 400};
-
-	T path{};
 
 	svg.perspective(1.0, 1.0, 0.1, 10.0);
 
@@ -88,12 +86,10 @@ void generatePath(const std::string& filename) {
 }
 
 
-template <typename T>
-void generateMesh(const std::string& filename) {
+template <typename Mesh>
+void generateMesh(const Mesh& mesh, const std::string& filename) {
 
 	SvgWriter svg{800, 400};
-
-	T mesh{};
 
 	svg.perspective(1.0, 1.0, 0.1, 10.0);
 
@@ -131,42 +127,42 @@ void generateMesh(const std::string& filename) {
 int main() {
 
 	// Shapes
-	generateShape<CircleShape>("CircleShape");
-	generateShape<EmptyShape>("EmptyShape");
-	generateShape<LineShape>("LineShape");
-	generateShape<RectangleShape>("RectangleShape");
-	generateShape<RoundedRectangleShape>("RoundedRectangleShape");
+	generateShape(CircleShape{}, "CircleShape");
+	generateShape(EmptyShape{}, "EmptyShape");
+	generateShape(LineShape{}, "LineShape");
+	generateShape(RectangleShape{}, "RectangleShape");
+	generateShape(RoundedRectangleShape{}, "RoundedRectangleShape");
 
 	// Paths
-	generatePath<EmptyPath>("EmptyPath");
-	generatePath<HelixPath>("HelixPath");
-	generatePath<KnotPath>("KnotPath");
-	generatePath<LinePath>("LinePath");
+	generatePath(EmptyPath{}, "EmptyPath");
+	generatePath(HelixPath{}, "HelixPath");
+	generatePath(KnotPath{}, "KnotPath");
+	generatePath(LinePath{}, "LinePath");
 
 	// Meshes
-	generateMesh<BoxMesh>("BoxMesh");
-	generateMesh<CappedCylinderMesh>("CappedCylinderMesh");
-	generateMesh<CappedConeMesh>("CappedConeMesh");
-	generateMesh<CappedTubeMesh>("CappedTubeMesh");
-	generateMesh<ConeMesh>("ConeMesh");
-	generateMesh<CapsuleMesh>("CapsuleMesh");
-	generateMesh<ConvexPolygonMesh>("ConvexPolygonMesh");
-	generateMesh<CylinderMesh>("CylinderMesh");
-	generateMesh<DodecahedronMesh>("DodecahedronMesh");
-	generateMesh<DiskMesh>("DiskMesh");
-	generateMesh<EmptyMesh>("EmptyMesh");
-	generateMesh<IcosahedronMesh>("IcosahedronMesh");
-	generateMesh<IcoSphereMesh>("IcoSphereMesh");
-	generateMesh<PlaneMesh>("PlaneMesh");
-	generateMesh<RoundedBoxMesh>("RoundedBoxMesh");
-	generateMesh<SphereMesh>("SphereMesh");
-	generateMesh<SphericalConeMesh>("SphericalConeMesh");
-	generateMesh<SphericalTriangleMesh>("SphericalTriangleMesh");
-	generateMesh<SpringMesh>("SpringMesh");
-	generateMesh<TorusKnotMesh>("TorusKnotMesh");
-	generateMesh<TorusMesh>("TorusMesh");
-	generateMesh<TriangleMesh>("TriangleMesh");
-	generateMesh<TubeMesh>("TubeMesh");
+	generateMesh(BoxMesh{}, "BoxMesh");
+	generateMesh(CappedCylinderMesh{}, "CappedCylinderMesh");
+	generateMesh(CappedConeMesh{}, "CappedConeMesh");
+	generateMesh(CappedTubeMesh{}, "CappedTubeMesh");
+	generateMesh(ConeMesh{}, "ConeMesh");
+	generateMesh(CapsuleMesh{}, "CapsuleMesh");
+	generateMesh(ConvexPolygonMesh{}, "ConvexPolygonMesh");
+	generateMesh(CylinderMesh{}, "CylinderMesh");
+	generateMesh(DodecahedronMesh{}, "DodecahedronMesh");
+	generateMesh(DiskMesh{}, "DiskMesh");
+	generateMesh(EmptyMesh{}, "EmptyMesh");
+	generateMesh(IcosahedronMesh{}, "IcosahedronMesh");
+	generateMesh(IcoSphereMesh{}, "IcoSphereMesh");
+	generateMesh(PlaneMesh{}, "PlaneMesh");
+	generateMesh(RoundedBoxMesh{}, "RoundedBoxMesh");
+	generateMesh(SphereMesh{}, "SphereMesh");
+	generateMesh(SphericalConeMesh{}, "SphericalConeMesh");
+	generateMesh(SphericalTriangleMesh{}, "SphericalTriangleMesh");
+	generateMesh(SpringMesh{}, "SpringMesh");
+	generateMesh(TorusKnotMesh{}, "TorusKnotMesh");
+	generateMesh(TorusMesh{}, "TorusMesh");
+	generateMesh(TriangleMesh{}, "TriangleMesh");
+	generateMesh(TubeMesh{}, "TubeMesh");
 
 	// Group picture
 
