@@ -94,8 +94,8 @@ public:
 
 
 	MergeMesh(Head head, Tail... tail) :
-		head_{head},
-		tail_{tail...}
+		head_{std::move(head)},
+		tail_{std::move(tail)...}
 	{ }
 
 	Triangles triangles() const noexcept { return *this; }
