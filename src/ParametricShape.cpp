@@ -63,7 +63,7 @@ ParametricShape::ParametricShape(
 	std::function<ShapeVertex(double)> eval,
 	unsigned segments
 ) noexcept :
-	eval_{eval},
+	eval_{std::move(eval)},
 	segments_{segments},
 	delta_{1.0 / segments}
 { }

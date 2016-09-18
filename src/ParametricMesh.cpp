@@ -101,7 +101,7 @@ ParametricMesh::ParametricMesh(
 	std::function<MeshVertex(const gml::dvec2& t)> eval,
 	const gml::uvec2& segments
 ) noexcept :
-	eval_{eval},
+	eval_{std::move(eval)},
 	segments_{segments},
 	delta_{1.0 / segments[0], 1.0 / segments[1]}
 { }

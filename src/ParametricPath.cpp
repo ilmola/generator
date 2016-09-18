@@ -69,7 +69,7 @@ ParametricPath::ParametricPath(
 	std::function<PathVertex(double)> eval,
 	unsigned segments
 ) noexcept :
-	eval_{eval},
+	eval_{std::move(eval)},
 	segments_{segments},
 	delta_{1.0 / segments}
 { }
