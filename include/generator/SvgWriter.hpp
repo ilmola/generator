@@ -134,13 +134,13 @@ public:
 
 	/// Write one line.
 	void writeLine(
-		const gml::dvec3& p1, const gml::dvec3& p2, 
+		const gml::dvec3& p1, const gml::dvec3& p2,
 		const gml::dvec3& color = {0.0, 0.0, 0.0}
 	);
 
 	/// Write one triangle.
 	void writeTriangle(
-		const gml::dvec3& p1, const gml::dvec3& p2, const gml::dvec3& p3, 
+		const gml::dvec3& p1, const gml::dvec3& p2, const gml::dvec3& p3,
 		const gml::dvec3& color
 	);
 
@@ -240,7 +240,7 @@ public:
 
 		if (writeVertices) {
 			for (const auto & v : vertices) {
-				writePoint(v.position + 0.001 * v.normal);
+				writePoint(v.position);
 			}
 		}
 
