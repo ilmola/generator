@@ -74,6 +74,7 @@ set(GENERATOR_HEADERS
 	${GENERATOR_INCLUDE_DIR}/SubdividePath.hpp
 	${GENERATOR_INCLUDE_DIR}/SubdivideShape.hpp
 	${GENERATOR_INCLUDE_DIR}/SvgWriter.hpp
+	${GENERATOR_INCLUDE_DIR}/TeapotMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/TorusKnotMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/TorusMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/TransformMesh.hpp
@@ -127,6 +128,7 @@ set(GENERATOR_SOURCES
 	PlaneMesh.cpp
 	RoundedBoxMesh.cpp
 	RoundedRectangleShape.cpp
+	TeapotMesh.cpp
 	TorusKnotMesh.cpp
 	TorusMesh.cpp
 	TriangleMesh.cpp

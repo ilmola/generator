@@ -216,6 +216,7 @@ Available meshes are:
 - `SphericalConeMesh`
 - `SphericalTriangleMesh`
 - `SpringMesh`
+- `TeapotMesh`
 - `TorusMesh`
 - `TorusKnotMesh`
 - `TriangleMesh`

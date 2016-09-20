@@ -4,7 +4,6 @@
 - Fonts (freetype).
 - Tetrahedron
 - Octahedron
-- Teapot
 - Lathe cache shape vertex.
 - Uv transform
 - UV projection (sphere, cylinder, plane, box)

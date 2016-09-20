@@ -170,6 +170,7 @@ int main() {
 	generateMesh(SphericalConeMesh{}, "SphericalConeMesh");
 	generateMesh(SphericalTriangleMesh{}, "SphericalTriangleMesh");
 	generateMesh(SpringMesh{}, "SpringMesh");
+	generateMesh(scaleMesh(TeapotMesh{}, gml::dvec3{0.5, 0.5, 0.5}), "TeapotMesh");
 	generateMesh(TorusKnotMesh{}, "TorusKnotMesh");
 	generateMesh(TorusMesh{}, "TorusMesh");
 	generateMesh(TriangleMesh{}, "TriangleMesh");

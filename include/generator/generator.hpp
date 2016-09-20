@@ -77,6 +77,7 @@
 #include "SubdividePath.hpp"
 #include "SubdivideShape.hpp"
 #include "SvgWriter.hpp"
+#include "TeapotMesh.hpp"
 #include "TorusKnotMesh.hpp"
 #include "TorusMesh.hpp"
 #include "TransformMesh.hpp"

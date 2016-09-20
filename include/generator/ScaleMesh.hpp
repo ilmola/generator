@@ -29,9 +29,9 @@ public:
 	ScaleMesh(Mesh mesh, const gml::dvec3& scale) :
 		transformMesh_{
 			std::move(mesh),
-			[scale] (MeshVertex& value) { 
+			[scale] (MeshVertex& value) {
 				value.position *= scale;
-				value.normal = normalize(scale * value.normal);  
+				value.normal = normalize(scale * value.normal);
 			}
 		}
 	{ }
