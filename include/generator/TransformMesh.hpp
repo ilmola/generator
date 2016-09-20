@@ -46,7 +46,7 @@ public:
 
 		typename VertexGeneratorType<Mesh>::Type vertices_;
 
-		Vertices(const TransformMesh& mesh) :
+		explicit Vertices(const TransformMesh& mesh) :
 			mesh_{&mesh},
 			vertices_{mesh.mesh_.vertices()}
 		{ }
@@ -56,16 +56,16 @@ public:
 
 	/// @param mesh Source data mesh.
 	/// @param mutate Callback function that gets called once per vertex.
-	TransformMesh(Mesh mesh, std::function<void (MeshVertex&)> mutate) :
+	explicit TransformMesh(Mesh mesh, std::function<void (MeshVertex&)> mutate) :
 		mesh_{std::move(mesh)},
-		mutate_{mutate}
+		mutate_{std::move(mutate)}
 	{ }
 
 	using Triangles = typename Impl::Triangles;
 
 	Triangles triangles() const noexcept { return mesh_.triangles(); }
 
-	Vertices vertices() const noexcept { return *this; }
+	Vertices vertices() const noexcept { return Vertices{*this}; }
 
 private:
 
