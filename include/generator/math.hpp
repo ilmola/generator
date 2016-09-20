@@ -238,6 +238,26 @@ glm::tvec2<T> bezier(const glm::tvec2<T> (&p)[D], T t)
 	return detail::bezierImpl(&p[0], D, static_cast<T>(1) - t, t);
 }
 
+template <std::size_t D, typename T>
+glm::tvec3<T> bezier(const glm::tvec3<T> (&p)[D], T t)
+{
+	static_assert(D > 0, "At least one control point needed.");
+	return detail::bezierImpl(&p[0], D, static_cast<T>(1) - t, t);
+}
+
+template <std::size_t D0, std::size_t D1, typename T>
+glm::tvec3<T> bezier2(
+	const glm::tvec3<T> (&p)[D1][D0], const glm::tvec2<T>& t
+) {
+	static_assert(D0 > 0, "At least one control point needed.");
+	static_assert(D1 > 0, "At least one control point needed.");
+
+	glm::tvec3<T> temp[D1];
+	for (std::size_t i = 0; i < D1; ++i) {
+		temp[i] = bezier(p[i], t[0]);
+	}
+	return bezier(temp, t[1]);
+}
 
 namespace detail {
 
@@ -282,6 +302,38 @@ glm::tvec2<T> bezierDerivative(const glm::tvec2<T> (&p)[D], T t)
 	static_assert(O > 0, "The derivative order must be at least one.");
 	static_assert(D > 0, "At least one control point needed.");
 	return detail::bezierDerivativeImpl<O, D, glm::tvec2<T>, T>::calc(p, t);
+}
+
+template <std::size_t O, std::size_t D, typename T>
+glm::tvec3<T> bezierDerivative(const glm::tvec3<T> (&p)[D], T t)
+{
+	static_assert(O > 0, "The derivative order must be at least one.");
+	static_assert(D > 0, "At least one control point needed.");
+	return detail::bezierDerivativeImpl<O, D, glm::tvec3<T>, T>::calc(p, t);
+}
+
+template <std::size_t O, std::size_t D0, std::size_t D1, typename T>
+glm::tmat2x3<T> bezier2Jacobian(
+	const glm::tvec3<T> (&p)[D1][D0], const glm::tvec2<T>& t
+) {
+	static_assert(O > 0, "Order of the Jacobian must be at least one.");
+	static_assert(D0 > 0, "At least one control point needed.");
+	static_assert(D1 > 0, "At least one control point needed.");
+
+	glm::tvec3<T> temp0[D0];
+	for (std::size_t i = 0; i < D0; ++i) {
+		temp0[i] = detail::bezierImpl(&p[0][i], D1, static_cast<T>(1) - t[1], t[1], D0);
+	}
+
+	glm::tvec3<T> temp1[D1];
+	for (std::size_t i = 0; i < D1; ++i) {
+		temp1[i] = bezier(p[i], t[0]);
+	}
+
+	return glm::tmat2x3<T>{
+		bezierDerivative<O>(temp0, t[0]),
+		bezierDerivative<O>(temp1, t[1])
+	};
 }
 
 }

@@ -196,6 +196,7 @@ Again, `TriangleGenerator` and `VertexGenerator` can be any type.
 
 Available meshes are:
 
+- `BezierMesh`
 - `BoxMesh`
 - `CappedConeMesh`
 - `CappedCylinderMesh`
