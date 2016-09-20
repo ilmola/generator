@@ -12,6 +12,7 @@ set(GENERATOR_HEADERS
 	${GENERATOR_INCLUDE_DIR}/AxisSwapMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/AxisSwapPath.hpp
 	${GENERATOR_INCLUDE_DIR}/AxisSwapShape.hpp
+	${GENERATOR_INCLUDE_DIR}/BezierShape.hpp
 	${GENERATOR_INCLUDE_DIR}/BoxMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/CappedConeMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/CappedCylinderMesh.hpp

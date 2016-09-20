@@ -126,6 +126,7 @@ methods.
 
 Available shapes are:
 
+- `BezierShape`
 - `CircleShape`
 - `LineShape`
 - `ParametricShape`

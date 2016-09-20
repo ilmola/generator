@@ -214,6 +214,76 @@ glm::tvec2<T> transform(const glm::tmat3x3<T>& m, const glm::tvec2<T>& v) {
 	return glm::tvec2<T>(m * glm::tvec3<T>(v, 1.0));
 }
 
+
+namespace detail {
+
+template <typename VecT, typename T>
+VecT bezierImpl(
+	const VecT* p, std::size_t n, T t1, T t2, std::size_t stride = 1
+) {
+	if (n == 1) return *p;
+	if (n == 2) return t1 * p[0] + t2 * p[stride];
+	return
+		t1 * bezierImpl(p, n - 1, t1, t2, stride) +
+		t2 * bezierImpl(p + stride, n - 1, t1, t2, stride);
+}
+
+} // detail
+
+
+template <std::size_t D, typename T>
+glm::tvec2<T> bezier(const glm::tvec2<T> (&p)[D], T t)
+{
+	static_assert(D > 0, "At least one control point needed.");
+	return detail::bezierImpl(&p[0], D, static_cast<T>(1) - t, t);
+}
+
+
+namespace detail {
+
+template <std::size_t O, std::size_t D, typename VecT, typename T>
+struct bezierDerivativeImpl {
+	static VecT calc(const VecT (&p)[D], T t)
+	{
+		VecT temp[D - 1];
+		for (std::size_t i = 0; i < D - 1; ++i) {
+			temp[i] = static_cast<T>(D - 1) * (p[i + 1] - p[i]);
+		}
+		return bezierDerivativeImpl<O - 1, D - 1, VecT, T>::calc(temp, t);
+	}
+};
+
+template <std::size_t D, typename VecT, typename T>
+struct bezierDerivativeImpl<0, D, VecT, T> {
+	static VecT calc(const VecT (&p)[D], T t) {
+		return bezier(p, t);
+	}
+};
+
+template <typename VecT, typename T>
+struct bezierDerivativeImpl<0, 1, VecT, T> {
+	static VecT calc(const VecT (&p)[1], T t) {
+		return bezier(p, t);
+	}
+};
+
+template <std::size_t O, typename VecT, typename T>
+struct bezierDerivativeImpl<O, 1, VecT, T> {
+	static VecT calc(const VecT (&)[1], T) {
+		return VecT{static_cast<T>(0)};
+	}
+};
+
+} // detail
+
+template <std::size_t O, std::size_t D, typename T>
+glm::tvec2<T> bezierDerivative(const glm::tvec2<T> (&p)[D], T t)
+{
+	static_assert(O > 0, "The derivative order must be at least one.");
+	static_assert(D > 0, "At least one control point needed.");
+	return detail::bezierDerivativeImpl<O, D, glm::tvec2<T>, T>::calc(p, t);
+}
+
 }
 
 #else

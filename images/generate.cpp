@@ -127,6 +127,10 @@ void generateMesh(const Mesh& mesh, const std::string& filename) {
 int main() {
 
 	// Shapes
+	generateShape(
+		BezierShape<4>{{{-1.0, -1.0}, {-0.5, 1.0}, {0.5, -1.0}, {1.0, 1.0}}},
+		"BezierShape"
+	);
 	generateShape(CircleShape{}, "CircleShape");
 	generateShape(EmptyShape{}, "EmptyShape");
 	generateShape(LineShape{}, "LineShape");

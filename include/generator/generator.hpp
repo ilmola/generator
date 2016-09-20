@@ -16,6 +16,7 @@
 #include "AxisSwapMesh.hpp"
 #include "AxisSwapPath.hpp"
 #include "AxisSwapShape.hpp"
+#include "BezierShape.hpp"
 #include "BoxMesh.hpp"
 #include "CappedConeMesh.hpp"
 #include "CappedCylinderMesh.hpp"
