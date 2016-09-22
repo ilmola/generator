@@ -36,11 +36,13 @@ public:
 			return tail_.generate() + head_VertexCount;
 		}
 
-		bool done() const noexcept { return head_.done() && tail_.done(); }
+		bool done() const noexcept { return mAllDone; }
 
 		void next() {
 			if (!head_.done()) head_.next();
 			else tail_.next();
+
+			mAllDone = tail_.done() && head_.done();
 		}
 
 	private:
@@ -50,10 +52,13 @@ public:
 
 		unsigned head_VertexCount;
 
+		bool mAllDone;
+
 		Edges(const MergePath& path) :
 			head_{path.head_.triangles()},
 			tail_(path.tail_.triangles()),
-			head_VertexCount{count(path.head_.vertices())}
+			head_VertexCount{count(path.head_.vertices())},
+			mAllDone{tail_.done() && head_.done()}
 		{ }
 
 	friend class MergePath<Head, Tail...>;
@@ -68,21 +73,25 @@ public:
 			return tail_.generate();
 		}
 
-		bool done() const noexcept { return head_.done() && tail_.done(); }
+		bool done() const noexcept { return mAllDone; }
 
 		void next() {
 			if (!head_.done()) head_.next();
 			else tail_.next();
+
+			mAllDone = tail_.done() && head_.done();
 		}
 
 	private:
 
 		typename VertexGeneratorType<Head>::type head_;
 		typename VertexGeneratorType<MergePath<Tail...>>::type tail_;
+		bool mAllDone;
 
 		Vertices(const MergePath& path) :
 			head_{path.head_.vertices()},
-			tail_(path.tail_.vertices())
+			tail_(path.tail_.vertices()),
+			mAllDone{tail_.done() && head_.done()}
 		{ }
 
 	friend class MergePath<Head, Tail...>;

@@ -39,11 +39,13 @@ public:
 			return edge;
 		}
 
-		bool done() const noexcept { return head_.done() && tail_.done(); }
+		bool done() const noexcept { return mAllDone; }
 
 		void next() {
 			if (!head_.done()) head_.next();
 			else tail_.next();
+
+			mAllDone = tail_.done() && head_.done();
 		}
 
 	private:
@@ -53,10 +55,13 @@ public:
 
 		unsigned head_VertexCount;
 
+		bool mAllDone;
+
 		Edges(const MergeShape& shape) :
 			head_{shape.head_.edges()},
 			tail_(shape.tail_.edges()),
-			head_VertexCount{count(shape.head_.vertices())}
+			head_VertexCount{count(shape.head_.vertices())},
+			mAllDone{tail_.done() && head_.done()}
 		{ }
 
 	friend class MergeShape<Head, Tail...>;
@@ -71,21 +76,25 @@ public:
 			return tail_.generate();
 		}
 
-		bool done() const noexcept { return head_.done() && tail_.done(); }
+		bool done() const noexcept { return mAllDone; }
 
 		void next() {
 			if (!head_.done()) head_.next();
 			else tail_.next();
+
+			mAllDone = tail_.done() && head_.done();
 		}
 
 	private:
 
 		typename VertexGeneratorType<Head>::Type head_;
 		typename VertexGeneratorType<MergeShape<Tail...>>::Type tail_;
+		bool mAllDone;
 
 		Vertices(const MergeShape& shape) :
 			head_{shape.head_.vertices()},
-			tail_(shape.tail_.vertices())
+			tail_(shape.tail_.vertices()),
+			mAllDone{tail_.done() && head_.done()}
 		{ }
 
 	friend class MergeShape<Head, Tail...>;
