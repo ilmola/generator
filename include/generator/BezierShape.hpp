@@ -6,6 +6,7 @@
 #ifndef UUID_781FBB895F744ABCB12D8CDEA0AFA3E4
 #define UUID_781FBB895F744ABCB12D8CDEA0AFA3E4
 
+#include <algorithm>
 #include <limits>
 
 #include "ParametricShape.hpp"
@@ -27,24 +28,30 @@ private:
 	using Impl = ParametricShape;
 	Impl mParametricShape;
 
-public:
+	struct ArrayWrapper
+	{
+		gml::dvec2 data[D];
 
-	/// @param p Control points
-	/// @param segments Number of subdivisions
-	explicit BezierShape(const gml::dvec2 (&p)[D] = {}, unsigned segments = 16u) :
+		ArrayWrapper(const gml::dvec2 (&p)[D])
+		{
+			std::copy(&p[0], &p[0] + D, &data[0]);
+		}
+	};
+
+
+	explicit BezierShape(const ArrayWrapper& p, unsigned segments) :
 		mParametricShape{
-			// Lambdas will capture arrays by value.
 			[p] (double t) {
 				ShapeVertex vertex;
 
-				vertex.position = gml::bezier(p, t);
+				vertex.position = gml::bezier(p.data, t);
 
-				vertex.tangent = gml::bezierDerivative<1>(p, t);
+				vertex.tangent = gml::bezierDerivative<1>(p.data, t);
 
 				// If tangent is zero try again near by.
 				const double e = std::numeric_limits<double>::epsilon();
 				if (gml::dot(vertex.tangent, vertex.tangent) < e) {
-					vertex.tangent = gml::bezierDerivative<1>(p, t + 10.0 * e);
+					vertex.tangent = gml::bezierDerivative<1>(p.data, t + 10.0 * e);
 				}
 
 				vertex.tangent = gml::normalize(vertex.tangent);
@@ -57,6 +64,15 @@ public:
 		}
 	{
 	}
+
+public:
+
+	/// @param p Control points
+	/// @param segments Number of subdivisions
+	explicit BezierShape(const gml::dvec2 (&p)[D], unsigned segments = 16u) :
+		// Work around a msvc lambda capture bug by wrapping the array.
+		BezierShape{ArrayWrapper{p}, segments}
+	{ }
 
 	using Edges = typename Impl::Edges;
 

@@ -6,6 +6,7 @@
 #ifndef UUID_8FFEADCF19544427BD6E6EC5C071222F
 #define UUID_8FFEADCF19544427BD6E6EC5C071222F
 
+#include <algorithm>
 #include <limits>
 
 #include "ParametricMesh.hpp"
@@ -29,27 +30,32 @@ private:
 	using Impl = ParametricMesh;
 	Impl mParametricMesh;
 
-public:
+	struct ArrayWrapper
+	{
+		gml::dvec3 data[D1][D0];
 
-	/// @param p Control points
-	/// @param segments Number of subdivisions along each axis
+		ArrayWrapper(const gml::dvec3 (&p)[D1][D0])
+		{
+			std::copy(&p[0][0], &p[0][0] + D1 * D0, &data[0][0]);
+		}
+	};
+
 	explicit BezierMesh(
-		const gml::dvec3 (&p)[D1][D0] = {}, const gml::uvec2 segments = {16u, 16u}
+		const ArrayWrapper& p, const gml::uvec2& segments
 	) :
 		mParametricMesh{
-			// Lambda capture the array by value.
 			[p] (const gml::dvec2& t) {
 				MeshVertex vertex;
 
-				vertex.position = gml::bezier2(p, t);
+				vertex.position = gml::bezier2(p.data, t);
 
-				gml::dmat2x3 J = gml::bezier2Jacobian<1>(p, t);
+				gml::dmat2x3 J = gml::bezier2Jacobian<1>(p.data, t);
 				vertex.normal = gml::cross(J[0], J[1]);
 
 				// If the normal was zero try a again near by.
 				const double e = std::numeric_limits<double>::epsilon();
 				if (dot(vertex.normal, vertex.normal) < e) {
-					J = gml::bezier2Jacobian<1>(p, t + 10.0 * e);
+					J = gml::bezier2Jacobian<1>(p.data, t + 10.0 * e);
 					vertex.normal = gml::cross(J[0], J[1]);
 				}
 				vertex.normal = gml::normalize(vertex.normal);
@@ -60,6 +66,17 @@ public:
 			},
 			segments
 		}
+	{ }
+
+public:
+
+	/// @param p Control points
+	/// @param segments Number of subdivisions along each axis
+	explicit BezierMesh(
+		const gml::dvec3 (&p)[D1][D0], const gml::uvec2& segments = {16u, 16u}
+	) :
+		// Work around a msvc lambda capture bug by wrapping the array.
+		BezierMesh{ArrayWrapper{p}, segments}
 	{ }
 
 	using Triangles = typename Impl::Triangles;
