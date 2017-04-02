@@ -18,7 +18,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 option(GENERATOR_USE_GLM "Use GLM instead of GML (experimental)" OFF)
 if(GENERATOR_USE_GLM)
 	message(STATUS "Using GLM instead of GML for math (note the similar names).  Support for this is experimental!")
-	add_definitions(-DGENERATOR_USE_GLM)
+	add_definitions(-DGENERATOR_USE_GLM -DGLM_ENABLE_EXPERIMENTAL)
 endif()
 
 if(GENERATOR_USE_GLM)
