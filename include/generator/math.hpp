@@ -135,23 +135,26 @@ glm::tvec3<T> normal(const glm::tvec3<T>& p1, const glm::tvec3<T>& p2, const glm
 	return normalize(cross(p2 - p1, p3 - p1));
 }
 
-template <typename T>
+template <typename T, typename TI, typename TS>
 glm::tvec3<T> project(
-	const glm::tvec3<T>& v, const glm::tmat4x4<T>& modelViewNroj,
-	const ivec4& viewport
+	const glm::tvec3<T>& v,
+	const glm::tmat4x4<T>& modelViewProj,
+	const glm::tvec2<TI>& viewportOrigin, const glm::tvec2<TS>& viewportSize
 ) {
-	glm::tvec4<T> in = modelViewNroj * glm::tvec4<T>{v, T{1.0}};
+	glm::tvec4<T> in = modelViewProj * glm::tvec4<T>{v, static_cast<T>(1)};
 
 	in[0] /= in[3];
 	in[1] /= in[3];
 	in[2] /= in[3];
 
-	in[0] = in[0] * T{0.5} + T{0.5};
-	in[1] = in[1] * T{0.5} + T{0.5};
-	in[2] = in[2] * T{0.5} + T{0.5};
+	const T half = static_cast<T>(0.5);
 
-	in[0] = in[0] * viewport[2] + viewport[0];
-	in[1] = in[1] * viewport[3] + viewport[1];
+	in[0] = in[0] * half + half;
+	in[1] = in[1] * half + half;
+	in[2] = in[2] * half + half;
+
+	in[0] = in[0] * static_cast<T>(viewportSize[0]) + static_cast<T>(viewportOrigin[0]);
+	in[1] = in[1] * static_cast<T>(viewportSize[1]) + static_cast<T>(viewportOrigin[1]);
 
 	return glm::tvec3<T>{in};
 }

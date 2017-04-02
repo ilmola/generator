@@ -92,7 +92,8 @@ private:
 	gml::dmat4 viewMatrix_;
 	gml::dmat4 projMatrix_;
 	gml::dmat4 viewProjMatrix_;
-	gml::ivec4 viewport_;
+	gml::ivec2 viewportOrigin_;
+	gml::uvec2 viewportSize_;
 
 	gml::dvec3 lightDir_;
 

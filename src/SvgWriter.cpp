@@ -105,7 +105,7 @@ void SvgWriter::TriangleElem::stream(std::ostream& os) const {
 
 
 gml::dvec3 SvgWriter::project(const gml::dvec3& p) const {
-	auto temp = gml::project(p,  viewProjMatrix_, viewport_);
+	auto temp = gml::project(p, viewProjMatrix_, viewportOrigin_, viewportSize_);
 	temp[1] = size_[1] - temp[1];
 	return temp;
 }
@@ -127,7 +127,8 @@ SvgWriter::SvgWriter(unsigned width, unsigned height) :
 	viewMatrix_{1.0},
 	projMatrix_{1.0},
 	viewProjMatrix_{1.0},
-	viewport_{0, 0, static_cast<int>(width), static_cast<int>(height)},
+	viewportOrigin_{0, 0},
+	viewportSize_{width, height},
 	lightDir_{1.0, 2.0, 3.0},
 	cullface_{true},
 	elems_{}
@@ -155,9 +156,8 @@ void SvgWriter::ortho(double left, double right, double bottom, double top) {
 
 
 void SvgWriter::viewport(int x, int y, unsigned width, unsigned height) {
-	viewport_ = gml::ivec4{
-		x, y, static_cast<int>(width), static_cast<int>(height)
-	};
+	viewportOrigin_ = gml::ivec2{x, y};
+	viewportSize_ = gml::uvec2{width, height};
 }
 
 
