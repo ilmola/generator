@@ -39,8 +39,8 @@ public:
 	RoundedRectangleShape(
 		double radius = 0.25,
 		const gml::dvec2& size = {0.75, 0.75},
-		unsigned slices = 4u,
-		const gml::uvec2& segments = {8u, 8u}
+		int slices = 4,
+		const gml::ivec2& segments = {8, 8}
 	);
 
 	using Edges = typename Impl::Edges;

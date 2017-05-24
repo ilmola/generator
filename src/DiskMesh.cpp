@@ -13,8 +13,8 @@ using namespace generator;
 DiskMesh::DiskMesh(
 	double radius,
 	double innerRadius,
-	unsigned slices,
-	unsigned rings,
+	int slices,
+	int rings,
 	double start,
 	double sweep
 ) :

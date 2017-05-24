@@ -13,7 +13,7 @@ using namespace generator;
 
 RectangleShape::RectangleShape(
 	const gml::dvec2& size,
-	const gml::uvec2& segments
+	const gml::ivec2& segments
 ) :
 	mergeShape_{
 		{{size[0], -size[1]}, size, segments[1]},

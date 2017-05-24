@@ -36,7 +36,7 @@ public:
 
 		const IcosahedronMesh* mesh_;
 
-		unsigned i_;
+		int i_;
 
 		// Needs be a shared_ptr in order to make copy/move not to mess up the
 		// internal pointer in triangles_.
@@ -61,7 +61,7 @@ public:
 
 		const IcosahedronMesh* mesh_;
 
-		unsigned i_;
+		int i_;
 
 		// Needs be a shared_ptr in order to make copy/move not to mess up the
 		// internal pointer in triangles_.
@@ -78,15 +78,15 @@ private:
 
 	double radius_;
 
-	unsigned segments_;
+	int segments_;
 
-	unsigned faceVertexCount_;
+	int faceVertexCount_;
 
 public:
 
 	/// @param radius The radius of the enclosing sphere.
 	/// @param segments The number segments along each edge. Must be >= 1.
-	IcosahedronMesh(double radius = 1.0, unsigned segments = 1u);
+	IcosahedronMesh(double radius = 1.0, int segments = 1);
 
 	Triangles triangles() const noexcept;
 

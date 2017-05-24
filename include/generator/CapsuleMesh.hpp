@@ -37,13 +37,13 @@ public:
 	/// @param slices Number of subdivisions around the z-axis.
 	/// @param rings Number of radial subdivisions in the caps.
 	/// @param start Counterclockwise angle relative to the x-axis.
-	/// @param start Counterclockwise angle.
+	/// @param sweep Counterclockwise angle.
 	CapsuleMesh(
 		double radius = 1.0,
 		double size = 0.5,
-		unsigned slices = 32u,
-		unsigned segments = 4u,
-		unsigned rings = 8u,
+		int slices = 32,
+		int segments = 4,
+		int rings = 8,
 		double start = 0.0,
 		double sweep = gml::radians(360.0)
 	);

@@ -11,8 +11,8 @@ using namespace generator;
 
 SphereMesh::SphereMesh(
 	double radius,
-	unsigned slices,
-	unsigned segments,
+	int slices,
+	int segments,
 	double sliceStart,
 	double sliceSweep,
 	double segmentStart,

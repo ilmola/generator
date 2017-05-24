@@ -25,7 +25,7 @@ std::string toColor(const gml::dvec3& c) {
 	std::stringstream ss;
 	auto fn = [] (double c) {
 		c = gml::clamp(c, 0.0, 1.0);
-		return static_cast<unsigned>(255*c);
+		return static_cast<int>(255*c);
 	};
 
 	ss << "rgb(" << fn(c[0]) << "," << fn(c[1]) << "," << fn(c[2]) << ")";
@@ -122,7 +122,7 @@ gml::dvec3 SvgWriter::normalToColor(const gml::dvec3& normal) const {
 
 
 
-SvgWriter::SvgWriter(unsigned width, unsigned height) :
+SvgWriter::SvgWriter(int width, int height) :
 	size_{width, height},
 	viewMatrix_{1.0},
 	projMatrix_{1.0},
@@ -155,9 +155,9 @@ void SvgWriter::ortho(double left, double right, double bottom, double top) {
 }
 
 
-void SvgWriter::viewport(int x, int y, unsigned width, unsigned height) {
+void SvgWriter::viewport(int x, int y, int width, int height) {
 	viewportOrigin_ = gml::ivec2{x, y};
-	viewportSize_ = gml::uvec2{width, height};
+	viewportSize_ = gml::ivec2{width, height};
 }
 
 

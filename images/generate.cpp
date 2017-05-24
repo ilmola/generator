@@ -150,7 +150,7 @@ int main() {
 		{{-1.00, 0.33, 2.66}, {-0.33, 0.33, 0.00}, {0.33, 0.33, 2.00}, {1.0, 0.33, 2.66}},
 		{{-1.00, 1.00,-1.33}, {-0.33, 1.00,-1.33}, {0.33, 1.00, 0.00}, {1.0, 1.00,-0.66}}
 	};
-	generateMesh(BezierMesh<4u, 4u>{ctrlPoints, {8u, 8u}}, "BezierMesh");
+	generateMesh(BezierMesh<4, 4>{ctrlPoints, {8, 8}}, "BezierMesh");
 	generateMesh(BoxMesh{}, "BoxMesh");
 	generateMesh(CappedCylinderMesh{}, "CappedCylinderMesh");
 	generateMesh(CappedConeMesh{}, "CappedConeMesh");

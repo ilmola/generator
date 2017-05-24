@@ -14,7 +14,7 @@ using namespace generator;
 HelixPath::HelixPath(
 	double radius,
 	double size,
-	unsigned segments,
+	int segments,
 	double start,
 	double sweep
 ) :

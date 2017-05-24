@@ -23,9 +23,9 @@ double calcSize(double radius, double size) {
 SphericalConeMesh::SphericalConeMesh(
 	double radius,
 	double size,
-	unsigned slices,
-	unsigned segments,
-	unsigned rings,
+	int slices,
+	int segments,
+	int rings,
 	double start,
 	double sweep
 ) :

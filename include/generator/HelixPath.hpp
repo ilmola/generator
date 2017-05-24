@@ -31,7 +31,7 @@ public:
 	HelixPath(
 		double radius = 1.0,
 		double size = 1.0,
-		unsigned segments = 32u,
+		int segments = 32,
 		double start = 0.0,
 		double sweep = gml::radians(720.0)
 	);

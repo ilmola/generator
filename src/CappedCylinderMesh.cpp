@@ -15,8 +15,8 @@ using namespace generator::detail;
 Cap::Cap(
 	double radius,
 	double distance,
-	unsigned slices,
-	unsigned rings,
+	int slices,
+	int rings,
 	double start,
 	double sweep
 ) :
@@ -30,9 +30,9 @@ Cap::Cap(
 CappedCylinderMesh::CappedCylinderMesh(
 	double radius,
 	double size,
-	unsigned slices,
-	unsigned segments,
-	unsigned rings,
+	int slices,
+	int segments,
+	int rings,
 	double start,
 	double sweep
 ) :

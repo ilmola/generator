@@ -33,7 +33,7 @@ public:
 
 		const ParametricShape* shape_;
 
-		unsigned i_;
+		int i_;
 
 	friend class ParametricShape;
 	};
@@ -51,7 +51,7 @@ public:
 
 		const ParametricShape* shape_;
 
-		unsigned i_;
+		int i_;
 
 	friend class ParametricShape;
 	};
@@ -62,7 +62,7 @@ public:
 	/// Should be >= 1. Zero yields an empty shape.
 	explicit ParametricShape(
 		std::function<ShapeVertex(double)> eval,
-		unsigned segments = 16u
+		int segments = 16
 	) noexcept;
 
 	Edges edges() const noexcept;
@@ -73,7 +73,7 @@ private:
 
 	std::function<ShapeVertex(double)> eval_;
 
-	unsigned segments_;
+	int segments_;
 
 	double delta_;
 

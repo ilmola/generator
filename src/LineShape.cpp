@@ -14,7 +14,7 @@ using namespace generator;
 LineShape::LineShape(
 	const gml::dvec2& start,
 	const gml::dvec2& end,
-	unsigned segments
+	int segments
 ) :
 	parametricShape_{
 		[start, end] (double t) {

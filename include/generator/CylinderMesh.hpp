@@ -36,11 +36,11 @@ public:
 	CylinderMesh(
 		double radius = 1.0,
 		double size = 1.0,
-		unsigned slices = 32u,
-		unsigned segments = 8u,
+		int slices = 32,
+		int segments = 8,
 		double start = 0.0,
 		double sweep = gml::radians(360.0)
-	); 
+	);
 
 	using Triangles = typename Impl::Triangles;
 

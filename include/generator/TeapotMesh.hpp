@@ -36,7 +36,7 @@ public:
 
 		const TeapotMesh* mMesh;
 
-		unsigned mIndex;
+		int mIndex;
 
 		std::shared_ptr<const BezierMesh<4, 4>> mPatchMesh;
 
@@ -59,7 +59,7 @@ public:
 
 		const TeapotMesh* mMesh;
 
-		unsigned mIndex;
+		int mIndex;
 
 		// Needs be a shared_ptr in order to make copy/move not to mess up the
 		// internal pointer in mTriangles.
@@ -77,7 +77,7 @@ public:
 	/// The lid is pointing towards the z axis and the spout towards the x axis.
 	/// @param segments The number segments along each patch. Should be >= 1.
 	/// If zero empty mesh is generated.
-	explicit TeapotMesh(unsigned segments = 8u) noexcept;
+	explicit TeapotMesh(int segments = 8) noexcept;
 
 	Triangles triangles() const noexcept;
 
@@ -85,9 +85,9 @@ public:
 
 private:
 
-	unsigned mSegments;
+	int mSegments;
 
-	unsigned mPatchVertexCount;
+	int mPatchVertexCount;
 
 };
 

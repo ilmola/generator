@@ -15,8 +15,8 @@ using namespace generator;
 RoundedRectangleShape::RoundedRectangleShape(
 	double radius,
 	const gml::dvec2& size,
-	unsigned slices,
-	const gml::uvec2& segments
+	int slices,
+	const gml::ivec2& segments
 ) :
 	mergeShape_{
 		{{size[0]+radius, -size[1]}, {size[0]+radius, size[1]}, segments[1]},

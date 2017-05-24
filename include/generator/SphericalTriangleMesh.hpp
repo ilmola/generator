@@ -34,9 +34,9 @@ public:
 	private:
 
 		const SphericalTriangleMesh* mesh_;
-		unsigned row_;
-		unsigned col_;
-		unsigned i_;
+		int row_;
+		int col_;
+		int i_;
 
 		Triangles(const SphericalTriangleMesh& mesh);
 
@@ -55,8 +55,8 @@ public:
 	private:
 
 		const SphericalTriangleMesh* mesh_;
-		unsigned row_;
-		unsigned col_;
+		int row_;
+		int col_;
 
 		Vertices(const SphericalTriangleMesh& mesh);
 
@@ -67,13 +67,13 @@ public:
 	/// @param segments Number of subdivisions along each edge.
 	SphericalTriangleMesh(
 		double radius = 1.0,
-		unsigned segments = 4u
+		int segments = 4
 	);
 
 	/// @param segments Number of subdivisions along each edge.
 	SphericalTriangleMesh(
 		const gml::dvec3& v0, const gml::dvec3& v1, const gml::dvec3& v2,
-		unsigned segments = 4u
+		int segments = 4
 	);
 
 	Triangles triangles() const noexcept;
@@ -86,7 +86,7 @@ private:
 
 	gml::dvec3 normal_;
 
-	unsigned segments_;
+	int segments_;
 
 };
 

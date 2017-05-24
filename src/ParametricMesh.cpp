@@ -13,7 +13,7 @@ using namespace generator;
 
 ParametricMesh::Triangles::Triangles(const ParametricMesh& mesh) :
 	mesh_{&mesh},
-	i_{0u},
+	i_{0},
 	even_{false}
 { }
 
@@ -23,7 +23,7 @@ Triangle ParametricMesh::Triangles::generate() const {
 
 	Triangle triangle;
 
-	const unsigned base = i_[1] * (mesh_->segments_[0] + 1) + i_[0];
+	const int base = i_[1] * (mesh_->segments_[0] + 1) + i_[0];
 
 	if (!even_) {
 		triangle.vertices = {
@@ -66,7 +66,7 @@ void ParametricMesh::Triangles::next() {
 
 
 ParametricMesh::Vertices::Vertices(const ParametricMesh& mesh) :
-	mesh_{&mesh}, i_{0u}
+	mesh_{&mesh}, i_{0}
 { }
 
 
@@ -99,7 +99,7 @@ void ParametricMesh::Vertices::next() {
 
 ParametricMesh::ParametricMesh(
 	std::function<MeshVertex(const gml::dvec2& t)> eval,
-	const gml::uvec2& segments
+	const gml::ivec2& segments
 ) noexcept :
 	eval_{std::move(eval)},
 	segments_{segments},

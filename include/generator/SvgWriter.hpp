@@ -87,13 +87,13 @@ private:
 
 	gml::dvec3 normalToColor(const gml::dvec3& normal) const;
 
-	gml::uvec2 size_;
+	gml::ivec2 size_;
 
 	gml::dmat4 viewMatrix_;
 	gml::dmat4 projMatrix_;
 	gml::dmat4 viewProjMatrix_;
 	gml::ivec2 viewportOrigin_;
-	gml::uvec2 viewportSize_;
+	gml::ivec2 viewportSize_;
 
 	gml::dvec3 lightDir_;
 
@@ -105,7 +105,7 @@ public:
 
 	/// @param width Width of the image in pixels
 	/// @param height Height of the iamge in pixels
-	SvgWriter(unsigned width, unsigned height);
+	SvgWriter(int width, int height);
 
 	/// Sets the model view matrix. Default is the identity matrix.
 	void modelView(const gml::dmat4& matrix);
@@ -123,7 +123,7 @@ public:
 	void ortho(double left, double right, double bottom, double top);
 
 	/// Sets the viewport. Default fills the whole image.
-	void viewport(int x, int y, unsigned width, unsigned height);
+	void viewport(int x, int y, int width, int height);
 
 	/// Sets if backfacing triangles should be culled. Default is true.
 	void cullface(bool cullface);

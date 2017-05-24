@@ -43,7 +43,7 @@ static const std::array<gml::dvec3, 20> vertices {{
 }};
 
 
-static const std::array<std::array<unsigned, 5>, 12> polygons{{
+static const std::array<std::array<int, 5>, 12> polygons{{
 	{{ 0u, 12u,  4u, 18u, 16u}}, // 0
 	{{18u,  6u, 14u,  2u, 16u}}, // 1
 	{{ 4u, 10u, 11u,  6u, 18u}}, // 2
@@ -59,9 +59,9 @@ static const std::array<std::array<unsigned, 5>, 12> polygons{{
 }};
 
 
-static std::vector<gml::dvec3> makeVertices(unsigned faceIndex) noexcept {
+static std::vector<gml::dvec3> makeVertices(int faceIndex) noexcept {
 	std::vector<gml::dvec3> result(5);
-	for (unsigned i = 0; i < 5; ++i) {
+	for (int i = 0; i < 5; ++i) {
 		result.at(i) = gml::normalize(vertices.at(polygons.at(faceIndex)[i]));
 	}
 	return result;
@@ -87,7 +87,7 @@ Triangle DodecahedronMesh::Triangles::generate() const {
 
 	Triangle triangle = mTriangles.generate();
 
-	const unsigned base = mFaceIndex * mMesh->mFaceVertexCount;
+	const int base = mFaceIndex * mMesh->mFaceVertexCount;
 
 	triangle.vertices[0] += base;
 	triangle.vertices[1] += base;
@@ -167,7 +167,7 @@ void DodecahedronMesh::Vertices::next() {
 
 
 
-DodecahedronMesh::DodecahedronMesh(double radius, unsigned segments, unsigned rings) noexcept :
+DodecahedronMesh::DodecahedronMesh(double radius, int segments, int rings) noexcept :
 	mRadius{radius},
 	mSegments{segments},
 	mRings{rings},

@@ -14,9 +14,9 @@ using namespace generator;
 CappedConeMesh::CappedConeMesh(
 	double radius,
 	double size,
-	unsigned slices,
-	unsigned segments,
-	unsigned rings,
+	int slices,
+	int segments,
+	int rings,
 	double start,
 	double sweep
 ) :

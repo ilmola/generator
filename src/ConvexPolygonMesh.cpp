@@ -36,11 +36,11 @@ Triangle ConvexPolygonMesh::Triangles::generate() const {
 
 	Triangle triangle{};
 
-	const unsigned verticesPerRing = mMesh->mSegments * mMesh->mVertices.size();
-	const unsigned delta = mRingIndex * verticesPerRing + 1;
+	const int verticesPerRing = mMesh->mSegments * mMesh->mVertices.size();
+	const int delta = mRingIndex * verticesPerRing + 1;
 
-	const unsigned n1 = mSideIndex * mMesh->mSegments + mSegmentIndex;
-	const unsigned n2 = (n1 + 1) % verticesPerRing;
+	const int n1 = mSideIndex * mMesh->mSegments + mSegmentIndex;
+	const int n2 = (n1 + 1) % verticesPerRing;
 
 	if (mRingIndex == mMesh->mRings - 1) {
 		triangle.vertices[0] = 0;
@@ -77,7 +77,7 @@ void ConvexPolygonMesh::Triangles::next() {
 
 			++mSideIndex;
 
-			if (mSideIndex == mMesh->mVertices.size()) {
+			if (mSideIndex == static_cast<int>(mMesh->mVertices.size())) {
 				++mRingIndex;
 			}
 		}
@@ -95,7 +95,7 @@ void ConvexPolygonMesh::Triangles::next() {
 
 				++mSideIndex;
 
-				if (mSideIndex == mMesh->mVertices.size()) {
+				if (mSideIndex == static_cast<int>(mMesh->mVertices.size())) {
 					mSideIndex = 0;
 					mOdd = false;
 
@@ -138,7 +138,7 @@ MeshVertex ConvexPolygonMesh::Vertices::generate() const {
 		const double ringDelta = static_cast<double>(mRingIndex) / mMesh->mRings;
 		const double segmentDelta = static_cast<double>(mSegmentIndex) / mMesh->mSegments;
 
-		const unsigned nextSide = (mSideIndex + 1) % mMesh->mVertices.size();
+		const int nextSide = (mSideIndex + 1) % mMesh->mVertices.size();
 		const gml::dvec3 a = gml::mix(mMesh->mVertices.at(mSideIndex), mMesh->mCenter, ringDelta);
 		const gml::dvec3 b = gml::mix(mMesh->mVertices.at(nextSide), mMesh->mCenter, ringDelta);
 
@@ -178,7 +178,7 @@ void ConvexPolygonMesh::Vertices::next() {
 
 			++mSideIndex;
 
-			if (mSideIndex == mMesh->mVertices.size()) {
+			if (mSideIndex == static_cast<int>(mMesh->mVertices.size())) {
 
 				mSideIndex = 0;
 
@@ -192,7 +192,7 @@ void ConvexPolygonMesh::Vertices::next() {
 namespace {
 
 
-std::vector<gml::dvec3> makeVertices(double radius, unsigned sides) noexcept {
+std::vector<gml::dvec3> makeVertices(double radius, int sides) noexcept {
 	std::vector<gml::dvec3> result{};
 
 	CircleShape circle{radius, sides};
@@ -228,7 +228,7 @@ gml::dvec3 calcCenter(const std::vector<gml::dvec3>& vertices) noexcept {
 
 gml::dvec3 calcNormal(const gml::dvec3& center, const std::vector<gml::dvec3>& vertices) {
 	gml::dvec3 normal{};
-	for (unsigned i = 0; i < vertices.size(); ++i) {
+	for (int i = 0; i < static_cast<int>(vertices.size()); ++i) {
 		normal += gml::normal(center, vertices[i], vertices[(i + 1) % vertices.size()]);
 	}
 	return gml::normalize(normal);
@@ -239,21 +239,21 @@ gml::dvec3 calcNormal(const gml::dvec3& center, const std::vector<gml::dvec3>& v
 
 
 ConvexPolygonMesh::ConvexPolygonMesh(
-	double radius, unsigned sides, unsigned segments, unsigned rings
+	double radius, int sides, int segments, int rings
 ) noexcept :
 	ConvexPolygonMesh{makeVertices(radius, sides), segments, rings}
 { }
 
 
 ConvexPolygonMesh::ConvexPolygonMesh(
-	const std::vector<gml::dvec2>& vertices, unsigned segments, unsigned rings
+	const std::vector<gml::dvec2>& vertices, int segments, int rings
 ) noexcept :
 	ConvexPolygonMesh{convertVertices(vertices), segments, rings}
 { }
 
 
 ConvexPolygonMesh::ConvexPolygonMesh(
-	std::vector<gml::dvec3> vertices, unsigned segments, unsigned rings
+	std::vector<gml::dvec3> vertices, int segments, int rings
 ) noexcept :
 	mVertices{std::move(vertices)},
 	mSegments{segments},

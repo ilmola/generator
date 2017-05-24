@@ -31,7 +31,7 @@ public:
 		const gml::dvec3& start = {0.0, 0.0, -1.0},
 		const gml::dvec3& end = {0.0, 0.0, 1.0},
 		const gml::dvec3& normal = {1.0, 0.0, 0.0},
-		unsigned segments = 8u
+		int segments = 8
 	);
 
 	using Edges = typename Impl::Edges;

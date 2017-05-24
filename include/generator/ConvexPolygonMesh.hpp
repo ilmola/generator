@@ -37,11 +37,11 @@ private:
 
 		bool mOdd;
 
-		unsigned mSegmentIndex;
+		int mSegmentIndex;
 
-		unsigned mSideIndex;
+		int mSideIndex;
 
-		unsigned mRingIndex;
+		int mRingIndex;
 
 		explicit Triangles(const ConvexPolygonMesh&) noexcept;
 
@@ -61,11 +61,11 @@ private:
 
 		bool mCenterDone;
 
-		unsigned mSegmentIndex;
+		int mSegmentIndex;
 
-		unsigned mSideIndex;
+		int mSideIndex;
 
-		unsigned mRingIndex;
+		int mRingIndex;
 
 		explicit Vertices(const ConvexPolygonMesh&) noexcept;
 
@@ -74,9 +74,9 @@ private:
 
 	std::vector<gml::dvec3> mVertices;
 
-	unsigned mSegments;
+	int mSegments;
 
-	unsigned mRings;
+	int mRings;
 
 	gml::dvec3 mCenter;
 
@@ -97,19 +97,19 @@ public:
 	/// an empty mesh is generated.
 	/// @param rings The number of radial segments. Should be >= 1. = yelds an empty mesh.
 	explicit ConvexPolygonMesh(
-		double radius = 1.0, unsigned sides = 5u, unsigned segments = 4u, unsigned rings = 4u
+		double radius = 1.0, int sides = 5, int segments = 4, int rings = 4
 	) noexcept;
 
 	//// @param vertices The corner vertex coordinates. Should form a convex polygon.
 	explicit ConvexPolygonMesh(
-		const std::vector<gml::dvec2>& vertices, unsigned segments = 1u, unsigned rings = 1u
+		const std::vector<gml::dvec2>& vertices, int segments = 1, int rings = 1
 	) noexcept;
 
 	/// @param vertices The corner vertex coordinates. Should be coplanar and
 	/// form a convex polygon.
 	/// calculated as an avarage.
 	explicit ConvexPolygonMesh(
-		std::vector<gml::dvec3> vertices, unsigned segments = 1u, unsigned rings = 1u
+		std::vector<gml::dvec3> vertices, int segments = 1, int rings = 1
 	) noexcept;
 
 	Triangles triangles() const noexcept;

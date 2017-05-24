@@ -30,11 +30,11 @@ public:
 
 			if (i_ % 2 == 0) return Edge{
 				edge_.vertices[0],
-				static_cast<unsigned>(shape_->vertexCache_.size()) + i_ / 2
+				static_cast<int>(shape_->vertexCache_.size()) + i_ / 2
 			};
 
 			return Edge{
-				static_cast<unsigned>(shape_->vertexCache_.size()) + i_ / 2,
+				static_cast<int>(shape_->vertexCache_.size()) + i_ / 2,
 				edge_.vertices[1]
 			};
 		}
@@ -50,7 +50,7 @@ public:
 
 		typename EdgeGeneratorType<Shape>::Type edges_;
 
-		unsigned i_;
+		int i_;
 
 		Edges(const SubdivideShape& shape) :
 			shape_{&shape},
@@ -93,7 +93,7 @@ public:
 
 		const SubdivideShape* shape_;
 
-		unsigned vertexIndex_;
+		int vertexIndex_;
 
 		typename EdgeGeneratorType<Shape>::Type edges_;
 

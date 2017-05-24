@@ -109,7 +109,7 @@ void SphericalTriangleMesh::Vertices::next() {
 
 SphericalTriangleMesh::SphericalTriangleMesh(
 	double radius,
-	unsigned segments
+	int segments
 ) :
 	SphericalTriangleMesh{
 		gml::dvec3{radius, 0.0, 0.0},
@@ -122,7 +122,7 @@ SphericalTriangleMesh::SphericalTriangleMesh(
 
 SphericalTriangleMesh::SphericalTriangleMesh(
 	const gml::dvec3& v0, const gml::dvec3& v1, const gml::dvec3& v2,
-	unsigned segments
+	int segments
 ) :
 	v0_{v0},
 	v1_{v1},

@@ -31,7 +31,7 @@ public:
 	/// @param segments Number of subdivisions per edge.
 	RectangleShape(
 		const gml::dvec2& size = gml::dvec2{1.0, 1.0},
-		const gml::uvec2& segments = gml::uvec2{8u, 8u}
+		const gml::ivec2& segments = gml::ivec2{8, 8}
 	);
 
 	using Edges = typename Impl::Edges;

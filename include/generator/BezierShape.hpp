@@ -18,7 +18,7 @@ namespace generator {
 /// A bezier curve with D control points.
 /// @tparam D Number of control points. 4 = cubic curve. Must be > 1.
 /// @image html BezierShape.svg
-template <std::size_t D>
+template <int D>
 class BezierShape
 {
 private:
@@ -39,7 +39,7 @@ private:
 	};
 
 
-	explicit BezierShape(const ArrayWrapper& p, unsigned segments) :
+	explicit BezierShape(const ArrayWrapper& p, int segments) :
 		mParametricShape{
 			[p] (double t) {
 				ShapeVertex vertex;
@@ -69,7 +69,7 @@ public:
 
 	/// @param p Control points
 	/// @param segments Number of subdivisions
-	explicit BezierShape(const gml::dvec2 (&p)[D], unsigned segments = 16u) :
+	explicit BezierShape(const gml::dvec2 (&p)[D], int segments = 16) :
 		// Work around a msvc lambda capture bug by wrapping the array.
 		BezierShape{ArrayWrapper{p}, segments}
 	{ }

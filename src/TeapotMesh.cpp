@@ -182,7 +182,7 @@ static const gml::dvec3 teapotData[32][4][4] = {
 TeapotMesh::Triangles::Triangles(const TeapotMesh& mesh) noexcept :
 	mMesh{&mesh},
 	mIndex{0},
-	mPatchMesh{std::make_shared<BezierMesh<4, 4>>(teapotData[0], gml::uvec2{mesh.mSegments, mesh.mSegments})},
+	mPatchMesh{std::make_shared<BezierMesh<4, 4>>(teapotData[0], gml::ivec2{mesh.mSegments, mesh.mSegments})},
 	mTriangles{mPatchMesh->triangles()}
 { }
 
@@ -199,7 +199,7 @@ Triangle TeapotMesh::Triangles::generate() const
 
 	Triangle triangle = mTriangles.generate();
 
-	const unsigned base = mIndex * mMesh->mPatchVertexCount;
+	const int base = mIndex * mMesh->mPatchVertexCount;
 
 	triangle.vertices[0] += base;
 	triangle.vertices[1] += base;
@@ -220,7 +220,7 @@ void TeapotMesh::Triangles::next()
 
 		if (!done()) {
 			mPatchMesh = std::make_shared<BezierMesh<4, 4>>(
-				teapotData[mIndex], gml::uvec2{mMesh->mSegments, mMesh->mSegments}
+				teapotData[mIndex], gml::ivec2{mMesh->mSegments, mMesh->mSegments}
 			);
 
 			mTriangles = mPatchMesh->triangles();
@@ -232,7 +232,7 @@ void TeapotMesh::Triangles::next()
 TeapotMesh::Vertices::Vertices(const TeapotMesh& mesh) noexcept :
 	mMesh{&mesh},
 	mIndex{0},
-	mPatchMesh{std::make_shared<BezierMesh<4, 4>>(teapotData[0], gml::uvec2{mesh.mSegments, mesh.mSegments})},
+	mPatchMesh{std::make_shared<BezierMesh<4, 4>>(teapotData[0], gml::ivec2{mesh.mSegments, mesh.mSegments})},
 	mVertices{mPatchMesh->vertices()}
 {
 
@@ -260,7 +260,7 @@ void TeapotMesh::Vertices::next()
 
 		if (!done()) {
 			mPatchMesh = std::make_shared<BezierMesh<4, 4>>(
-				teapotData[mIndex], gml::uvec2{mMesh->mSegments, mMesh->mSegments}
+				teapotData[mIndex], gml::ivec2{mMesh->mSegments, mMesh->mSegments}
 			);
 
 			mVertices = mPatchMesh->vertices();
@@ -269,7 +269,7 @@ void TeapotMesh::Vertices::next()
 }
 
 
-TeapotMesh::TeapotMesh(unsigned segments) noexcept :
+TeapotMesh::TeapotMesh(int segments) noexcept :
 	mSegments{segments},
 	mPatchVertexCount{count(BezierMesh<4, 4>{teapotData[0], {segments, segments}}.vertices())}
 {

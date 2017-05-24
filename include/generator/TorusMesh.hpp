@@ -38,8 +38,8 @@ public:
 	TorusMesh(
 		double minor = 0.25,
 		double major = 1.0,
-		unsigned slices = 16u,
-		unsigned segments = 32u,
+		int slices = 16,
+		int segments = 32,
 		double minorStart = 0.0,
 		double minorSweep = gml::radians(360.0),
 		double majorStart = 0.0,

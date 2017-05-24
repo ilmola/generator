@@ -15,8 +15,8 @@ TubeMesh::TubeMesh(
 	double radius,
 	double innerRadius,
 	double size,
-	unsigned slices,
-	unsigned segments,
+	int slices,
+	int segments,
 	double start,
 	double sweep
 ) :

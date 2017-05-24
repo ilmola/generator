@@ -34,7 +34,7 @@ public:
 
 		const ParametricMesh* mesh_;
 
-		gml::uvec2 i_;
+		gml::ivec2 i_;
 
 		bool even_;
 
@@ -54,7 +54,7 @@ public:
 
 		const ParametricMesh* mesh_;
 
-		gml::uvec2 i_;
+		gml::ivec2 i_;
 
 	friend class ParametricMesh;
 	};
@@ -65,7 +65,7 @@ public:
 	/// Both should be >= 1. If either is zero an empty mesh is generated.
 	explicit ParametricMesh(
 		std::function<MeshVertex(const gml::dvec2& t)> eval,
-		const gml::uvec2& segments = {16u, 16u}
+		const gml::ivec2& segments = {16, 16}
 	) noexcept;
 
 	Triangles triangles() const noexcept;
@@ -76,7 +76,7 @@ private:
 
 	std::function<MeshVertex(const gml::dvec2& t)> eval_;
 
-	gml::uvec2 segments_;
+	gml::ivec2 segments_;
 
 	gml::dvec2 delta_;
 

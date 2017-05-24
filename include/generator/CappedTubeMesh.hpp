@@ -31,8 +31,8 @@ public:
 		double radius,
 		double innerRadius,
 		double distance,
-		unsigned slices,
-		unsigned rings,
+		int slices,
+		int rings,
 		double start,
 		double sweep
 	);
@@ -74,9 +74,9 @@ public:
 		double radius = 1.0,
 		double innerRadius = 0.75,
 		double size = 1.0,
-		unsigned slices = 32u,
-		unsigned segments = 8u,
-		unsigned rings = 1u,
+		int slices = 32,
+		int segments = 8,
+		int rings = 1,
 		double start = 0.0,
 		double sweep = gml::radians(360.0)
 	);

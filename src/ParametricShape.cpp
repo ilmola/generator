@@ -61,7 +61,7 @@ void ParametricShape::Vertices::next() {
 
 ParametricShape::ParametricShape(
 	std::function<ShapeVertex(double)> eval,
-	unsigned segments
+	int segments
 ) noexcept :
 	eval_{std::move(eval)},
 	segments_{segments},

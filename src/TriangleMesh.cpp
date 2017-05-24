@@ -108,7 +108,7 @@ void TriangleMesh::Vertices::next() {
 
 
 
-TriangleMesh::TriangleMesh(double radius, unsigned segments) :
+TriangleMesh::TriangleMesh(double radius, int segments) :
 	TriangleMesh{
 		radius * gml::normalize(gml::dvec3{-1.0, -1.0, 0.0}),
 		radius * gml::normalize(gml::dvec3{1.0, -1.0, 0.0}),
@@ -121,7 +121,7 @@ TriangleMesh::TriangleMesh(double radius, unsigned segments) :
 
 TriangleMesh::TriangleMesh(
 	const gml::dvec3& v0, const gml::dvec3& v1, const gml::dvec3& v2,
-	unsigned segments
+	int segments
 ) :
 	v0_{v0},
 	v1_{v1},

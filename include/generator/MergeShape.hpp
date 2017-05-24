@@ -53,7 +53,7 @@ public:
 		typename EdgeGeneratorType<Head>::Type  head_;
 		typename EdgeGeneratorType<MergeShape<Tail...>>::Type tail_;
 
-		unsigned head_VertexCount;
+		int head_VertexCount;
 
 		bool mAllDone;
 

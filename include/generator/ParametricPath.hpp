@@ -33,7 +33,7 @@ public:
 
 		const ParametricPath* path_;
 
-		unsigned i_;
+		int i_;
 
 
 	friend class ParametricPath;
@@ -52,7 +52,7 @@ public:
 
 		const ParametricPath* path_;
 
-		unsigned i_;
+		int i_;
 
 	friend class ParametricPath;
 	};
@@ -63,7 +63,7 @@ public:
 	/// Should be >= 1. Zero yields an empry path.
 	explicit ParametricPath(
 		std::function<PathVertex(double)> eval,
-		unsigned segments = 16u
+		int segments = 16
 	) noexcept;
 
 	Edges edges() const noexcept;
@@ -74,7 +74,7 @@ private:
 
 	std::function<PathVertex(double)> eval_;
 
-	unsigned segments_;
+	int segments_;
 
 	double delta_;
 

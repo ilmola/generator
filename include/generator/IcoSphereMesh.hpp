@@ -27,7 +27,7 @@ public:
 
 	/// @param radius The radius of the containing sphere.
 	/// @param segments The number of segments per icosahedron edge. Must be >= 1.
-	IcoSphereMesh(double radius = 1.0, unsigned segments = 4u);
+	IcoSphereMesh(double radius = 1.0, int segments = 4);
 
 	using Triangles = typename Impl::Triangles;
 

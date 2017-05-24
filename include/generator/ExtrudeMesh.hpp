@@ -161,7 +161,7 @@ private:
 
 	Path path_;
 
-	unsigned shapeVertexCount_;
+	int shapeVertexCount_;
 
 };
 

@@ -35,7 +35,7 @@ gml::dvec3 knot(int p, int q, double t) {
 KnotPath::KnotPath(
 	int p,
 	int q,
-	unsigned segments
+	int segments
 ) :
 	parametricPath_{
 		[p, q] (double t) {

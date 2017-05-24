@@ -30,8 +30,8 @@ public:
 	TorusKnotMesh(
 		int p = 2,
 		int q = 3,
-		unsigned slices = 8u,
-		unsigned segments = 96u
+		int slices = 8,
+		int segments = 96
 	);
 
 	using Triangles = typename Impl::Triangles;

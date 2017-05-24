@@ -19,9 +19,11 @@
 namespace generator {
 
 
-template <typename Mesh, unsigned Iterations>
+template <typename Mesh, int Iterations>
 class SubdivideMesh
 {
+	static_assert(Iterations > 0, "Iterations must be greater than zero!");
+
 private:
 
 	using Impl = SubdivideMesh<SubdivideMesh<Mesh, Iterations-1>, 1>;
@@ -92,8 +94,8 @@ public:
 				}};
 			}
 
-			unsigned j = (i_ + 1) % 3;
-			unsigned k = (i_ + 2) % 3;
+			int j = (i_ + 1) % 3;
+			int k = (i_ + 2) % 3;
 			return Triangle{{
 				triangle_.vertices[i_],
 				vertexFromEdge(triangle_.vertices[i_], triangle_.vertices[j]),
@@ -113,7 +115,7 @@ public:
 
 		const SubdivideMesh* mesh_;
 
-		unsigned i_;
+		int i_;
 
 		typename TriangleGeneratorType<Mesh>::Type triangles_;
 
@@ -126,9 +128,9 @@ public:
 			triangle_{}
 		{ }
 
-		unsigned vertexFromEdge(unsigned a, unsigned b) const {
+		int vertexFromEdge(int a, int b) const {
 			if (a > b) std::swap(a, b);
-			return static_cast<unsigned>(mesh_->vertexCache_.size()) + mesh_->edgeMap_.at({a, b});
+			return static_cast<int>(mesh_->vertexCache_.size()) + mesh_->edgeMap_.at({a, b});
 		}
 
 	friend class SubdivideMesh;
@@ -167,8 +169,8 @@ public:
 
 		const SubdivideMesh* mesh_;
 
-		unsigned edgeIndex_;
-		unsigned vertexIndex_;
+		int edgeIndex_;
+		int vertexIndex_;
 
 		Vertices(const SubdivideMesh& mesh) :
 			mesh_{&mesh},
@@ -188,15 +190,15 @@ public:
 		}
 
 		for (const Triangle& triangle : mesh_.triangles()) {
-			for (unsigned i = 0; i < 3; ++i) {
-				unsigned j = (i + 1) % 3;
+			for (int i = 0; i < 3; ++i) {
+				int j = (i + 1) % 3;
 
 				Edge e{{triangle.vertices[i], triangle.vertices[j]}};
 				if (e.vertices[0] > e.vertices[1])
 					std::swap(e.vertices[0], e.vertices[1]);
 
 				if (edgeMap_.find(e.vertices) == edgeMap_.end()) {
-					edgeMap_[e.vertices] = static_cast<unsigned>(edgeCache_.size());
+					edgeMap_[e.vertices] = static_cast<int>(edgeCache_.size());
 					edgeCache_.push_back(e);
 				}
 
@@ -215,7 +217,7 @@ private:
 
 	std::vector<Edge> edgeCache_;
 
-	std::map<gml::uvec2, unsigned> edgeMap_;
+	std::map<gml::ivec2, int> edgeMap_;
 
 	std::vector<MeshVertex> vertexCache_;
 

@@ -34,27 +34,27 @@ static const std::array<gml::dvec3, 12> vertices {{
 }};
 
 
-static const std::array<gml::uvec3, 20> triangles{{
-	{0u, 11u, 5u},
-	{0u, 5u, 1u},
-	{0u, 1u, 7u},
-	{0u, 7u, 10u},
-	{0u, 10u, 11u},
-	{1u, 5u, 9u},
-	{5u, 11u, 4u},
-	{11u, 10u, 2u},
-	{10u, 7u, 6u},
-	{7u, 1u, 8u},
-	{3u, 9u, 4u},
-	{3u, 4u, 2u},
-	{3u, 2u, 6u},
-	{3u, 6u, 8u},
-	{3u, 8u, 9u},
-	{4u, 9u, 5u},
-	{2u, 4u, 11u},
-	{6u, 2u, 10u},
-	{8u, 6u, 7u},
-	{9u, 8u, 1u}
+static const std::array<gml::ivec3, 20> triangles{{
+	{0,  11, 5},
+	{0,  5,  1},
+	{0,  1,  7},
+	{0,  7,  10},
+	{0,  10, 11},
+	{1,  5,  9},
+	{5,  11, 4},
+	{11, 10, 2},
+	{10, 7,  6},
+	{7,  1,  8},
+	{3,  9,  4},
+	{3,  4,  2},
+	{3,  2,  6},
+	{3,  6,  8},
+	{3,  8,  9},
+	{4,  9,  5},
+	{2,  4,  11},
+	{6,  2,  10},
+	{8,  6,  7},
+	{9,  8,  1}
 }};
 
 
@@ -73,7 +73,7 @@ IcosahedronMesh::Triangles::Triangles(const IcosahedronMesh& mesh) :
 
 
 bool IcosahedronMesh::Triangles::done() const noexcept {
-	return i_ == ::triangles.size();
+	return i_ == static_cast<int>(::triangles.size());
 }
 
 
@@ -82,7 +82,7 @@ Triangle IcosahedronMesh::Triangles::generate() const {
 
 	Triangle triangle = triangles_.generate();
 
-	const unsigned base = i_ * mesh_->faceVertexCount_;
+	const int base = i_ * mesh_->faceVertexCount_;
 
 	triangle.vertices[0] +=  base;
 	triangle.vertices[1] +=  base;
@@ -132,7 +132,7 @@ IcosahedronMesh::Vertices::Vertices(const IcosahedronMesh& mesh) :
 
 
 bool IcosahedronMesh::Vertices::done() const noexcept {
-	return i_ == ::triangles.size();
+	return i_ == static_cast<int>(::triangles.size());
 }
 
 MeshVertex IcosahedronMesh::Vertices::generate() const {
@@ -169,7 +169,7 @@ void IcosahedronMesh::Vertices::next() {
 
 
 
-IcosahedronMesh::IcosahedronMesh(double radius, unsigned segments) :
+IcosahedronMesh::IcosahedronMesh(double radius, int segments) :
 	radius_{radius},
 	segments_{segments},
 	faceVertexCount_{count(TriangleMesh{1.0, segments}.vertices())}

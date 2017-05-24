@@ -14,8 +14,8 @@ using namespace generator;
 TorusKnotMesh::TorusKnotMesh(
 	int p,
 	int q,
-	unsigned slices,
-	unsigned segments
+	int slices,
+	int segments
 ) :
 	extrudeMesh_{
 		{0.25, slices, 0.0, gml::radians(360.0)},

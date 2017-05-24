@@ -13,7 +13,7 @@ using namespace generator;
 
 PlaneMesh::PlaneMesh(
 	const gml::dvec2& size,
-	const gml::uvec2& segments
+	const gml::ivec2& segments
 ) :
 	parametricMesh_{
 		[size] (const gml::dvec2& t) {

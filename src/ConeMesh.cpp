@@ -14,8 +14,8 @@ using namespace generator;
 ConeMesh::ConeMesh(
 	double radius,
 	double size,
-	unsigned slices,
-	unsigned segments,
+	int slices,
+	int segments,
 	double start,
 	double sweep
 ) :

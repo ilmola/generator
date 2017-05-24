@@ -28,7 +28,7 @@ public:
 	/// @param segments Number of subdivisions in the x (0) and y (1) direction.
 	PlaneMesh(
 		const gml::dvec2& size = {1.0, 1.0},
-		const gml::uvec2& segments = {8u, 8u}
+		const gml::ivec2& segments = {8, 8}
 	);
 
 	using Triangles = typename Impl::Triangles;

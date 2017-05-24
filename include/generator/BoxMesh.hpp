@@ -30,7 +30,7 @@ private:
 
 public:
 
-	BoxFace(const gml::dvec2& size, const gml::uvec2& segments, double delta);
+	BoxFace(const gml::dvec2& size, const gml::ivec2& segments, double delta);
 
 	using Triangles = typename Impl::Triangles;
 
@@ -52,7 +52,7 @@ private:
 
 public:
 
-	BoxFaces(const gml::dvec2& size, const gml::uvec2& segments, double delta);
+	BoxFaces(const gml::dvec2& size, const gml::ivec2& segments, double delta);
 
 	using Triangles = typename Impl::Triangles;
 
@@ -90,7 +90,7 @@ public:
 	/// direction are not genereted. If more than one is zero the mesh is empty.
 	explicit BoxMesh(
 		const gml::dvec3& size = {1.0, 1.0, 1.0},
-		const gml::uvec3& segments = {8u, 8u, 8u}
+		const gml::ivec3& segments = {8, 8, 8}
 	) noexcept;
 
 	using Triangles = typename Impl::Triangles;

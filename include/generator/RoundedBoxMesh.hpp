@@ -34,7 +34,7 @@ public:
 
 	BoxEdge(
 		const gml::dvec2& position, double radius, double size,
-		unsigned slices, unsigned segments
+		int slices, int segments
 	);
 
 	using Triangles = typename Impl::Triangles;
@@ -54,12 +54,12 @@ private:
 
 	using Impl = MirrorMesh<MirrorMesh<BoxEdge>>;
 	Impl mirrorMesh_;
- 
+
 public:
 
 	BoxEdges(
 		const gml::dvec3& size, double radius,
-		unsigned slices, unsigned segments
+		int slices, int segments
 	);
 
 	using Triangles = typename Impl::Triangles;
@@ -82,7 +82,7 @@ private:
 
 public:
 
-	BoxCorner(const gml::dvec3& position, double radius, unsigned slices);
+	BoxCorner(const gml::dvec3& position, double radius, int slices);
 
 	using Triangles = typename Impl::Triangles;
 
@@ -103,7 +103,7 @@ private:
 	Impl mirrorMesh_;
 
 public:
-	BoxCorners(const gml::dvec3& size, double radius, unsigned slices);
+	BoxCorners(const gml::dvec3& size, double radius, int slices);
 
 	using Triangles = typename Impl::Triangles;
 
@@ -146,8 +146,8 @@ public:
 	RoundedBoxMesh(
 		double radius = 0.25,
 		const gml::dvec3& size = {0.75, 0.75, 0.75},
-		unsigned slices = 4u,
-		const gml::uvec3& segments = {8u, 8u, 8u}
+		int slices = 4,
+		const gml::ivec3& segments = {8, 8, 8}
 	);
 
 	using Triangles = typename Impl::Triangles;

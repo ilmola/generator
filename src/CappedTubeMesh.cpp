@@ -16,8 +16,8 @@ TubeCap::TubeCap(
 	double radius,
 	double innerRadius,
 	double distance,
-	unsigned slices,
-	unsigned rings,
+	int slices,
+	int rings,
 	double start,
 	double sweep
 ) :
@@ -32,9 +32,9 @@ CappedTubeMesh::CappedTubeMesh(
 	double radius,
 	double innerRadius,
 	double size,
-	unsigned slices,
-	unsigned segments,
-	unsigned rings,
+	int slices,
+	int segments,
+	int rings,
 	double start,
 	double sweep
 ) :

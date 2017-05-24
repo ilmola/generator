@@ -38,8 +38,8 @@ public:
 	/// @param segmentSweep Counterclockwise angle.
 	SphereMesh(
 		double radius = 1.0,
-		unsigned slices = 32,
-		unsigned segments = 16,
+		int slices = 32,
+		int segments = 16,
 		double sliceStart = 0.0,
 		double sliceSweep = gml::radians(360.0),
 		double segmentStart = 0.0,

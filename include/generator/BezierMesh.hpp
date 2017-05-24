@@ -19,7 +19,7 @@ namespace generator {
 /// @tparam D0 Number of control points along the t[0] axis. Must be > 1.
 /// @tparam D1 Number of control points along the t[1] axis. Must be > 1.
 /// @image html BezierMesh.svg
-template <std::size_t D0, std::size_t D1>
+template <int D0, int D1>
 class BezierMesh
 {
 private:
@@ -41,7 +41,7 @@ private:
 	};
 
 	explicit BezierMesh(
-		const ArrayWrapper& p, const gml::uvec2& segments
+		const ArrayWrapper& p, const gml::ivec2& segments
 	) :
 		mParametricMesh{
 			[p] (const gml::dvec2& t) {
@@ -73,7 +73,7 @@ public:
 	/// @param p Control points
 	/// @param segments Number of subdivisions along each axis
 	explicit BezierMesh(
-		const gml::dvec3 (&p)[D1][D0], const gml::uvec2& segments = {16u, 16u}
+		const gml::dvec3 (&p)[D1][D0], const gml::ivec2& segments = {16, 16}
 	) :
 		// Work around a msvc lambda capture bug by wrapping the array.
 		BezierMesh{ArrayWrapper{p}, segments}

@@ -12,7 +12,7 @@ using namespace generator;
 
 CircleShape::CircleShape(
 	double radius,
-	unsigned segments,
+	int segments,
 	double start,
 	double sweep
 ) :

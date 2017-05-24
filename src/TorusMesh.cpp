@@ -15,8 +15,8 @@ using namespace generator;
 TorusMesh::TorusMesh(
 	double minor,
 	double major,
-	unsigned slices,
-	unsigned segments,
+	int slices,
+	int segments,
 	double minorStart,
 	double minorSweep,
 	double majorStart,

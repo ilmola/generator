@@ -30,11 +30,11 @@ public:
 
 			if (i_ % 2 == 0) return Edge{{
 				edge_.vertices[0],
-				static_cast<unsigned>(path_->vertexCache_.size()) + i_ / 2
+				static_cast<int>(path_->vertexCache_.size()) + i_ / 2
 			}};
 
 			return Edge{{
-				static_cast<unsigned>(path_->vertexCache_.size()) + i_ / 2,
+				static_cast<int>(path_->vertexCache_.size()) + i_ / 2,
 				edge_.vertices[1]
 			}};
 		}
@@ -50,7 +50,7 @@ public:
 
 		typename EdgeGeneratorType<Path>::Type edges_;
 
-		unsigned i_;
+		int i_;
 
 		Edges(const SubdividePath& path) :
 			path_{&path},
@@ -94,7 +94,7 @@ public:
 
 		const SubdividePath* path_;
 
-		unsigned vertexIndex_;
+		int vertexIndex_;
 
 		typename EdgeGeneratorType<Path>::Type edges_;
 

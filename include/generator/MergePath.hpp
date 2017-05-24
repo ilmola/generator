@@ -50,7 +50,7 @@ public:
 		typename EdgeGeneratorType<Head>::type  head_;
 		typename EdgeGeneratorType<MergePath<Tail...>>::type tail_;
 
-		unsigned head_VertexCount;
+		int head_VertexCount;
 
 		bool mAllDone;
 

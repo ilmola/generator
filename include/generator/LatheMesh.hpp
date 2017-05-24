@@ -35,9 +35,9 @@ public:
 
 			const auto& shapeEdge = shape_Edges.generate();
 
-			unsigned slice = i_ / 2;
+			int slice = i_ / 2;
 
-			const unsigned delta = mesh_->slices_ + 1 ;
+			const int delta = mesh_->slices_ + 1 ;
 
 			if (i_ % 2 == 0) {
 				triangle.vertices[0] = shapeEdge.vertices[0] * delta + slice;
@@ -69,7 +69,7 @@ public:
 
 		decltype(mesh_->shape_.edges()) shape_Edges;
 
-		unsigned i_;
+		int i_;
 
 		Triangles(const LatheMesh& mesh) :
 			mesh_{&mesh},
@@ -123,7 +123,7 @@ public:
 
 		decltype(mesh_->shape_.vertices()) shapeVertices_;
 
-		unsigned i_;
+		int i_;
 
 		Vertices(const LatheMesh& mesh) :
 			mesh_{&mesh},
@@ -143,7 +143,7 @@ public:
 	LatheMesh(
 		Shape shape,
 		const gml::dvec2& axis,
-		unsigned slices = 32u,
+		int slices = 32,
 		double start = 0.0,
 		double sweep = gml::radians(360.0)
 	) :
@@ -164,7 +164,7 @@ private:
 
 	Shape shape_;
 
-	unsigned slices_;
+	int slices_;
 
 	double start_;
 
@@ -177,7 +177,7 @@ template <typename Shape>
 LatheMesh<Shape> lathe(
 	Shape shape,
 	Axis axis = Axis::X,
-	unsigned slices = 32,
+	int slices = 32,
 	double start = 0.0,
 	double sweep = gml::radians(360.0)
 ) {

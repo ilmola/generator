@@ -33,9 +33,9 @@ public:
 	private:
 
 		const TriangleMesh* mesh_;
-		unsigned row_;
-		unsigned col_;
-		unsigned i_;
+		int row_;
+		int col_;
+		int i_;
 
 		Triangles(const TriangleMesh& mesh);
 
@@ -52,8 +52,8 @@ public:
 	private:
 
 		const TriangleMesh* mesh_;
-		unsigned row_;
-		unsigned col_;
+		int row_;
+		int col_;
 
 		Vertices(const TriangleMesh& mesh);
 
@@ -63,13 +63,13 @@ public:
 	/// Makes a regular triangle centered at origin.
 	/// @param radius The radius of the containing circle.
 	/// @param segments The number of segments along each edge. Must be >= 1.
-	explicit TriangleMesh(double radius = 1.0, unsigned segments = 4u);
+	explicit TriangleMesh(double radius = 1.0, int segments = 4);
 
 	/// @param v0,v1,v2 The vertex positions of the triangle.
 	/// @param segments The number of segments along each edge. Must be >= 1.
 	TriangleMesh(
 		const gml::dvec3& v0, const gml::dvec3& v1, const gml::dvec3& v2,
-		unsigned segments = 4u
+		int segments = 4
 	);
 
 	Triangles triangles() const noexcept;
@@ -82,7 +82,7 @@ private:
 
 	gml::dvec3 normal_;
 
-	unsigned segments_;
+	int segments_;
 
 };
 

@@ -67,7 +67,7 @@ void ParametricPath::Vertices::next() {
 
 ParametricPath::ParametricPath(
 	std::function<PathVertex(double)> eval,
-	unsigned segments
+	int segments
 ) noexcept :
 	eval_{std::move(eval)},
 	segments_{segments},

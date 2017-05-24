@@ -12,8 +12,8 @@ using namespace generator;
 CylinderMesh::CylinderMesh(
 	double radius,
 	double size,
-	unsigned slices,
-	unsigned segments,
+	int slices,
+	int segments,
 	double start,
 	double sweep
 ) :

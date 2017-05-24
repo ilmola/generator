@@ -24,7 +24,7 @@ public:
 
 	template <typename Mesh>
 	void writeMesh(const Mesh& mesh) {
-		unsigned newBase = base_;
+		int newBase = base_;
 
 		for (const MeshVertex& vertex : mesh.vertices()) {
 			++newBase;
@@ -63,7 +63,7 @@ public:
 
 private:
 
-	unsigned base_;
+	int base_;
 
 	std::stringstream ss_;
 

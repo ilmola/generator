@@ -32,7 +32,7 @@ public:
 	KnotPath(
 		int p = 2,
 		int q = 3,
-		unsigned segments = 96u
+		int segments = 96
 	);
 
 	using Edges = typename Impl::Edges;

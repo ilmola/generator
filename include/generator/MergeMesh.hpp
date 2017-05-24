@@ -53,7 +53,7 @@ public:
 		typename TriangleGeneratorType<Head>::Type  head_;
 		typename TriangleGeneratorType<MergeMesh<Tail...>>::Type tail_;
 
-		unsigned head_VertexCount;
+		int head_VertexCount;
 
 		bool mAllDone;
 

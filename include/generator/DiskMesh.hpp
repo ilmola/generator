@@ -36,8 +36,8 @@ public:
 	DiskMesh(
 		double radius = 1.0,
 		double innerRadius = 0.0,
-		unsigned slices = 32u,
-		unsigned rings = 4u,
+		int slices = 32,
+		int rings = 4,
 		double start = 0.0,
 		double sweep = gml::radians(360.0)
 	);

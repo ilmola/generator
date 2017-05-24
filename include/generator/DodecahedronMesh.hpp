@@ -37,7 +37,7 @@ private:
 
 		const DodecahedronMesh* mMesh;
 
-		unsigned mFaceIndex;
+		int mFaceIndex;
 
 		// Needs be a shared_ptr in order to make copy/move not to mess up the
 		// internal pointer in mTriangles.
@@ -62,7 +62,7 @@ private:
 
 		const DodecahedronMesh* mMesh;
 
-		unsigned mFaceIndex;
+		int mFaceIndex;
 
 		// Needs be a shared_ptr in order to make copy/move not to mess up the
 		// internal pointer in mTriangles.
@@ -77,21 +77,21 @@ private:
 
 	double mRadius;
 
-	unsigned mSegments;
+	int mSegments;
 
-	unsigned mRings;
+	int mRings;
 
-	unsigned mFaceVertexCount;
+	int mFaceVertexCount;
 
 public:
 
 	/// @param radius The radius of the enclosing sphere.
 	/// @param segments The number segments along each edge. Should be >= 1.
-	/// If zero empty mesh is generated.
+	/// If <1 empty mesh is generated.
 	/// @param rings The number of radial segments on each face. Should be >= 1.
-	/// If zero an empty mesh is generated.
+	/// If <1 an empty mesh is generated.
 	explicit DodecahedronMesh(
-		double radius = 1.0, unsigned segments = 1u, unsigned rings = 1u
+		double radius = 1.0, int segments = 1, int rings = 1
 	) noexcept;
 
 	Triangles triangles() const noexcept;
