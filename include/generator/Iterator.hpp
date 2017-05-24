@@ -9,7 +9,6 @@
 
 #include <cassert>
 #include <stdexcept>
-#include <iterator>
 
 
 #include "utils.hpp"
@@ -23,8 +22,8 @@ namespace generator {
 /// An iterator that can be used to "drive" a generator.
 /// Note that iterator mutates the generator.
 template <typename Generator>
-class Iterator :
-	public std::iterator<std::input_iterator_tag, typename GeneratedType<Generator>::Type> {
+class Iterator
+{
 private:
 
 	Generator* generator_;
@@ -32,6 +31,16 @@ private:
 	typename GeneratedType<Generator>::Type value_;
 
 public:
+
+	using iterator_category = std::input_iterator_tag;
+
+	using value_type = typename GeneratedType<Generator>::Type;
+
+	using difference_type = std::ptrdiff_t;
+
+	using pointer = value_type*;
+
+	using reference = value_type&;
 
 	/// Creates a dummy end iterator.
 	Iterator() noexcept :
