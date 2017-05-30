@@ -354,9 +354,11 @@ for (const MeshVertex& vertex : result.vertices()) { }
 
 Available modifiers for shapes are:
 
+
 - `AxisSwapShape`
 - `FlipShape`
 - `MergeShape`
+- `RepeatShape`
 - `RotateShape`
 - `ScaleShape`
 - `SubdivideShape`
@@ -369,6 +371,7 @@ Available modifiers for paths are:
 - `AxisSwapPath`
 - `FlipPath`
 - `MergePath`
+- `RepeatPath`
 - `RotatePath`
 - `ScalePath`
 - `SubdividePath`
@@ -383,6 +386,7 @@ Available modifiers for meshes are:
 - `FlipMesh`
 - `LatheMesh`
 - `MergeMesh`
+- `RepeatMesh`
 - `RotateMesh`
 - `ScaleMesh`
 - `SpherifyMesh`

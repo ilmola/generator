@@ -55,6 +55,9 @@ set(GENERATOR_HEADERS
 	${GENERATOR_INCLUDE_DIR}/PathVertex.hpp
 	${GENERATOR_INCLUDE_DIR}/PlaneMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/RectangleShape.hpp
+	${GENERATOR_INCLUDE_DIR}/RepeatMesh.hpp
+	${GENERATOR_INCLUDE_DIR}/RepeatPath.hpp
+	${GENERATOR_INCLUDE_DIR}/RepeatShape.hpp
 	${GENERATOR_INCLUDE_DIR}/RotateMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/RotatePath.hpp
 	${GENERATOR_INCLUDE_DIR}/RotateShape.hpp
