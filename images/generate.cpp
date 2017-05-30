@@ -136,6 +136,7 @@ int main() {
 	generateShape(LineShape{}, "LineShape");
 	generateShape(RectangleShape{}, "RectangleShape");
 	generateShape(RoundedRectangleShape{}, "RoundedRectangleShape");
+	generateShape(GridShape{}, "GridShape");
 
 	// Paths
 	generatePath(EmptyPath{}, "EmptyPath");

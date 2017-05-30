@@ -40,6 +40,7 @@
 #include "FlipMesh.hpp"
 #include "FlipPath.hpp"
 #include "FlipShape.hpp"
+#include "GridShape.hpp"
 #include "HelixPath.hpp"
 #include "IcosahedronMesh.hpp"
 #include "IcoSphereMesh.hpp"

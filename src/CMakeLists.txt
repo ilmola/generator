@@ -34,6 +34,7 @@ set(GENERATOR_HEADERS
 	${GENERATOR_INCLUDE_DIR}/FlipPath.hpp
 	${GENERATOR_INCLUDE_DIR}/FlipShape.hpp
 	${GENERATOR_INCLUDE_DIR}/generator.hpp
+	${GENERATOR_INCLUDE_DIR}/GridShape.hpp
 	${GENERATOR_INCLUDE_DIR}/HelixPath.hpp
 	${GENERATOR_INCLUDE_DIR}/IcosahedronMesh.hpp
 	${GENERATOR_INCLUDE_DIR}/IcoSphereMesh.hpp
@@ -112,6 +113,7 @@ set(GENERATOR_SOURCES
 	EmptyMesh.cpp
 	EmptyPath.cpp
 	EmptyShape.cpp
+	GridShape.cpp
 	HelixPath.cpp
 	IcosahedronMesh.cpp
 	IcoSphereMesh.cpp

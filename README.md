@@ -128,6 +128,7 @@ Available shapes are:
 
 - `BezierShape`
 - `CircleShape`
+- `GridShape`
 - `LineShape`
 - `ParametricShape`
 - `RectangleShape`
