@@ -54,10 +54,10 @@ public:
 
 		int mDelta;
 
-		explicit Edges(const RepeatShape* RepeatShape) noexcept :
-			mRepeatShape{RepeatShape},
-			mEdges{RepeatShape->mShape.edges()},
-			mIndex{RepeatShape->mVertexCount > 0 ? 0 : RepeatShape->mInstances},
+		explicit Edges(const RepeatShape* repeatShape) noexcept :
+			mRepeatShape{repeatShape},
+			mEdges{repeatShape->mShape.edges()},
+			mIndex{repeatShape->mVertexCount > 0 ? 0 : repeatShape->mInstances},
 			mDelta{0}
 		{ }
 
@@ -110,10 +110,10 @@ public:
 
 	private:
 
-		explicit Vertices(const RepeatShape* RepeatShape) :
-			mRepeatShape{RepeatShape},
-			mVertices{RepeatShape->mShape.vertices()},
-			mIndex{RepeatShape->mVertexCount > 0 ? 0 : RepeatShape->mInstances},
+		explicit Vertices(const RepeatShape* repeatShape) :
+			mRepeatShape{repeatShape},
+			mVertices{repeatShape->mShape.vertices()},
+			mIndex{repeatShape->mVertexCount > 0 ? 0 : repeatShape->mInstances},
 			mDelta{}
 		{ }
 

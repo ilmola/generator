@@ -54,10 +54,10 @@ public:
 
 		int mDelta;
 
-		explicit Triangles(const RepeatMesh* RepeatMesh) noexcept :
-			mRepeatMesh{RepeatMesh},
-			mTriangles{RepeatMesh->mMesh.triangles()},
-			mIndex{RepeatMesh->mVertexCount > 0 ? 0 : RepeatMesh->mInstances},
+		explicit Triangles(const RepeatMesh* repeatMesh) noexcept :
+			mRepeatMesh{repeatMesh},
+			mTriangles{repeatMesh->mMesh.triangles()},
+			mIndex{repeatMesh->mVertexCount > 0 ? 0 : repeatMesh->mInstances},
 			mDelta{0}
 		{ }
 
@@ -110,10 +110,10 @@ public:
 
 	private:
 
-		explicit Vertices(const RepeatMesh* RepeatMesh) :
-			mRepeatMesh{RepeatMesh},
-			mVertices{RepeatMesh->mMesh.vertices()},
-			mIndex{RepeatMesh->mVertexCount > 0 ? 0 : RepeatMesh->mInstances},
+		explicit Vertices(const RepeatMesh* repeatMesh) :
+			mRepeatMesh{repeatMesh},
+			mVertices{repeatMesh->mMesh.vertices()},
+			mIndex{repeatMesh->mVertexCount > 0 ? 0 : repeatMesh->mInstances},
 			mDelta{}
 		{ }
 

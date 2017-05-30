@@ -54,10 +54,10 @@ public:
 
 		int mDelta;
 
-		explicit Edges(const RepeatPath* RepeatPath) noexcept :
-			mRepeatPath{RepeatPath},
-			mEdges{RepeatPath->mPath.edges()},
-			mIndex{RepeatPath->mVertexCount > 0 ? 0 : RepeatPath->mInstances},
+		explicit Edges(const RepeatPath* repeatPath) noexcept :
+			mRepeatPath{repeatPath},
+			mEdges{repeatPath->mPath.edges()},
+			mIndex{repeatPath->mVertexCount > 0 ? 0 : repeatPath->mInstances},
 			mDelta{0}
 		{
 
@@ -96,10 +96,10 @@ public:
 
 	private:
 
-		explicit Vertices(const RepeatPath* RepeatPath) :
-			mRepeatPath{RepeatPath},
-			mVertices{RepeatPath->mPath.vertices()},
-			mIndex{RepeatPath->mVertexCount > 0 ? 0 : RepeatPath->mInstances},
+		explicit Vertices(const RepeatPath* repeatPath) :
+			mRepeatPath{repeatPath},
+			mVertices{repeatPath->mPath.vertices()},
+			mIndex{repeatPath->mVertexCount > 0 ? 0 : repeatPath->mInstances},
 			mDelta{}
 		{ }
 
