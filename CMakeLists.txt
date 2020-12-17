@@ -11,9 +11,9 @@ else()
 	add_definitions(-std=c++11 -pedantic -Wall -Wextra)
 endif()
 
-set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/lib)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
 option(GENERATOR_USE_GLM "Use GLM instead of GML (experimental)" OFF)
 if(GENERATOR_USE_GLM)
@@ -39,7 +39,6 @@ elseif(GLM_INCLUDE_DIR AND GENERATOR_USE_GLM)
 endif()
 
 set(TARGET_NAME ${CMAKE_STATIC_LIBRARY_PREFIX}generator${SUFFIX}${CMAKE_STATIC_LIBRARY_SUFFIX})
-
 message(STATUS "Target name is '${TARGET_NAME}'")
 
 add_subdirectory(src)
