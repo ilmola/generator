@@ -1,4 +1,5 @@
 #include "generator/GridShape.hpp"
+#include <algorithm>
 
 using namespace generator;
 
