@@ -28,14 +28,15 @@ public:
 		Edge generate() const {
 			Edge edge_ = edges_.generate();
 
+			assert(false && "revisit");
 			if (i_ % 2 == 0) return Edge{
-				edge_.vertices[0],
-				static_cast<int>(shape_->vertexCache_.size()) + i_ / 2
+				// edge_.vertices[0],
+				// static_cast<int>(shape_->vertexCache_.size()) + i_ / 2
 			};
 
 			return Edge{
-				static_cast<int>(shape_->vertexCache_.size()) + i_ / 2,
-				edge_.vertices[1]
+				// static_cast<int>(shape_->vertexCache_.size()) + i_ / 2,
+				// edge_.vertices[1]
 			};
 		}
 
