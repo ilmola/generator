@@ -9,7 +9,7 @@
 
 namespace generator {
 
-
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
 	
 /// Will have a type named "Type" that has same type as value returned by method
