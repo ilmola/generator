@@ -9,7 +9,9 @@
 
 namespace generator {
 
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
+	
 /// Will have a type named "Type" that has same type as value returned by method
 /// generate() of type Generator.
 template <typename Generator>
@@ -19,7 +21,6 @@ public:
 	using Type =  decltype(static_cast<const Generator*>(nullptr)->generate());
 
 };
-
 
 /// Will have a type named "Type" that has same type as value returned by method
 /// edges() for type Primitive.
@@ -52,6 +53,7 @@ public:
 	using Type =  decltype(static_cast<const Primitive*>(nullptr)->vertices());
 
 };
+#pragma GCC diagnostic pop
 
 
 /// Counts the number of steps left in the generator.
